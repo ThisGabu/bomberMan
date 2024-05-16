@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class MyProject extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	float x;
+	float y;
 	
 	@Override
 	public void create () {
@@ -18,8 +20,12 @@ public class MyProject extends ApplicationAdapter {
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
+
+		if
 		batch.begin();
-		batch.draw(img, 0, 0);
+
+		batch.draw(img, x, y);
+
 		batch.end();
 	}
 	
