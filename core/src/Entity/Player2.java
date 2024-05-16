@@ -3,20 +3,19 @@ package Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
-public class Player1 implements Player {
-    public float y=224,x;
-    float speed=1;
-    float out;
+public class Player2 implements Player {
+    public float y,x;
+    float speed=;
     Controller controller = new Controller();
 
     public void jalan(){
-        if (Gdx.input.isKeyPressed(Input.Keys.W)){
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
             this.y=controller.naik(this.y, speed);
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             this.y=controller.turun(this.y, speed);
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             this.x=controller.kanan(this.x, speed);
-        } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             this.x=controller.kiri(this.x, speed);
         }
 
