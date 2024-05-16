@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Player {
     float y=0,x=0;
-    Controller controller = new Controller(x, y);
+    Controller controller = new Controller(x,y);
 
     public void jalan(SpriteBatch batch, Texture img){
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
