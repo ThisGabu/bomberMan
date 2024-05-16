@@ -5,30 +5,24 @@ import com.badlogic.gdx.Input;
 
 public class Controller {
 
-    float x,y;
-    Controller(float x, float y){
-        this.x=x;
-        this.y=y;
-    }
 
-
-    float naik(float y){
-        y=+ 4;
+    float naik(float y, float speed){
+        y= y+ speed;
         return y;
     }
 
-    float turun(float y){
-        y=- 4;
+    float turun(float y, float speed){
+        y= y - speed;
         return y;
     }
 
-    float kanan(float x){
-        x=+4;
+    float kanan(float x, float speed){
+        x=x+speed;
         return x;
     }
 
-    float kiri(float x){
-        x=-4;
+    float kiri(float x, float speed){
+        x=x-speed;
         return x;
     }
 }
