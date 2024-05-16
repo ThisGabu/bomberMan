@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
 public class Player2 implements Player {
-    public float y,x;
-    float speed=;
+    public float y=0,x=70;
+    float speed=1;
     Controller controller = new Controller();
 
     public void jalan(){
