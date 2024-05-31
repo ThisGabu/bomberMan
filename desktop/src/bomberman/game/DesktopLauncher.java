@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(600);
 		config.setTitle("BomberManGame");
 		config.setWindowedMode(MainGameScreen.widthScreen, MainGameScreen.heightScreen);
-		new Lwjgl3Application(new MyProject(), config);
+		new Lwjgl3Application(new MainMenuScreen(), config);
 
 	}
 }

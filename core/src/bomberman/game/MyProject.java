@@ -27,7 +27,6 @@ public class MyProject extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		backgorund = new Texture("background.png");
 
 	}
 

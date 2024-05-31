@@ -22,7 +22,7 @@ public class MainMenuScreen extends ApplicationAdapter{
     @Override
     public void create () {
         batch = new SpriteBatch();
-        backgorund = new Texture("background.png");
+        backgorund = new Texture("D:\\Downloads\\BomberMan\\assets\\MainMenuScreen\\background.png");
     }
 
     @Override
