@@ -1,5 +1,7 @@
 package bomberman.game;
 
+import GameScreen.MainGameScreen;
+import GameScreen.MainMenuScreen;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import bomberman.game.MyProject;
@@ -8,8 +10,10 @@ import bomberman.game.MyProject;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(60);
+		config.setForegroundFPS(600);
 		config.setTitle("BomberManGame");
+		config.setWindowedMode(MainGameScreen.widthScreen, MainGameScreen.heightScreen);
 		new Lwjgl3Application(new MyProject(), config);
+
 	}
 }
