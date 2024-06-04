@@ -10,7 +10,7 @@ import bomberman.game.MyProject;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(600);
+		config.setForegroundFPS(60);
 		config.setTitle("BomberManGame");
 		config.setWindowedMode(MainGameScreen.widthScreen, MainGameScreen.heightScreen);
 		new Lwjgl3Application(new MainMenuScreen(), config);
