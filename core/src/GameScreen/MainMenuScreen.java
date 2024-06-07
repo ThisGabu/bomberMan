@@ -1,13 +1,14 @@
 package GameScreen;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class MainMenuScreen extends ApplicationAdapter{
+public class MainMenuScreen extends Game {
     public static final float width = MainGameScreen.widthScreen;
     public static final float height = MainGameScreen.heightScreen;
     public static final float xBackground = 0;
@@ -77,7 +78,7 @@ public class MainMenuScreen extends ApplicationAdapter{
             }
             batch.end();
         } else if (play) {
-
+            PlayScreen.playScreen(batch);
         }
 
     }
