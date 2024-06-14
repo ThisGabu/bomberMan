@@ -38,6 +38,8 @@ public class MainMenuScreen extends Game {
     Texture exit;
     Texture startPress;
     Texture exitPress;
+    Texture exitHover;
+    Texture startHover;
     SpriteBatch batch;
 
 
@@ -45,12 +47,14 @@ public class MainMenuScreen extends Game {
     @Override
     public void create () {
         batch = new SpriteBatch();
-        logo = new Texture("D:\\Downloads\\BomberMan\\assets\\MainMenuScreen\\Logo.png");
-        backgorund = new Texture("D:\\Downloads\\BomberMan\\assets\\MainMenuScreen\\background.png");
-        start = new Texture("D:\\Downloads\\BomberMan\\assets\\MainMenuScreen\\Start.png");
-        startPress = new Texture("D:\\Downloads\\BomberMan\\assets\\MainMenuScreen\\StartPress.png");
-        exit = new Texture("D:\\Downloads\\BomberMan\\assets\\MainMenuScreen\\Exit.png");
-        exitPress = new Texture("D:\\Downloads\\BomberMan\\assets\\MainMenuScreen\\exitPress.png");
+        logo = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\logo.png");
+        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        start = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\Start.png");
+        startHover = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\startHover.png");
+        startPress = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\StartPress.png");
+        exit = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\Exit.png");
+        exitHover = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitHover.png");
+        exitPress = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitPress.png");
     }
 
     @Override
@@ -68,17 +72,21 @@ public class MainMenuScreen extends Game {
                 if (Gdx.input.isTouched()){
                     batch.draw(startPress, xStart, yStart, widthStart, heightStart);
                     mainMenu=false;
+                } else {
+                    batch.draw(startHover, xStart, yStart, widthStart, heightStart);
                 }
             }
             else if (Gdx.input.getX()>xExit&&Gdx.input.getX()<xExit+widthExit&&Gdx.input.getY()<height-yExit&&Gdx.input.getY()>height-yExit-heightExit){
                 if (Gdx.input.isTouched()){
                     batch.draw(exitPress, xExit, yExit, widthExit, heightExit);
                     dispose();
+                } else {
+                    batch.draw(exitHover, xExit, yExit, widthExit, heightExit);
                 }
             }
             batch.end();
         } else if (play) {
-            PlayScreen.playScreen(batch);
+
         }
 
     }
