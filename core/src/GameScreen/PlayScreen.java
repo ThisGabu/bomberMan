@@ -13,6 +13,7 @@ public class PlayScreen implements Screen {
 
     SpriteBatch batch;
     Texture backgorund;
+    Screen pauseScreen;
 
 
     private static final float width = BomberMan.widthScreen;
@@ -20,12 +21,14 @@ public class PlayScreen implements Screen {
     private static final float xBackground = 0;
     private static final float yBackgorund = 0;
 
+    public static boolean pause;
+
 
 
     PlayScreen(){
         batch = new SpriteBatch();
         backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
-
+        pauseScreen = new PauseScreen();
     }
 
 
@@ -40,6 +43,11 @@ public class PlayScreen implements Screen {
 
         batch.begin();
         batch.draw(backgorund, xBackground, yBackgorund, width, height);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            pause=true;
+        }
+
         batch.end();
     }
 

@@ -12,11 +12,13 @@ public class ControllerScreen implements Screen {
 
     Screen mainMenuScreen;
     Screen playScreen;
+    Screen pauseScreen;
 
 
     public ControllerScreen(){
         mainMenuScreen = new MainMenuScreen();
         playScreen = new PlayScreen();
+        pauseScreen = new PauseScreen();
         mainMenu = true;
     }
 
@@ -34,7 +36,11 @@ public class ControllerScreen implements Screen {
         if (mainMenu){
             mainMenuScreen.render(delta);
         } else if (play) {
-            playScreen.render(delta);
+            if (PlayScreen.pause){
+                pauseScreen.render(delta);
+            } else {
+                playScreen.render(delta);
+            }
         }
 
     }
