@@ -1,5 +1,6 @@
 package GameScreen;
 
+import Utility.MapGame;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -14,6 +15,7 @@ public class PlayScreen implements Screen {
     SpriteBatch batch;
     Texture backgorund;
     Screen pauseScreen;
+    MapGame map;
 
 
     private static final float width = BomberMan.widthScreen;
@@ -29,6 +31,7 @@ public class PlayScreen implements Screen {
         batch = new SpriteBatch();
         backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
         pauseScreen = new PauseScreen();
+        map= new MapGame();
     }
 
 
@@ -47,6 +50,19 @@ public class PlayScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             pause=true;
         }
+
+        for (int i=0; i<map.jumlahTileMetal; i++){
+            for (int j=0; j<map.jumlahTileMetal; j++){
+                batch.draw(map.borderTile[i][j], map.xMetal[i][j], map.yMetal[i][j], map.widthTile, map.heightTile);
+            }
+        }
+
+        for (int i=0; i<map.jumlahTileRumput; i++){
+            for (int j=0; j<map.jumlahTileRumput; j++){
+                    batch.draw(map.grassTile[i][j], map.xTile[i][j], map.yTile[i][j], map.widthTile, map.heightTile);
+            }
+        }
+
 
         batch.end();
     }

@@ -1,6 +1,7 @@
 package bomberman.game;
 
 import GameScreen.ControllerScreen;
+import Utility.MapGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,6 +13,7 @@ public class BomberMan extends Game {
 
 
 	Screen controller;
+
 
 	
 	@Override
