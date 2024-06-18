@@ -59,7 +59,7 @@ public class PlayScreen implements Screen {
 
         for (int i=0; i<map.jumlahTileRumput; i++){
             for (int j=0; j<map.jumlahTileRumput; j++){
-                    batch.draw(map.grassTile[i][j], map.xTile[i][j], map.yTile[i][j], map.widthTile, map.heightTile);
+                batch.draw(map.tilePicture[i][j], map.tile[i][j].getxPosition(), map.tile[i][j].getyPosition(), map.widthTile, map.heightTile);
             }
         }
 
