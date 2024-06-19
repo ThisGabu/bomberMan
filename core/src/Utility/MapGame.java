@@ -27,8 +27,8 @@ public class MapGame {
     public float[][] xMetal;
     public float[][] yMetal;
 
-    public Texture rumput1;
-    public Texture rumput2;
+    public Box box;
+
 
     public MapGame() {
         tile= new Tile[jumlahTileRumput][jumlahTileRumput];
@@ -140,5 +140,49 @@ public class MapGame {
             }
         }
     }
+
+    public void update(){
+        for (int i=0; i<jumlahTileRumput; i++){
+            if (i%2==0){
+                for (int j=0; j<jumlahTileRumput; j++){
+                    if (tile[i][j].wall){
+                        tilePicture[i][j]= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\wall.png");
+                    } else if (tile[i][j].box) {
+                        tilePicture[i][j]= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
+                    } else {
+                        if (j % 2 == 0) {
+                            tilePicture[i][j] = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+                        } else {
+                            tilePicture[i][j] = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+                        }
+                    }
+                }
+            } else {
+                for (int j = 0; j < jumlahTileRumput; j++) {
+                    if (tile[i][j].wall){
+                        tilePicture[i][j]= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\wall.png");
+                    } else if (tile[i][j].box) {
+                        tilePicture[i][j]= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
+                    } else {
+                        if (j % 2 == 0) {
+                            tilePicture[i][j] = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+                        } else {
+                            tilePicture[i][j] = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i=0; i<jumlahTileMetal; i++){
+            for (int j=0; j<jumlahTileMetal; j++){
+                borderTile[i][j]= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\metalwall.png");
+            }
+        }
+
+
+    }
+
+
 
 }

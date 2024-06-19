@@ -6,6 +6,7 @@ public class Tile {
     public float yPosition;
     boolean box;
     boolean wall;
+    boolean item;
 
     public void setBox(boolean box) {
         this.box = box;
@@ -29,5 +30,12 @@ public class Tile {
 
     public float getyPosition() {
         return yPosition;
+    }
+
+
+    public void boxDesroy(){
+        box= false;
+        item= true;
+
     }
 }
