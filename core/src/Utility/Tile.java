@@ -33,6 +33,8 @@ public class Tile {
     }
 
 
+
+
     public void boxDesroy(){
         box= false;
         item= true;

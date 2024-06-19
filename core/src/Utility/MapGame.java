@@ -27,7 +27,6 @@ public class MapGame {
     public float[][] xMetal;
     public float[][] yMetal;
 
-    public Box box;
 
 
     public MapGame() {
