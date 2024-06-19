@@ -4,9 +4,13 @@ public class Tile {
 
     public float xPosition;
     public float yPosition;
+
     boolean box;
     boolean wall;
     boolean item;
+    boolean explosion;
+    boolean player;
+    boolean bom;
 
     public void setBox(boolean box) {
         this.box = box;
@@ -32,12 +36,31 @@ public class Tile {
         return yPosition;
     }
 
-
+    public void explosion(){
+        explosion=true;
+    }
 
 
     public void boxDesroy(){
         box= false;
         item= true;
 
+    }
+
+    public void update(){
+        if (bom){
+            //fitur explosion
+        }
+        else if (explosion){
+            if (box){
+                boxDesroy();
+            } else if (player) {
+                //fitur bunuh player
+            }
+        } else if (player) {
+            if (item){
+                //fitur player terima item
+            }
+        }
     }
 }
