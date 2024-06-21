@@ -5,6 +5,8 @@ public class Tile {
     public float xPosition;
     public float yPosition;
 
+    boolean perubahan;
+
     boolean box;
     boolean wall;
     boolean item;
