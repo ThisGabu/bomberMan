@@ -24,6 +24,10 @@ public class BomberMan extends Game {
 	@Override
 	public void render () {
 
+		if (ControllerScreen.restartPlayScreen){
+			controller.dispose();
+		}
+
 		if (ControllerScreen.exitGame) {
 			Gdx.app.exit();
 		}

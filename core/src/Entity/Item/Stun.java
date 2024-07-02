@@ -8,7 +8,7 @@ public class Stun extends Item{
 
     private static final int cols = 8;
     private static final int rows = 1;
-    private static final float delayFrame = 0.025f;
+    private static final float delayFrame = Item.delayFrame;
     float stateTime;
 
 
@@ -18,6 +18,7 @@ public class Stun extends Item{
     public Stun(){
         setNama("bombCapacity");
         setPicture();
+        sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\stun.png");
 
         TextureRegion[][] tmp= TextureRegion.split(sheet, sheet.getWidth()/cols, sheet.getHeight()/rows);
         TextureRegion[] frame = new TextureRegion[cols*rows];
@@ -35,6 +36,6 @@ public class Stun extends Item{
 
     @Override
     public void setPicture() {
-        super.picture = new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\bombCapacity.png");
+        super.picture = new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\stun.png");
     }
 }

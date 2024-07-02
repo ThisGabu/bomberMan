@@ -10,6 +10,8 @@ public class ControllerScreen implements Screen {
     public static boolean play;
     public static boolean exitGame;
 
+    public static boolean restartPlayScreen;
+
     Screen mainMenuScreen;
     Screen playScreen;
     Screen pauseScreen;
@@ -29,8 +31,6 @@ public class ControllerScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
-
 
 
         if (mainMenu){
@@ -67,6 +67,6 @@ public class ControllerScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        playScreen.dispose();
     }
 }

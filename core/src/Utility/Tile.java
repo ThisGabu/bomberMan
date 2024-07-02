@@ -1,6 +1,12 @@
 package Utility;
 
+import Entity.Item.*;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import java.util.Random;
+
 public class Tile {
+
+    Random rand = new Random();
 
     public float xPosition;
     public float yPosition;
@@ -13,6 +19,14 @@ public class Tile {
     boolean explosion;
     boolean player;
     boolean bom;
+
+    Item items;
+
+    int number;
+
+    public boolean getBox(){
+        return box;
+    }
 
     public void setBox(boolean box) {
         this.box = box;
@@ -42,11 +56,43 @@ public class Tile {
         explosion=true;
     }
 
+    public Animation picture(){
+        return items.getAnimation();
+    }
+
+    public boolean item(){
+        return item;
+    }
+
+    void setItems(){
+        number=rand.nextInt(100);
+        System.out.println(number);
+        if (number<70){
+            item=true;
+            number=rand.nextInt(100);
+            System.out.println(number);
+            if (number<65){
+                number=rand.nextInt(100);
+                System.out.println(number);
+                if (number<40){
+                    items= new BombCapacity();
+                } else if (number<80) {
+                    items= new BombRange();
+                } else {
+                    items= new Shield();
+                }
+            } else {
+                items= new Stun();
+            }
+        } else {
+            item= false;
+        }
+    }
 
     public void boxDesroy(){
-        box= false;
-        item= true;
-
+        setItems();
+        box=false;
+        perubahan=true;
     }
 
     public void update(){

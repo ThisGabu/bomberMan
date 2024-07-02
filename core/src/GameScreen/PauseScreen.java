@@ -87,6 +87,7 @@ public class PauseScreen implements Screen {
             if (Gdx.input.isTouched()){
                 PlayScreen.pause=false;
             } else {
+                ControllerScreen.restartPlayScreen=true;
                 System.out.println("false");
                 batch.draw(continueHover, xContinue, yContinue, widthContinue, heightContinue);
             }

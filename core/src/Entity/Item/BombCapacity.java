@@ -9,7 +9,7 @@ public class BombCapacity extends Item{
 
     private static final int cols = 8;
     private static final int rows = 1;
-    private static final float delayFrame = 0.025f;
+    private static final float delayFrame = Item.delayFrame;
     float stateTime;
 
     Texture sheet;

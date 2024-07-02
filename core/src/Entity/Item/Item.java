@@ -13,6 +13,7 @@ public abstract class Item {
 
     float xPosition;
     float yPosition;
+    static final float delayFrame = 0.2505f;
 
     public void setPicture(Texture picture) {
         this.picture = picture;

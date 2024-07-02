@@ -8,7 +8,7 @@ public class BombRange extends Item {
 
     private static final int cols = 8;
     private static final int rows = 1;
-    private static final float delayFrame = 0.025f;
+    private static final float delayFrame = Item.delayFrame;
     float stateTime;
 
 
@@ -16,8 +16,9 @@ public class BombRange extends Item {
 
 
     public BombRange(){
-        setNama("bombCapacity");
+        setNama("bombRange");
         setPicture();
+        sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\bombRange.png");
 
         TextureRegion[][] tmp= TextureRegion.split(sheet, sheet.getWidth()/cols, sheet.getHeight()/rows);
         TextureRegion[] frame = new TextureRegion[cols*rows];
@@ -35,6 +36,6 @@ public class BombRange extends Item {
 
     @Override
     public void setPicture() {
-        super.picture = new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\bombCapacity.png");
+        super.picture = new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\bombRange.png");
     }
 }
