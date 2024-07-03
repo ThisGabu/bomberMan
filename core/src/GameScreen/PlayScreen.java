@@ -97,7 +97,20 @@ public class PlayScreen implements Screen {
             batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
         }
 
+        int index=0;
+        for (int i=0; i<map.jumlahTileRumput; i++){
+            for (int j=0; j<map.jumlahTileRumput; j++){
 
+                    if ((player.getXPositionPlayer(index)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index)<=map.tile[i][j].getyPosition()+map.heightTile)||(player.getXPositionPlayer(index)+player.getWidthPlayer(index)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index)+player.getWidthPlayer(index)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index)+player.getHeightPlayer(index)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index)+player.getHeightPlayer(index)<=map.tile[i][j].getyPosition()+map.heightTile)){
+                        map.setPlayer(i,j,true);
+                    } else if ((player.getXPositionPlayer(1)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index+1)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index+1)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index+1)<=map.tile[i][j].getyPosition()+map.heightTile)||(player.getXPositionPlayer(index+1)+player.getWidthPlayer(index+1)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index+1)+player.getWidthPlayer(index+1)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index+1)+player.getHeightPlayer(index+1)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index+1)+player.getHeightPlayer(index+1)<=map.tile[i][j].getyPosition()+map.heightTile)) {
+                        map.setPlayer(i,j,true);
+                    } else {
+                        map.setPlayer(i,j,false);
+                    }
+
+            }
+        }
 
         batch.end();
     }

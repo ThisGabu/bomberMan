@@ -140,6 +140,14 @@ public class MapGame {
         return picture;
     }
 
+    public void setPlayer(int i, int j, boolean kondisi){
+        tile[i][j].setPlayer(kondisi);
+    }
+
+    public boolean getPlayer(int i, int j){
+        return tile[i][j].getPlayer();
+    }
+
     public void update() {
 
         for (int i = 0; i < jumlahTileRumput; i++) {

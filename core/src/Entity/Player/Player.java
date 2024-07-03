@@ -13,8 +13,8 @@ public class Player {
 
     final float delayFrame=0.25f;
     final float speed=1;
-    final float width=50;
-    final float height=50;
+    final float width=20;
+    final float height=20;
 
     float x;
     float y;
@@ -235,6 +235,8 @@ public class Player {
         } else if (pergerakan=="left") {
             animation=animationWalkLeft;
             walkLeft();
+        } else {
+            animation=animationIdle;
         }
     }
 

@@ -20,7 +20,7 @@ public class Tile {
     boolean wall;
     boolean item;
     boolean explosion;
-    boolean player;
+    public boolean player;
     boolean bom;
 
     Item items;
@@ -134,6 +134,11 @@ public class Tile {
         perubahan=true;
     }
 
+    public void terimaItem(){
+        item=false;
+        perubahan=true;
+    }
+
     public void update(int i, int j){
         if (bom){
             //fitur explosion
@@ -146,7 +151,7 @@ public class Tile {
             }
         } else if (player) {
             if (item){
-                //fitur player terima item
+                terimaItem();
             }
         }
 
@@ -154,5 +159,13 @@ public class Tile {
             setPicture(i,j);
             perubahan = false;
         }
+    }
+
+    public void setPlayer(boolean player) {
+        this.player = player;
+    }
+
+    public boolean getPlayer(){
+        return player;
     }
 }
