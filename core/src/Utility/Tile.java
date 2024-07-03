@@ -168,4 +168,16 @@ public class Tile {
     public boolean getPlayer(){
         return player;
     }
+
+    public boolean isBox() {
+        return box;
+    }
+
+    public boolean isWall() {
+        return wall;
+    }
+
+    public boolean isBom() {
+        return bom;
+    }
 }

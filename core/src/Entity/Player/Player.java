@@ -3,6 +3,7 @@ package Entity.Player;
 import Utility.Analog.Analog;
 import Utility.Analog.Analog1;
 import Utility.Analog.Analog2;
+import Utility.MapGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,11 +14,14 @@ public class Player {
 
     final float delayFrame=0.25f;
     final float speed=1;
-    final float width=20;
-    final float height=20;
+    final float width=23;
+    final float height=23;
 
     float x;
     float y;
+
+    int widthSpace=7;
+    int heightSpace=11;
 
     Analog analog;
 
@@ -218,23 +222,60 @@ public class Player {
         }
     }
 
-    public void update(){
+    public void update(MapGame map){
         String pergerakan;
 
         pergerakan= analog.update();
 
         if (pergerakan=="up"){
-            animation=animationWalkUp;
-            walkUp();
+            if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
+                animation=animationWalkUp;
+                walkUp();
+            }
         } else if (pergerakan=="down") {
-            animation=animationWalkDown;
-            walkDown();
+            if (y-1>map.border[0][0].getyPosition()+map.heightTile){
+                animation=animationWalkDown;
+                walkDown();
+            }
         } else if (pergerakan=="right") {
-            animation=animationWalkRight;
-            walkRight();
+            int index1 = 0;
+            int index2 = 0;
+            boolean tile = false;
+            for (int i = 0; i < map.jumlahTileRumput; i++) {
+                for (int j = 0; j < map.jumlahTileRumput; j++) {
+                    index1++;
+                    index2++;
+                    if ((x > map.tile[i][j].xPosition && x < map.tile[i][j].getxPosition() + map.widthTile && y > map.tile[i][j].getyPosition() && y < map.tile[i][j].getyPosition() + map.heightTile) || (x + width > map.tile[i][j].xPosition && x + width < map.tile[i][j].getxPosition() + map.widthTile && y + height > map.tile[i][j].getyPosition() && y + height < map.tile[i][j].getyPosition() + map.heightTile)) {
+                        tile = true;
+                        break;
+                    }
+                }
+                if (tile) {
+                    break;
+                }
+            }
+
+            if (tile) {
+                index2 += 1;
+                if (index2 < map.jumlahTileRumput - 1) {
+                    if (map.tile[index1][index2].isBox()) {
+
+                    } else if (map.tile[index1][index2].isWall()) {
+
+                    } else if (map.tile[index1][index2].isBom()) {
+
+                    } else if (x + 1 + width < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getxPosition()) {
+                        animation = animationWalkRight;
+                        walkRight();
+                    }
+                }
+
+            }
         } else if (pergerakan=="left") {
-            animation=animationWalkLeft;
-            walkLeft();
+            if (x-1>map.border[0][0].getxPosition()+map.widthTile){
+                animation=animationWalkLeft;
+                walkLeft();
+            }
         } else {
             animation=animationIdle;
         }

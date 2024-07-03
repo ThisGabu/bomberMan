@@ -1,5 +1,6 @@
 package Entity.Player;
 
+import Utility.MapGame;
 import Utility.SpawnTile;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -42,8 +43,8 @@ public class ControllerPlayer {
         return player[i].getHeight();
     }
 
-    public void update(int i){
-        player[i].update();
+    public void update(int i, MapGame map){
+        player[i].update(map);
     }
 
 }

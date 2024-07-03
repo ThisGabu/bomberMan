@@ -69,7 +69,7 @@ public class PlayScreen implements Screen {
         map.update();
 
         for (int i=0; i<jumlahPlayer; i++){
-            player.update(i);
+            player.update(i, map);
         }
 
         for (int i=0; i<map.jumlahTileMetal; i++){
