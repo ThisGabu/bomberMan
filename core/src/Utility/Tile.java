@@ -1,12 +1,15 @@
 package Utility;
 
 import Entity.Item.*;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import java.util.Random;
 
 public class Tile {
 
     Random rand = new Random();
+
+    Texture picture;
 
     public float xPosition;
     public float yPosition;
@@ -60,6 +63,42 @@ public class Tile {
         return items.getAnimation();
     }
 
+    public void setPicture(int i, int j) {
+        if (i % 2 == 0) {
+
+                if (wall) {
+                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\wall.png");
+                } else if (box) {
+                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
+                } else {
+                    if (j % 2 == 0) {
+                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+                    } else {
+                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+                    }
+                }
+
+        } else {
+
+                if (wall) {
+                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\wall.png");
+                } else if (box) {
+                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
+                } else {
+                    if (j % 2 == 0) {
+                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+                    } else {
+                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+                    }
+                }
+
+        }
+    }
+
+    public Texture getPicture() {
+        return picture;
+    }
+
     public boolean item(){
         return item;
     }
@@ -95,7 +134,7 @@ public class Tile {
         perubahan=true;
     }
 
-    public void update(){
+    public void update(int i, int j){
         if (bom){
             //fitur explosion
         }
@@ -109,6 +148,11 @@ public class Tile {
             if (item){
                 //fitur player terima item
             }
+        }
+
+        if (perubahan) {
+            setPicture(i,j);
+            perubahan = false;
         }
     }
 }
