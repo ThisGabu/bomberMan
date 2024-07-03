@@ -1,25 +1,30 @@
 package GameScreen;
 
+import Utility.MapGame;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
+import java.util.Map;
+
 public class ControllerScreen implements Screen {
+
+    public static boolean restartMap;
 
     public static boolean mainMenu;
     public static boolean play;
     public static boolean exitGame;
 
-    public static boolean restartPlayScreen;
-
     Screen mainMenuScreen;
     Screen playScreen;
     Screen pauseScreen;
 
+    MapGame map;
 
     public ControllerScreen(){
+        map= new MapGame();
         mainMenuScreen = new MainMenuScreen();
-        playScreen = new PlayScreen();
+        playScreen = new PlayScreen(map);
         pauseScreen = new PauseScreen();
         mainMenu = true;
     }
@@ -32,6 +37,11 @@ public class ControllerScreen implements Screen {
     @Override
     public void render(float delta) {
 
+        if (restartMap){
+            map= new MapGame();
+            playScreen = new PlayScreen(map);
+            restartMap=false;
+        }
 
         if (mainMenu){
             mainMenuScreen.render(delta);

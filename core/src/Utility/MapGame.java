@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import java.util.Map;
+
 public class MapGame {
 
     public static final int jumlahTileRumput = 25;

@@ -28,11 +28,11 @@ public class PlayScreen implements Screen {
 
 
 
-    PlayScreen(){
+    PlayScreen(MapGame map){
         batch = new SpriteBatch();
         backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
         pauseScreen = new PauseScreen();
-        map= new MapGame();
+        this.map= map;
     }
 
 
