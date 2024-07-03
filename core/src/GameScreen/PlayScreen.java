@@ -1,5 +1,6 @@
 package GameScreen;
 
+import Entity.Player.ControllerPlayer;
 import Utility.MapGame;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.ApplicationAdapter;
@@ -16,6 +17,7 @@ public class PlayScreen implements Screen {
     Texture backgorund;
     Screen pauseScreen;
     MapGame map;
+    ControllerPlayer player;
 
 
     private static final float width = BomberMan.widthScreen;
@@ -26,13 +28,14 @@ public class PlayScreen implements Screen {
     public static boolean pause;
     boolean destroy;
 
-
+    final int jumlahPlayer=2;
 
     PlayScreen(MapGame map){
         batch = new SpriteBatch();
         backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
         pauseScreen = new PauseScreen();
         this.map= map;
+        player= new ControllerPlayer(jumlahPlayer, map.spawnTile);
     }
 
 
@@ -65,6 +68,10 @@ public class PlayScreen implements Screen {
 
         map.update();
 
+        for (int i=0; i<jumlahPlayer; i++){
+            player.update(i);
+        }
+
         for (int i=0; i<map.jumlahTileMetal; i++){
             for (int j=0; j<map.jumlahTileMetal; j++){
                 batch.draw(map.getBorder(i,j), map.border[i][j].getxPosition(), map.border[i][j].getyPosition(), map.widthTile, map.heightTile);
@@ -84,6 +91,10 @@ public class PlayScreen implements Screen {
 
                 }
             }
+        }
+
+        for (int i=0; i<jumlahPlayer; i++){
+            batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
         }
 
 

@@ -12,6 +12,7 @@ public class MapGame {
 
     public static final int jumlahTileRumput = 25;
     public static final int jumlahTileMetal = 27;
+    public static final int jumlahSpawnTile = 2;
     public static float widthTile = 26.5f;
     public static float heightTile = 26.5f;
     public static float xPosition = (BomberMan.widthScreen - widthTile * jumlahTileMetal) / 2 + widthTile;
@@ -22,17 +23,16 @@ public class MapGame {
     public static float yBorder = yPosition - heightTile;
 
     public static Tile[][] tile;
-
-
     public Border[][] border;
+    public SpawnTile[] spawnTile;
 
     float stateTime = 0f;
 
 
     public MapGame() {
         tile = new Tile[jumlahTileRumput][jumlahTileRumput];
-
         border = new Border[jumlahTileMetal][jumlahTileMetal];
+        spawnTile = new SpawnTile[jumlahSpawnTile];
 
         for (int i = 0; i < jumlahTileRumput; i++) {
             for (int j = 0; j < jumlahTileRumput; j++) {
@@ -44,6 +44,10 @@ public class MapGame {
             for (int j = 0; j < jumlahTileMetal; j++) {
                 border[i][j]= new Border();
             }
+        }
+
+        for (int i=0; i<jumlahSpawnTile; i++){
+            spawnTile[i]= new SpawnTile();
         }
 
 
@@ -109,6 +113,21 @@ public class MapGame {
                 border[i][j].setyPosition(yBorder + heightTile * i);
             }
         }
+
+        int index=0;
+       for (int i=0; i<jumlahTileRumput; i++){
+           for (int j=0; j<jumlahTileRumput; j++){
+               if (i==jumlahTileRumput-1&&j==jumlahTileRumput-1){
+                   spawnTile[index].setxPosition(tile[i][j].getxPosition());
+                   spawnTile[index].setyPosition(tile[i][j].getyPosition());
+                   index++;
+               } else if (i==0&&j==0) {
+                   spawnTile[index].setyPosition(tile[i][j].getyPosition());
+                   spawnTile[index].setxPosition(tile[i][j].getxPosition());
+                   index++;
+               }
+           }
+       }
     }
 
     public Texture getTilePicture(int i, int j){
