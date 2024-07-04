@@ -1,6 +1,8 @@
 package Utility;
 
 import Entity.Item.*;
+import Entity.Map.Box;
+import Entity.Map.Wall;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import java.util.Random;
@@ -24,8 +26,42 @@ public class Tile {
     boolean bom;
 
     Item items;
+    Box boxs;
+    Wall walls;
 
     int number;
+
+    public void create(){
+        if (box){
+            boxs= new Box(xPosition, yPosition);
+        } else if (wall) {
+            walls= new Wall(xPosition, yPosition);
+        }
+    }
+
+    public Texture getBoxTexture(){
+        return boxs.getPicture();
+    }
+
+    public float getXBox(){
+        return boxs.getxPosition();
+    }
+
+    public float getYBox(){
+        return boxs.getyPosition();
+    }
+
+    public float getWidthBox(){
+        return boxs.getWidth();
+    }
+
+    public float getHeightBox(){
+        return boxs.getHeight();
+    }
+
+    public Texture getWallTexture(){
+        return walls.getPicture();
+    }
 
     public boolean getBox(){
         return box;
@@ -65,33 +101,19 @@ public class Tile {
 
     public void setPicture(int i, int j) {
         if (i % 2 == 0) {
+            if (j % 2 == 0) {
+                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+            } else {
+                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+            }
 
-                if (wall) {
-                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\wall.png");
-                } else if (box) {
-                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
-                } else {
-                    if (j % 2 == 0) {
-                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
-                    } else {
-                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
-                    }
-                }
 
         } else {
-
-                if (wall) {
-                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\wall.png");
-                } else if (box) {
-                    picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
-                } else {
-                    if (j % 2 == 0) {
-                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
-                    } else {
-                        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
-                    }
-                }
-
+            if (j % 2 == 0) {
+                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+            } else {
+                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+            }
         }
     }
 

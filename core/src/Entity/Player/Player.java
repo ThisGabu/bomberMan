@@ -238,39 +238,7 @@ public class Player {
                 walkDown();
             }
         } else if (pergerakan=="right") {
-            int index1 = 0;
-            int index2 = 0;
-            boolean tile = false;
-            for (int i = 0; i < map.jumlahTileRumput; i++) {
-                for (int j = 0; j < map.jumlahTileRumput; j++) {
-                    index1++;
-                    index2++;
-                    if ((x > map.tile[i][j].xPosition && x < map.tile[i][j].getxPosition() + map.widthTile && y > map.tile[i][j].getyPosition() && y < map.tile[i][j].getyPosition() + map.heightTile) || (x + width > map.tile[i][j].xPosition && x + width < map.tile[i][j].getxPosition() + map.widthTile && y + height > map.tile[i][j].getyPosition() && y + height < map.tile[i][j].getyPosition() + map.heightTile)) {
-                        tile = true;
-                        break;
-                    }
-                }
-                if (tile) {
-                    break;
-                }
-            }
 
-            if (tile) {
-                index2 += 1;
-                if (index2 < map.jumlahTileRumput - 1) {
-                    if (map.tile[index1][index2].isBox()) {
-
-                    } else if (map.tile[index1][index2].isWall()) {
-
-                    } else if (map.tile[index1][index2].isBom()) {
-
-                    } else if (x + 1 + width < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getxPosition()) {
-                        animation = animationWalkRight;
-                        walkRight();
-                    }
-                }
-
-            }
         } else if (pergerakan=="left") {
             if (x-1>map.border[0][0].getxPosition()+map.widthTile){
                 animation=animationWalkLeft;

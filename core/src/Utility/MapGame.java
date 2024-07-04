@@ -13,6 +13,9 @@ public class MapGame {
     public static final int jumlahTileRumput = 25;
     public static final int jumlahTileMetal = 27;
     public static final int jumlahSpawnTile = 2;
+    public int jumlahBox=0;
+    public int jumlahWall=0;
+
     public static float widthTile = 26.5f;
     public static float heightTile = 26.5f;
     public static float xPosition = (BomberMan.widthScreen - widthTile * jumlahTileMetal) / 2 + widthTile;
@@ -64,6 +67,7 @@ public class MapGame {
                         tile[i][j].box = false;
                     } else if (j % 2 == 0) {
                         tile[i][j].box = true;
+                        jumlahBox++;
                     } else {
                         tile[i][j].box = false;
                     }
@@ -82,6 +86,7 @@ public class MapGame {
                         tile[i][j].box = false;
                     } else {
                         tile[i][j].wall = true;
+                        jumlahWall++;
                     }
                 }
             }
@@ -128,6 +133,57 @@ public class MapGame {
                }
            }
        }
+
+       for (int i=0; i<jumlahTileRumput; i++){
+           for (int j=0; j<jumlahTileRumput; j++){
+               tile[i][j].create();
+           }
+       }
+    }
+
+    public boolean isBox(int i, int j){
+        return tile[i][j].isBox();
+    }
+
+    public boolean isWall(int i, int j){
+        return tile[i][j].isWall();
+    }
+
+    public Texture getBoxTexture(int i, int j){
+        return tile[i][j].getBoxTexture();
+    }
+
+    public float getWidthBox(int i, int j){
+        return tile[i][j].getWidthBox();
+    }
+
+    public float getHeightBox(int i, int j){
+        return tile[i][j].getHeightBox();
+    }
+
+    public float getxPositionBox(int i, int j){
+        return tile[i][j].getXBox();
+    }
+
+    public float getyPositionBox(int i, int j){
+        return tile[i][j].getYBox();
+    }
+
+    public Texture getWallsTexture(int i, int j){
+        return tile[i][j].getWallTexture();
+    }
+
+    public float getxPosition(int i, int j){
+        return tile[i][j].getxPosition();
+    }
+
+    public float getyPosition(int i, int j){
+        return tile[i][j].getyPosition();
+    }
+
+    public void destroyBox(int i, int j){
+        jumlahBox--;
+        tile[i][j].boxDesroy();
     }
 
     public Texture getTilePicture(int i, int j){

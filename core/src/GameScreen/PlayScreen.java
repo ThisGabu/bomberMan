@@ -93,6 +93,16 @@ public class PlayScreen implements Screen {
             }
         }
 
+        for (int i=0; i<map.jumlahTileRumput; i++){
+            for (int j=0; j<map.jumlahTileRumput; j++){
+                if (map.isBox(i,j)){
+                    batch.draw(map.getBoxTexture(i,j), map.getxPositionBox(i,j), map.getyPositionBox(i,j), map.getWidthBox(i,j), map.getHeightBox(i,j));
+                } else if (map.isWall(i,j)){
+                    batch.draw(map.getWallsTexture(i,j), map.getxPosition(i,j), map.getyPosition(i,j), map.widthTile, map.heightTile);
+                }
+            }
+        }
+
         for (int i=0; i<jumlahPlayer; i++){
             batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
         }
