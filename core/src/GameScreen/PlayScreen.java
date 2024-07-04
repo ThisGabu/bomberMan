@@ -19,7 +19,6 @@ public class PlayScreen implements Screen {
     MapGame map;
     ControllerPlayer player;
 
-
     private static final float width = BomberMan.widthScreen;
     private static final float height = BomberMan.heightScreen;
     private static final float xBackground = 0;
@@ -124,6 +123,7 @@ public class PlayScreen implements Screen {
 
         batch.end();
     }
+
 
     @Override
     public void resize(int width, int height) {
