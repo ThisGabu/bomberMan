@@ -238,6 +238,10 @@ public class Player {
                 walkDown();
             }
         } else if (pergerakan=="right") {
+            if (x+width+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getxPosition()){
+                animation=animationWalkRight;
+                walkRight();
+            }
 
         } else if (pergerakan=="left") {
             if (x-1>map.border[0][0].getxPosition()+map.widthTile){
