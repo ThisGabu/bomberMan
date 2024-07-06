@@ -23,6 +23,8 @@ public class Player {
     int widthSpace=7;
     int heightSpace=11;
 
+    boolean placeBomb=false;
+
     Analog analog;
 
     private static final int colsIdle = 1;
@@ -55,6 +57,13 @@ public class Player {
     Texture playerWalkRight;
     Animation<TextureRegion> animationWalkRight;
 
+    private static final int colsBomb = 1;
+    private static final int rowsBomb = 6;
+    private static final int frameTotal= colsBomb*rowsBomb;
+    int sprintFrame = 0;
+    Texture playerPlaceBomb;
+    Animation<TextureRegion> animationPlaceBomb;
+
     Animation<TextureRegion> animation;
 
     Player(float x, float y, int player) {
@@ -69,6 +78,7 @@ public class Player {
             playerWalkUp = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkUp.png");
             playerWalkLeft = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkLeft.png");
             playerWalkRight = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkRight.png");
+            playerPlaceBomb = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerPlaceBomb.png");
 
             TextureRegion[][] tmpDead = TextureRegion.split(playerDead, playerDead.getWidth() / colsDead, playerDead.getHeight() / rowsDead);
             TextureRegion[][] tmpIdle = TextureRegion.split(playerIdle, playerIdle.getWidth() / colsIdle, playerIdle.getHeight() / rowsIdle);
@@ -76,6 +86,7 @@ public class Player {
             TextureRegion[][] tmpUp = TextureRegion.split(playerWalkUp, playerWalkUp.getWidth() / colsUp, playerWalkUp.getHeight() / rowsUp);
             TextureRegion[][] tmpLeft = TextureRegion.split(playerWalkLeft, playerWalkLeft.getWidth() / colsLeft, playerWalkLeft.getHeight() / rowsLeft);
             TextureRegion[][] tmpRight = TextureRegion.split(playerWalkRight, playerWalkRight.getWidth() / colsRight, playerWalkRight.getHeight() / rowsRight);
+            TextureRegion[][] tmpBomb = TextureRegion.split(playerPlaceBomb, playerPlaceBomb.getWidth() / colsBomb, playerPlaceBomb.getHeight() / rowsBomb);
 
             TextureRegion[] frameIdle = new TextureRegion[colsIdle * rowsIdle];
             TextureRegion[] frameDead = new TextureRegion[colsDead * rowsDead];
@@ -83,6 +94,7 @@ public class Player {
             TextureRegion[] frameUp = new TextureRegion[colsUp * rowsUp];
             TextureRegion[] frameLeft = new TextureRegion[colsLeft * rowsLeft];
             TextureRegion[] frameRight = new TextureRegion[colsRight * rowsRight];
+            TextureRegion[] frameBomb = new TextureRegion[colsBomb * rowsBomb];
 
             int index = 0;
 
@@ -132,12 +144,19 @@ public class Player {
                 }
             }
 
+            for (int i = 0; i < rowsBomb; i++) {
+                for (int j = 0; j < colsBomb; j++) {
+                    frameBomb[index++] = tmpBomb[i][j];
+                }
+            }
+
             animationIdle = new Animation<TextureRegion>(delayFrame, frameIdle);
             animationDead = new Animation<TextureRegion>(delayFrame, frameDead);
             animationWalkDown = new Animation<TextureRegion>(delayFrame, frameDown);
             animationWalkUp = new Animation<TextureRegion>(delayFrame, frameUp);
             animationWalkLeft = new Animation<TextureRegion>(delayFrame, frameLeft);
             animationWalkRight = new Animation<TextureRegion>(delayFrame, frameRight);
+            animationPlaceBomb = new Animation<TextureRegion>(delayFrame, frameBomb);
 
             animation=animationIdle;
         } else {
@@ -148,6 +167,7 @@ public class Player {
             playerWalkUp = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkUp.png");
             playerWalkLeft = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkLeft.png");
             playerWalkRight = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkRight.png");
+            playerPlaceBomb = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerPlaceBomb.png");
 
             TextureRegion[][] tmpDead = TextureRegion.split(playerDead, playerDead.getWidth() / colsDead, playerDead.getHeight() / rowsDead);
             TextureRegion[][] tmpIdle = TextureRegion.split(playerIdle, playerIdle.getWidth() / colsIdle, playerIdle.getHeight() / rowsIdle);
@@ -155,6 +175,7 @@ public class Player {
             TextureRegion[][] tmpUp = TextureRegion.split(playerWalkUp, playerWalkUp.getWidth() / colsUp, playerWalkUp.getHeight() / rowsUp);
             TextureRegion[][] tmpLeft = TextureRegion.split(playerWalkLeft, playerWalkLeft.getWidth() / colsLeft, playerWalkLeft.getHeight() / rowsLeft);
             TextureRegion[][] tmpRight = TextureRegion.split(playerWalkRight, playerWalkRight.getWidth() / colsRight, playerWalkRight.getHeight() / rowsRight);
+            TextureRegion[][] tmpBomb = TextureRegion.split(playerPlaceBomb, playerPlaceBomb.getWidth() / colsBomb, playerPlaceBomb.getHeight() / rowsBomb);
 
             TextureRegion[] frameIdle = new TextureRegion[colsIdle * rowsIdle];
             TextureRegion[] frameDead = new TextureRegion[colsDead * rowsDead];
@@ -162,6 +183,7 @@ public class Player {
             TextureRegion[] frameUp = new TextureRegion[colsUp * rowsUp];
             TextureRegion[] frameLeft = new TextureRegion[colsLeft * rowsLeft];
             TextureRegion[] frameRight = new TextureRegion[colsRight * rowsRight];
+            TextureRegion[] frameBomb = new TextureRegion[colsBomb * rowsBomb];
 
             int index = 0;
 
@@ -211,46 +233,67 @@ public class Player {
                 }
             }
 
+            for (int i = 0; i < rowsBomb; i++) {
+                for (int j = 0; j < colsBomb; j++) {
+                    frameBomb[index++] = tmpBomb[i][j];
+                }
+            }
+
             animationIdle = new Animation<TextureRegion>(delayFrame, frameIdle);
             animationDead = new Animation<TextureRegion>(delayFrame, frameDead);
             animationWalkDown = new Animation<TextureRegion>(delayFrame, frameDown);
             animationWalkUp = new Animation<TextureRegion>(delayFrame, frameUp);
             animationWalkLeft = new Animation<TextureRegion>(delayFrame, frameLeft);
             animationWalkRight = new Animation<TextureRegion>(delayFrame, frameRight);
+            animationPlaceBomb = new Animation<TextureRegion>(delayFrame, frameBomb);
 
             animation=animationIdle;
         }
     }
 
     public void update(MapGame map){
-        String pergerakan;
 
+        String pergerakan;
         pergerakan= analog.update();
 
-        if (pergerakan=="up"){
-            if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
-                animation=animationWalkUp;
-                walkUp();
-            }
-        } else if (pergerakan=="down") {
-            if (y-1>map.border[0][0].getyPosition()+map.heightTile){
-                animation=animationWalkDown;
-                walkDown();
-            }
-        } else if (pergerakan=="right") {
-            if (x+width+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getxPosition()){
-                animation=animationWalkRight;
-                walkRight();
-            }
-
-        } else if (pergerakan=="left") {
-            if (x-1>map.border[0][0].getxPosition()+map.widthTile){
-                animation=animationWalkLeft;
-                walkLeft();
+        if (placeBomb){
+            if (sprintFrame<frameTotal){
+                sprintFrame++;
+            } else {
+                placeBomb=false;
             }
         } else {
-            animation=animationIdle;
+            if (pergerakan=="bomb"){
+                animation=animationPlaceBomb;
+            } else if (pergerakan=="up"){
+                if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
+                    animation=animationWalkUp;
+                    walkUp();
+                }
+            } else if (pergerakan=="down") {
+                if (y-1>map.border[0][0].getyPosition()+map.heightTile){
+                    animation=animationWalkDown;
+                    walkDown();
+                }
+            } else if (pergerakan=="right") {
+                if (x+width+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getxPosition()) {
+                    animation = animationWalkRight;
+                    walkRight();
+                } else {
+                    animation = animationIdle;
+                }
+
+            } else if (pergerakan=="left") {
+                if (x-1>map.border[0][0].getxPosition()+map.widthTile){
+                    animation=animationWalkLeft;
+                    walkLeft();
+                }
+            } else {
+                animation=animationIdle;
+            }
         }
+
+
     }
 
     public void walkUp(){
