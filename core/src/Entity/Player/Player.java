@@ -59,8 +59,8 @@ public class Player {
 
     private static final int colsBomb = 1;
     private static final int rowsBomb = 6;
-    private static final int frameTotal= colsBomb*rowsBomb;
-    int sprintFrame = 0;
+    public static final int frameBombTotal= colsBomb*rowsBomb;
+    int sprintBombFrame = 0;
     Texture playerPlaceBomb;
     Animation<TextureRegion> animationPlaceBomb;
 
@@ -144,6 +144,7 @@ public class Player {
                 }
             }
 
+            index = 0;
             for (int i = 0; i < rowsBomb; i++) {
                 for (int j = 0; j < colsBomb; j++) {
                     frameBomb[index++] = tmpBomb[i][j];
@@ -156,7 +157,7 @@ public class Player {
             animationWalkUp = new Animation<TextureRegion>(delayFrame, frameUp);
             animationWalkLeft = new Animation<TextureRegion>(delayFrame, frameLeft);
             animationWalkRight = new Animation<TextureRegion>(delayFrame, frameRight);
-            animationPlaceBomb = new Animation<TextureRegion>(delayFrame, frameBomb);
+            animationPlaceBomb = new Animation<TextureRegion>(0.5f, frameBomb);
 
             animation=animationIdle;
         } else {
@@ -233,6 +234,8 @@ public class Player {
                 }
             }
 
+            index = 0;
+
             for (int i = 0; i < rowsBomb; i++) {
                 for (int j = 0; j < colsBomb; j++) {
                     frameBomb[index++] = tmpBomb[i][j];
@@ -257,14 +260,15 @@ public class Player {
         pergerakan= analog.update();
 
         if (placeBomb){
-            if (sprintFrame<frameTotal){
-                sprintFrame++;
+            if (sprintBombFrame<frameBombTotal){
+                animation=animationPlaceBomb;
             } else {
                 placeBomb=false;
             }
         } else {
             if (pergerakan=="bomb"){
                 animation=animationPlaceBomb;
+                placeBomb=true;
             } else if (pergerakan=="up"){
                 if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
                     animation=animationWalkUp;
@@ -330,5 +334,13 @@ public class Player {
 
     public float getWidth() {
         return width;
+    }
+
+    public int getFrameBombTotal(){
+        return frameBombTotal;
+    }
+
+    public boolean getPlaceBomb(){
+        return placeBomb;
     }
 }

@@ -28,9 +28,23 @@ public class ControllerPlayer {
         return  player[i].getY();
     }
 
+    public int getFrameBomb(int i){
+        return player[i].getFrameBombTotal();
+    }
+
+    public boolean getPlaceBomb(int i){
+        return player[i].getPlaceBomb();
+    }
+
     public TextureRegion drawPlayer(int i, float delta) {
         stateTime += delta;
-        TextureRegion currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, true);
+        TextureRegion currentFrame;
+        if (player[i].placeBomb){
+            player[i].sprintBombFrame++;
+            currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, getPlaceBomb(i));
+        } else {
+            currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, true);
+        }
 
         return currentFrame;
     }
