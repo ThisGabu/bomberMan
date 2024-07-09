@@ -59,10 +59,11 @@ public class Player {
 
     private static final int colsBomb = 1;
     private static final int rowsBomb = 6;
-    public static final int frameBombTotal= colsBomb*rowsBomb;
-    int sprintBombFrame = 0;
+    float placeBombDelay = (colsBomb*rowsBomb/2) * delayFrame;
     Texture playerPlaceBomb;
     Animation<TextureRegion> animationPlaceBomb;
+
+    float timer = 0;
 
     Animation<TextureRegion> animation;
 
@@ -157,7 +158,7 @@ public class Player {
             animationWalkUp = new Animation<TextureRegion>(delayFrame, frameUp);
             animationWalkLeft = new Animation<TextureRegion>(delayFrame, frameLeft);
             animationWalkRight = new Animation<TextureRegion>(delayFrame, frameRight);
-            animationPlaceBomb = new Animation<TextureRegion>(0.5f, frameBomb);
+            animationPlaceBomb = new Animation<TextureRegion>(delayFrame, frameBomb);
 
             animation=animationIdle;
         } else {
@@ -254,20 +255,21 @@ public class Player {
         }
     }
 
-    public void update(MapGame map){
+    public void update(MapGame map, float delta){
 
         String pergerakan;
         pergerakan= analog.update();
 
         if (placeBomb){
-            if (sprintBombFrame<frameBombTotal){
-                animation=animationPlaceBomb;
+            if (timer<placeBombDelay){
+                timer+=delta;
             } else {
                 placeBomb=false;
             }
         } else {
             if (pergerakan=="bomb"){
                 animation=animationPlaceBomb;
+                timer=0;
                 placeBomb=true;
             } else if (pergerakan=="up"){
                 if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
@@ -336,9 +338,6 @@ public class Player {
         return width;
     }
 
-    public int getFrameBombTotal(){
-        return frameBombTotal;
-    }
 
     public boolean getPlaceBomb(){
         return placeBomb;

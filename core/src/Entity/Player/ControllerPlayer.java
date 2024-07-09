@@ -28,10 +28,6 @@ public class ControllerPlayer {
         return  player[i].getY();
     }
 
-    public int getFrameBomb(int i){
-        return player[i].getFrameBombTotal();
-    }
-
     public boolean getPlaceBomb(int i){
         return player[i].getPlaceBomb();
     }
@@ -40,8 +36,7 @@ public class ControllerPlayer {
         stateTime += delta;
         TextureRegion currentFrame;
         if (player[i].placeBomb){
-            player[i].sprintBombFrame++;
-            currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, getPlaceBomb(i));
+            currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, true);
         } else {
             currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, true);
         }
@@ -57,8 +52,8 @@ public class ControllerPlayer {
         return player[i].getHeight();
     }
 
-    public void update(int i, MapGame map){
-        player[i].update(map);
+    public void update(int i, MapGame map, float delta){
+        player[i].update(map, delta);
     }
 
 }
