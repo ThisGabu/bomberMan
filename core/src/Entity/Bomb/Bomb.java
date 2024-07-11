@@ -14,10 +14,12 @@ public class Bomb {
     int player;
     float x;
     float y;
-    public int rangeExplosion = 2;
+    int i;
+    int j;
+    public int rangeExplosion = 5;
 
-    private final float width = 20f;
-    private final float height = 20f;
+    private final float width = 26.6f;
+    private final float height = 26.6f;
     private final int cols = 1;
     private final int rows = 6;
     private final float delayFrame = 0.25f;
@@ -25,6 +27,22 @@ public class Bomb {
 
     Texture picture;
     public Animation<TextureRegion> animation;
+
+    public int getI(){
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
+
+    public int getJ() {
+        return j;
+    }
 
     public void setPlayer(int player) {
         this.player = player;
@@ -42,9 +60,11 @@ public class Bomb {
         this.meledak = remove;
     }
 
-    public Bomb(float x, float y){
+    public Bomb(float x, float y, int i, int j){
         setX(x);
         setY(y);
+        setI(i);
+        setJ(j);
 
         picture = new Texture("D:\\Project coding\\bomberMan\\assets\\BombAnimation\\bombMeledak.png");
 
@@ -52,9 +72,9 @@ public class Bomb {
         TextureRegion[] frameBomb = new TextureRegion[cols * rows];
 
         int index = 0;
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                frameBomb[index++] = tmpBomb[i][j];
+        for (int l = 0; l < rows; l++) {
+            for (int k = 0; k < cols; k++) {
+                frameBomb[index++] = tmpBomb[l][k];
             }
         }
 

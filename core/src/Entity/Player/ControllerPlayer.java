@@ -21,6 +21,22 @@ public class ControllerPlayer {
         }
     }
 
+    public void setJ(int index, int J){
+        player[index].setJ(J);
+    }
+
+    public void setI(int index, int I){
+        player[index].setI(I);
+    }
+
+    public int getJ(int index){
+        return player[index].getJ();
+    }
+
+    public int getI(int index){
+        return player[index].getI();
+    }
+
     public float getXPositionPlayer(int i){
         return player[i].getX();
     }

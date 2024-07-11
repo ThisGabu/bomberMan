@@ -25,6 +25,8 @@ public class Player {
 
     float x;
     float y;
+    int i;
+    int j;
 
     int numberPlayer = 0;
 
@@ -262,7 +264,7 @@ public class Player {
             animation=animationIdle;
         }
 
-        bom= new Bomb(x,y);
+        bom= new Bomb(x,y,i,j);
         capacityBombBefore=capacityBomb;
 
     }
@@ -282,6 +284,8 @@ public class Player {
 
         bom.setX(x);
         bom.setY(y);
+        bom.setI(i);
+        bom.setJ(j);
         bom.setPlayer(numberPlayer);
 
     }
@@ -386,5 +390,21 @@ public class Player {
 
     public boolean getPlaceBomb(){
         return placeBomb;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public int getJ() {
+        return j;
     }
 }

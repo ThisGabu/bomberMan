@@ -9,13 +9,18 @@ public class Ledakan {
     float x;
     float y;
     String arahLedakan;
-    boolean padam= false;
 
-    private float width = 20;
-    private float height = 20;
+    boolean padam= false;
+    boolean right= true;
+    boolean left= true;
+    boolean up= true;
+    boolean down= true;
+
+    private float width = 26.6f;
+    private float height = 26.6f;
     private final int cols = 1;
     private final int rows = 8;
-    private final float delayFrame = 0.25f;
+    private final float delayFrame = 0.1f;
     Texture picture;
     Animation<TextureRegion> animation;
 
@@ -212,5 +217,37 @@ public class Ledakan {
         if (stateTime>animation.getAnimationDuration()){
             setPadam(true);
         }
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isUp() {
+        return up;
     }
 }
