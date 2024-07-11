@@ -1,7 +1,9 @@
 package GameScreen;
 
+import Entity.Bomb.Ledakan;
 import Entity.Player.ControllerPlayer;
 import Utility.MapGame;
+import Utility.Update;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -18,6 +20,7 @@ public class PlayScreen implements Screen {
     Screen pauseScreen;
     MapGame map;
     ControllerPlayer player;
+    Update update;
 
 
     private static final float width = BomberMan.widthScreen;
@@ -36,6 +39,7 @@ public class PlayScreen implements Screen {
         pauseScreen = new PauseScreen();
         this.map= map;
         player= new ControllerPlayer(jumlahPlayer, map.spawnTile);
+        update= new Update(player,map);
     }
 
 
@@ -66,7 +70,8 @@ public class PlayScreen implements Screen {
             pause=true;
         }
 
-        map.update();
+        update.update();
+        map.update(delta);
 
         for (int i=0; i<jumlahPlayer; i++){
             player.update(i, map, delta);
@@ -122,7 +127,18 @@ public class PlayScreen implements Screen {
             }
         }
 
+        for (int i=0; i<map.bombs.size(); i++) {
+            batch.draw(map.getBombAnimation(i, delta), map.xBomb(i), map.yBomb(i), map.widthBomb(i), map.heightBomb(i));
+        }
+
+        for (int i=0; i<map.ledakan.size(); i++){
+            Ledakan ledakan= map.getCreateLedakan(i);
+            batch.draw(ledakan.drawAnimation(delta), ledakan.getX(), ledakan.getY(), ledakan.getWidth(), ledakan.getHeight());
+        }
+
         batch.end();
+
+        System.out.println(map.ledakan.size());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Entity.Player;
 
+import Entity.Bomb.Bomb;
 import Utility.MapGame;
 import Utility.SpawnTile;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -28,8 +29,28 @@ public class ControllerPlayer {
         return  player[i].getY();
     }
 
+    public int getJumlahPlayer() {
+        return jumlahPlayer;
+    }
+
     public boolean getPlaceBomb(int i){
         return player[i].getPlaceBomb();
+    }
+
+    public Bomb getBomb(int i){
+        return player[i].getBomb();
+    }
+
+    public void setCapacityBomb(int i, int capacityBomb){
+        player[i].setCapacityBomb(capacityBomb);
+    }
+
+    public boolean getIsBomb(int i){
+        return player[i].getIsBomb();
+    }
+
+    public void setIsBomb(int i, boolean isBomb){
+        player[i].setIsBomb(isBomb);
     }
 
     public TextureRegion drawPlayer(int i, float delta) {

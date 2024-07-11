@@ -1,5 +1,6 @@
 package Entity.Player;
 
+import Entity.Bomb.Bomb;
 import Utility.Analog.Analog;
 import Utility.Analog.Analog1;
 import Utility.Analog.Analog2;
@@ -17,11 +18,15 @@ public class Player {
     final float width=23;
     final float height=23;
 
+    int capacityBomb = 5;
+    int capacityBombBefore;
+    Bomb bom;
+    boolean isBomb = false;
+
     float x;
     float y;
 
-    int widthSpace=7;
-    int heightSpace=11;
+    int numberPlayer = 0;
 
     boolean placeBomb=false;
 
@@ -70,6 +75,7 @@ public class Player {
     Player(float x, float y, int player) {
         this.x = x;
         this.y = y;
+        numberPlayer=player;
 
         if (player == 0) {
             analog= new Analog1();
@@ -187,6 +193,8 @@ public class Player {
             TextureRegion[] frameRight = new TextureRegion[colsRight * rowsRight];
             TextureRegion[] frameBomb = new TextureRegion[colsBomb * rowsBomb];
 
+
+
             int index = 0;
 
             for (int i = 0; i < rowsIdle; i++) {
@@ -253,24 +261,61 @@ public class Player {
 
             animation=animationIdle;
         }
+
+        bom= new Bomb(x,y);
+        capacityBombBefore=capacityBomb;
+
+    }
+
+    public Bomb getBomb(){
+        capacityBomb--;
+        return bom;
+    }
+
+    public void setCapacityBomb(int capacityBomb) {
+        this.capacityBomb=capacityBomb;
+    }
+
+    public void bombUpdate() {
+
+        capacityBombBefore = capacityBomb;
+
+        bom.setX(x);
+        bom.setY(y);
+        bom.setPlayer(numberPlayer);
+
+    }
+
+    public boolean getIsBomb(){
+        return isBomb;
+    }
+
+    public void setIsBomb(boolean isBomb){
+        this.isBomb=isBomb;
     }
 
     public void update(MapGame map, float delta){
 
+        bombUpdate();
         String pergerakan;
         pergerakan= analog.update();
 
         if (placeBomb){
-            if (timer<placeBombDelay){
-                timer+=delta;
-            } else {
+            Animation<TextureRegion> animation1;
+            animation1=bom.getAnimation();
+            if (timer>=animation1.getAnimationDuration()/2){
                 placeBomb=false;
+                capacityBomb++;
+                isBomb=true;
+            } else {
+                timer+=delta;
             }
         } else {
-            if (pergerakan=="bomb"){
+            if (pergerakan=="bomb"&&capacityBomb>0){
                 animation=animationPlaceBomb;
                 timer=0;
                 placeBomb=true;
+                capacityBomb--;
             } else if (pergerakan=="up"){
                 if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
                     animation=animationWalkUp;
