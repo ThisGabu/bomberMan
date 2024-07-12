@@ -322,62 +322,21 @@ public class MapGame {
 
         for (int i = 0; i < bomb.rangeExplosion; i++) {
             if (i < bomb.rangeExplosion - 1) {
-                if (i==0) {
-                    if (bomb.getI()+1<jumlahTileRumput){
-                        if (!isWall(bomb.getI() + 1, bomb.getJ())) {
-                            createLedakan = new Ledakan("up", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
-                            ledakan.add(createLedakan);
-                            createLedakan = null;
-                        } else {
-                            up=false;
-                        }
-                    } else {
-                        up=false;
-                    }
-
-
-
-                } else {
-
-                    if (up){
-                        if (!isWall(bomb.getI() + 1+i, bomb.getJ())) {
-                            createLedakan = new Ledakan("up", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
-                            ledakan.add(createLedakan);
-                            createLedakan = null;
-                        } else {
-                            up=false;
-                        }
-                    }
-
-
-
-
-                    for (int j=0; j<i; j++){
-                        if (!isWall(bomb.getI(), bomb.getJ() + j+1)&&j==i-1) {
-                            createLedakan = new Ledakan("right", bomb.getX() + bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
-                            ledakan.add(createLedakan);
-                            createLedakan = null;
-                        } else if (isWall(bomb.getI(),bomb.getJ()+j+1)){
-                            break;
-                        }
-                    }
-                    createLedakan = new Ledakan("left", bomb.getX() - bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
-                    ledakan.add(createLedakan);
-                    createLedakan = null;
-
-
-                }
+                createLedakan = new Ledakan("up", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
+                ledakan.add(createLedakan);
+                createLedakan = null;
+                createLedakan = new Ledakan("down", bomb.getX(), bomb.getY() - bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
+                ledakan.add(createLedakan);
+                createLedakan = null;
+                createLedakan = new Ledakan("right", bomb.getX() + bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                ledakan.add(createLedakan);
+                createLedakan = null;
+                createLedakan = new Ledakan("left", bomb.getX() - bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                ledakan.add(createLedakan);
             } else {
-
-                for (int j=0; j<i; j++){
-                    if (!isWall(bomb.getI() + j+1, bomb.getJ())&&j==i-1) {
-                        createLedakan = new Ledakan("endUp", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
-                        ledakan.add(createLedakan);
-                        createLedakan = null;
-                    } else if (isWall(bomb.getI()+j+1,bomb.getJ())){
-                        break;
-                    }
-                }
+                createLedakan = new Ledakan("endUp", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
+                ledakan.add(createLedakan);
+                createLedakan = null;
                 createLedakan = new Ledakan("endDown", bomb.getX(), bomb.getY() - bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
                 ledakan.add(createLedakan);
                 createLedakan = null;
