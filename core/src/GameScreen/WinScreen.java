@@ -47,7 +47,7 @@ public class WinScreen implements Screen {
         this.winPlayer= winPlayer;
         winPlayer1= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\Win1.png");
         winPlayer2= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\Win2.png");
-        Background = new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\background1.png");
+        Background = new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\background.png");
         Restart= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\restart.png");
         RestartHover= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\restartHover.png");
         Exit= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\exit2.png");
