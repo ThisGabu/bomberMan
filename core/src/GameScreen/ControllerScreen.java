@@ -14,19 +14,24 @@ public class ControllerScreen implements Screen {
     public static boolean mainMenu;
     public static boolean play;
     public static boolean exitGame;
+    public static boolean win;
+    public static int playerWin = 0;
 
     Screen mainMenuScreen;
     Screen playScreen;
     Screen pauseScreen;
+    Screen winScreen;
 
     MapGame map;
 
     public ControllerScreen(){
         map= new MapGame();
+
         mainMenuScreen = new MainMenuScreen();
         playScreen = new PlayScreen(map);
         pauseScreen = new PauseScreen();
         mainMenu = true;
+
     }
 
     @Override
@@ -48,10 +53,16 @@ public class ControllerScreen implements Screen {
         } else if (play) {
             if (PlayScreen.pause){
                 pauseScreen.render(delta);
-            } else {
+            }
+             else {
                 playScreen.render(delta);
             }
+        } else if (win){
+
+            winScreen= new WinScreen(playerWin);
+            winScreen.render(delta);
         }
+
 
     }
 

@@ -66,6 +66,11 @@ public class PlayScreen implements Screen {
 
         }
 
+        if (Gdx.input.isKeyPressed(Input.Keys.T)){
+            ControllerScreen.win=true;
+            ControllerScreen.play=false;
+        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             pause=true;
         }

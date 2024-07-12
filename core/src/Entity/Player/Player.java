@@ -15,8 +15,8 @@ public class Player {
 
     final float delayFrame=0.25f;
     final float speed=1;
-    final float width=23;
-    final float height=23;
+    final float width=19;
+    final float height=24;
 
     int capacityBomb = 5;
     int capacityBombBefore;

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import java.util.Random;
 
-public class Tile {
+public class    Tile {
 
     Random rand = new Random();
 
