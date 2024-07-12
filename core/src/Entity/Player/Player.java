@@ -28,6 +28,15 @@ public class Player {
     int i;
     int j;
 
+    String pergerakan;
+    String pergerakanBefore;
+    boolean up= true;
+    boolean down= true;
+    boolean right= true;
+    boolean left= true;
+
+    boolean alive= true;
+
     int numberPlayer = 0;
 
     boolean placeBomb=false;
@@ -301,7 +310,6 @@ public class Player {
     public void update(MapGame map, float delta){
 
         bombUpdate();
-        String pergerakan;
         pergerakan= analog.update();
 
         if (placeBomb){
@@ -322,26 +330,42 @@ public class Player {
                 capacityBomb--;
             } else if (pergerakan=="up"){
                 if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
-                    animation=animationWalkUp;
-                    walkUp();
+                    if (up){
+                        animation=animationWalkUp;
+                        walkUp();
+                    } else {
+                        animation = animationIdle;
+                    }
                 }
             } else if (pergerakan=="down") {
                 if (y-1>map.border[0][0].getyPosition()+map.heightTile){
-                    animation=animationWalkDown;
-                    walkDown();
+                    if (down){
+                        animation=animationWalkDown;
+                        walkDown();
+                    } else {
+                        animation = animationIdle;
+                    }
                 }
             } else if (pergerakan=="right") {
                 if (x+width+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getxPosition()) {
-                    animation = animationWalkRight;
-                    walkRight();
+                    if (right){
+                        animation = animationWalkRight;
+                        walkRight();
+                    } else {
+                        animation = animationIdle;
+                    }
                 } else {
                     animation = animationIdle;
                 }
 
             } else if (pergerakan=="left") {
                 if (x-1>map.border[0][0].getxPosition()+map.widthTile){
-                    animation=animationWalkLeft;
-                    walkLeft();
+                    if (left){
+                        animation=animationWalkLeft;
+                        walkLeft();
+                    } else {
+                        animation=animationIdle;
+                    }
                 }
             } else {
                 animation=animationIdle;
@@ -349,6 +373,42 @@ public class Player {
         }
 
 
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public String getPergerakan(){
+        return pergerakan;
     }
 
     public void walkUp(){
@@ -406,5 +466,21 @@ public class Player {
 
     public int getJ() {
         return j;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public String getPergerakanBefore() {
+        return pergerakanBefore;
+    }
+
+    public void setPergerakanBefore(String pergerakanBefore) {
+        this.pergerakanBefore = pergerakanBefore;
     }
 }

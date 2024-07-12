@@ -21,6 +21,58 @@ public class ControllerPlayer {
         }
     }
 
+    public void playerDead(int i){
+        player[i].setAlive(false);
+    }
+
+    public boolean getAlive(int i){
+        return player[i].isAlive();
+    }
+
+    public String getPergerakan(int i){
+        return player[i].getPergerakan();
+    }
+
+    public void setUp(boolean up, int index) {
+        player[index].setUp(up);
+    }
+
+    public void setRight(boolean right, int index) {
+        player[index].setRight(right);
+    }
+
+    public void setLeft(boolean left, int index) {
+        player[index].setLeft(left);
+    }
+
+    public void setDown(boolean down, int index) {
+        player[index].setDown(down);
+    }
+
+    public boolean isUp(int index) {
+        return player[index].isUp();
+    }
+
+    public boolean isRight(int index) {
+        return player[index].isRight();
+    }
+
+    public boolean isDown(int index) {
+        return player[index].isDown();
+    }
+
+    public boolean isLeft(int index) {
+        return player[index].left;
+    }
+
+    public String getPergerakanBefore(int index){
+        return player[index].pergerakanBefore;
+    }
+
+    public void setPergerakanBefore(int index, String pergerakan){
+        player[index].setPergerakanBefore(pergerakan);
+    }
+
     public void setJ(int index, int J){
         player[index].setJ(J);
     }
