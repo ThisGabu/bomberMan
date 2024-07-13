@@ -1,6 +1,7 @@
 package Entity.Player;
 
 import Entity.Bomb.Bomb;
+import Utility.HitBox;
 import Utility.MapGame;
 import Utility.SpawnTile;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -51,6 +52,10 @@ public class ControllerPlayer {
 
     public boolean isUp(int index) {
         return player[index].isUp();
+    }
+
+    public HitBox getHitbox(int index){
+        return player[index].getHitBox();
     }
 
     public boolean isRight(int index) {

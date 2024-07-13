@@ -4,6 +4,7 @@ import Entity.Bomb.Bomb;
 import Utility.Analog.Analog;
 import Utility.Analog.Analog1;
 import Utility.Analog.Analog2;
+import Utility.HitBox;
 import Utility.MapGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -20,7 +21,9 @@ public class Player {
 
     int capacityBomb = 5;
     int capacityBombBefore;
+
     Bomb bom;
+    HitBox hitBox;
     boolean isBomb = false;
 
     float x;
@@ -275,7 +278,11 @@ public class Player {
 
         bom= new Bomb(x,y,i,j);
         capacityBombBefore=capacityBomb;
+        hitBox= new HitBox(getWidth(),getHeight(),getX(),getY());
+    }
 
+    public HitBox getHitBox(){
+        return hitBox;
     }
 
     public Bomb getBomb(){
@@ -372,7 +379,13 @@ public class Player {
             }
         }
 
+        hitBox.update(getX(),getY());
+        setTile();
+    }
 
+    public void setTile(){
+        setI(hitBox.getI());
+        setJ(hitBox.getJ());
     }
 
     public void setUp(boolean up) {
@@ -446,7 +459,6 @@ public class Player {
     public float getWidth() {
         return width;
     }
-
 
     public boolean getPlaceBomb(){
         return placeBomb;

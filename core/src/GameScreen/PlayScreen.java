@@ -2,6 +2,7 @@ package GameScreen;
 
 import Entity.Bomb.Ledakan;
 import Entity.Player.ControllerPlayer;
+import Utility.HitBox;
 import Utility.MapGame;
 import Utility.Update;
 import bomberman.game.BomberMan;
@@ -30,6 +31,7 @@ public class PlayScreen implements Screen {
 
     public static boolean pause;
     boolean destroy;
+    boolean hitBox=true;
 
     final int jumlahPlayer=2;
 
@@ -65,6 +67,18 @@ public class PlayScreen implements Screen {
             }
 
         }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.H)){
+            if (hitBox){
+                hitBox=false;
+            } else {
+                hitBox=true;
+            }
+        }
+
+
+
+
 
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             pause=true;
@@ -134,6 +148,13 @@ public class PlayScreen implements Screen {
         for (int i=0; i<map.ledakan.size(); i++){
             Ledakan ledakan= map.getCreateLedakan(i);
             batch.draw(ledakan.drawAnimation(delta), ledakan.getX(), ledakan.getY(), ledakan.getWidth(), ledakan.getHeight());
+        }
+
+        if (hitBox) {
+            for (int i = 0; i < jumlahPlayer; i++) {
+                HitBox hitBox1 = player.getHitbox(i);
+                batch.draw(hitBox1.getPicture(), hitBox1.getX(), hitBox1.getY(), hitBox1.getWidth(), hitBox1.getHeight());
+            }
         }
 
         batch.end();
