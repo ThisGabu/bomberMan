@@ -16,10 +16,10 @@ public class Player {
 
     final float delayFrame=0.25f;
     final float speed=1;
-    final float width=23;
-    final float height=23;
+    final float width=20;
+    final float height=20;
 
-    int capacityBomb = 5;
+    int capacityBomb = 2;
     int capacityBombBefore;
 
     Bomb bom;
@@ -494,5 +494,9 @@ public class Player {
 
     public void setPergerakanBefore(String pergerakanBefore) {
         this.pergerakanBefore = pergerakanBefore;
+    }
+
+    public int getCapacityBomb() {
+        return capacityBomb;
     }
 }

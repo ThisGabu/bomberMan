@@ -49,6 +49,9 @@ public class HitBox {
     public void update(float x, float y){
         setX(x);
         setY(y);
+        setXCenter(getX());
+        setYCenter(getY());
+        setTile();
     }
 
     public void setX(float x) {
@@ -70,8 +73,8 @@ public class HitBox {
     }
 
     public void setTile() {
-        i= (int) (yCenter/MapGame.heightTile);
-        j= (int) (xCenter/MapGame.widthTile);
+        i= (int) ((yCenter-MapGame.yPosition)/MapGame.heightTile);
+        j= (int) ((xCenter-MapGame.xPosition)/MapGame.widthTile);
     }
 
     public float getX() {

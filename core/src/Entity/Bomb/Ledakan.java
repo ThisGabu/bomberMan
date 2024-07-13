@@ -1,5 +1,6 @@
 package Entity.Bomb;
 
+import Utility.HitBox;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -23,6 +24,8 @@ public class Ledakan {
     private final float delayFrame = 0.1f;
     Texture picture;
     Animation<TextureRegion> animation;
+
+    HitBox hitBox;
 
     float stateTime=0f;
 
@@ -160,6 +163,12 @@ public class Ledakan {
 
             animation = new Animation<TextureRegion>(delayFrame, frameLedakan);
         }
+
+        hitBox= new HitBox(getWidth(),getHeight(),getX(),getY());
+    }
+
+    public HitBox getHitBox() {
+        return hitBox;
     }
 
     public Animation<TextureRegion> getAnimation() {

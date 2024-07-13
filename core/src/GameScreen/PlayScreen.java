@@ -84,8 +84,7 @@ public class PlayScreen implements Screen {
             pause=true;
         }
 
-        update.update();
-        map.update(delta);
+        update.update(delta);
 
         for (int i=0; i<jumlahPlayer; i++){
             player.update(i, map, delta);
@@ -155,11 +154,17 @@ public class PlayScreen implements Screen {
                 HitBox hitBox1 = player.getHitbox(i);
                 batch.draw(hitBox1.getPicture(), hitBox1.getX(), hitBox1.getY(), hitBox1.getWidth(), hitBox1.getHeight());
             }
+
+            for (int i=0; i<map.ledakan.size(); i++){
+                Ledakan ledakan= map.getCreateLedakan(i);
+                HitBox hitBox1 = ledakan.getHitBox();
+                batch.draw(hitBox1.getPicture(), hitBox1.getX(), hitBox1.getY(), hitBox1.getWidth(), hitBox1.getHeight());
+            }
         }
 
         batch.end();
 
-        System.out.println(map.ledakan.size());
+        System.out.println(player.getI(0)+" "+player.getJ(0));
     }
 
     @Override

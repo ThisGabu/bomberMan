@@ -22,6 +22,10 @@ public class ControllerPlayer {
         }
     }
 
+    public int getCapacityBomb(int index){
+        return player[index].getCapacityBomb();
+    }
+
     public void playerDead(int i){
         player[i].setAlive(false);
     }

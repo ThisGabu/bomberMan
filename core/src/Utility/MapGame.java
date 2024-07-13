@@ -35,6 +35,7 @@ public class MapGame {
     public int bombCreateBefore = bombCreate;
     Bomb bomb;
     public ArrayList<Bomb> bombs = new ArrayList<Bomb>();
+    public ArrayList<Bomb> bombsMeledak = new ArrayList<Bomb>();
     Ledakan createLedakan;
     public ArrayList<Ledakan> ledakan = new ArrayList<Ledakan>();
 
@@ -299,10 +300,17 @@ public class MapGame {
         return currentFrame;
     }
 
+    public Bomb getBombsMeledak() {
+        Bomb bomb1= bombsMeledak.getFirst();
+        bombsMeledak.removeFirst();
+        return bomb1;
+    }
+
     public void checkBomb() {
         for (int i = 0; i < bombs.size(); i++) {
             bomb=bombs.get(i);
             if (bomb.getTimer()>bomb.animation.getAnimationDuration()) {
+                bombsMeledak.add(bomb);
                 bombs.remove(i);
                 createLedakan(bomb);
             }
@@ -365,5 +373,13 @@ public class MapGame {
 
     public int getJumlahTileRumput(){
         return jumlahTileRumput;
+    }
+
+    public static float getHeightTile() {
+        return heightTile;
+    }
+
+    public static float getWidthTile() {
+        return widthTile;
     }
 }

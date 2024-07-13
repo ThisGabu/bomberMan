@@ -16,13 +16,13 @@ public class Bomb {
     float y;
     int i;
     int j;
-    public int rangeExplosion = 5;
+    public int rangeExplosion = 2;
 
     private final float width = 26.6f;
     private final float height = 26.6f;
     private final int cols = 1;
     private final int rows = 6;
-    private final float delayFrame = 0.25f;
+    private final float delayFrame = 0.33f;
     private float timer = 0;
 
     Texture picture;
