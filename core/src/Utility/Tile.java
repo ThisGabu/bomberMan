@@ -202,4 +202,16 @@ public class    Tile {
     public boolean isBom() {
         return bom;
     }
+
+    public Wall getWalls() {
+        return walls;
+    }
+
+    public Item getItems() {
+        return items;
+    }
+
+    public Box getBoxs() {
+        return boxs;
+    }
 }

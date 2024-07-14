@@ -16,6 +16,8 @@ public class Analog1 extends Analog{
             gerakan="down";
         } else if (Gdx.input.isKeyPressed(Input.Keys.D)){
             gerakan="right";
+        } else if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            gerakan="bomb";
         } else {
             gerakan=null;
         }

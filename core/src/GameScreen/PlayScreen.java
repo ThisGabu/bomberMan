@@ -1,7 +1,10 @@
 package GameScreen;
 
+import Entity.Bomb.Ledakan;
 import Entity.Player.ControllerPlayer;
+import Utility.HitBox;
 import Utility.MapGame;
+import Utility.Update;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -18,6 +21,7 @@ public class PlayScreen implements Screen {
     Screen pauseScreen;
     MapGame map;
     ControllerPlayer player;
+    Update update;
 
 
     private static final float width = BomberMan.widthScreen;
@@ -27,6 +31,7 @@ public class PlayScreen implements Screen {
 
     public static boolean pause;
     boolean destroy;
+    boolean hitBox=true;
 
     final int jumlahPlayer=2;
 
@@ -36,6 +41,7 @@ public class PlayScreen implements Screen {
         pauseScreen = new PauseScreen();
         this.map= map;
         player= new ControllerPlayer(jumlahPlayer, map.spawnTile);
+        update= new Update(player,map);
     }
 
 
@@ -62,20 +68,23 @@ public class PlayScreen implements Screen {
 
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.T)){
-            ControllerScreen.win=true;
-            ControllerScreen.play=false;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.H)){
+            if (hitBox){
+                hitBox=false;
+            } else {
+                hitBox=true;
+            }
         }
+
+
+
+
 
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             pause=true;
         }
 
-        map.update();
-
-        for (int i=0; i<jumlahPlayer; i++){
-            player.update(i, map);
-        }
+        update.update(delta);
 
         for (int i=0; i<map.jumlahTileMetal; i++){
             for (int j=0; j<map.jumlahTileMetal; j++){
@@ -109,7 +118,9 @@ public class PlayScreen implements Screen {
         }
 
         for (int i=0; i<jumlahPlayer; i++){
-            batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
+            if (player.isAlive(i)) {
+                batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
+            }
         }
 
         int index=0;
@@ -127,7 +138,31 @@ public class PlayScreen implements Screen {
             }
         }
 
+        for (int i=0; i<map.bombs.size(); i++) {
+            batch.draw(map.getBombAnimation(i, delta), map.xBomb(i), map.yBomb(i), map.widthBomb(i), map.heightBomb(i));
+        }
+
+        for (int i=0; i<map.ledakan.size(); i++){
+            Ledakan ledakan= map.getCreateLedakan(i);
+            batch.draw(ledakan.drawAnimation(delta), ledakan.getX(), ledakan.getY(), ledakan.getWidth(), ledakan.getHeight());
+        }
+
+        if (hitBox) {
+            for (int i = 0; i < jumlahPlayer; i++) {
+                HitBox hitBox1 = player.getHitbox(i);
+                batch.draw(hitBox1.getPicture(), hitBox1.getX(), hitBox1.getY(), hitBox1.getWidth(), hitBox1.getHeight());
+            }
+
+            for (int i=0; i<map.ledakan.size(); i++){
+                Ledakan ledakan= map.getCreateLedakan(i);
+                HitBox hitBox1 = ledakan.getHitBox();
+                batch.draw(hitBox1.getPicture(), hitBox1.getX(), hitBox1.getY(), hitBox1.getWidth(), hitBox1.getHeight());
+            }
+        }
+
         batch.end();
+
+        System.out.println(player.getI(0)+" "+player.getJ(0));
     }
 
     @Override
