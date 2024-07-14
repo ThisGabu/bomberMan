@@ -72,6 +72,7 @@ public class HitBox {
         yCenter= (height/2)+y;
     }
 
+    //menghitung berada ditile keberapa
     public void setTile() {
         i= (int) ((yCenter-MapGame.yPosition)/MapGame.heightTile);
         j= (int) ((xCenter-MapGame.xPosition)/MapGame.widthTile);

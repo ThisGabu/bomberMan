@@ -1,5 +1,6 @@
 package Entity.Map;
 
+import Utility.HitBox;
 import Utility.MapGame;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -10,10 +11,13 @@ public class Box {
     private final float height=26.5f;
     Texture picture;
 
+    HitBox hitBox;
+
     public Box(float x, float y){
         xPosition= (26.5f+x)-width;
         yPosition= (26.5f+y)-height;
         picture= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
+        hitBox= new HitBox(getWidth(),getHeight(),getxPosition(),getyPosition());
     }
 
     public float getyPosition() {
@@ -34,5 +38,9 @@ public class Box {
 
     public float getHeight() {
         return height;
+    }
+
+    public HitBox getHitBox() {
+        return hitBox;
     }
 }

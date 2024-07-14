@@ -26,11 +26,12 @@ public class ControllerPlayer {
         return player[index].getCapacityBomb();
     }
 
+
     public void playerDead(int i){
         player[i].setAlive(false);
     }
 
-    public boolean getAlive(int i){
+    public boolean isAlive(int i){
         return player[i].isAlive();
     }
 

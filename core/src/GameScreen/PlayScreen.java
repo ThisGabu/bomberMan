@@ -86,10 +86,6 @@ public class PlayScreen implements Screen {
 
         update.update(delta);
 
-        for (int i=0; i<jumlahPlayer; i++){
-            player.update(i, map, delta);
-        }
-
         for (int i=0; i<map.jumlahTileMetal; i++){
             for (int j=0; j<map.jumlahTileMetal; j++){
                 batch.draw(map.getBorder(i,j), map.border[i][j].getxPosition(), map.border[i][j].getyPosition(), map.widthTile, map.heightTile);
@@ -122,7 +118,9 @@ public class PlayScreen implements Screen {
         }
 
         for (int i=0; i<jumlahPlayer; i++){
-            batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
+            if (player.isAlive(i)) {
+                batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
+            }
         }
 
         int index=0;

@@ -499,4 +499,5 @@ public class Player {
     public int getCapacityBomb() {
         return capacityBomb;
     }
+
 }

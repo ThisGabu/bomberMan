@@ -2,6 +2,9 @@ package Utility;
 
 import Entity.Bomb.Bomb;
 import Entity.Bomb.Ledakan;
+import Entity.Item.Item;
+import Entity.Map.Box;
+import Entity.Map.Wall;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -381,5 +384,25 @@ public class MapGame {
 
     public static float getWidthTile() {
         return widthTile;
+    }
+
+    public Item getItem(int i,int j){
+        return tile[i][j].getItems();
+    }
+
+    public Box getBox(int i, int j){
+        return tile[i][j].getBoxs();
+    }
+
+    public Wall wall(int i, int j){
+        return  tile[i][j].getWalls();
+    }
+
+    public Ledakan getLedakan(int index){
+        if (ledakan.size()>0){
+            return ledakan.get(index);
+        } else {
+            return null;
+        }
     }
 }
