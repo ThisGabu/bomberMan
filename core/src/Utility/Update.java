@@ -2,8 +2,14 @@ package Utility;
 
 import Entity.Bomb.Bomb;
 import Entity.Bomb.Ledakan;
+import Entity.Item.Item;
+import Entity.Map.Box;
 import Entity.Player.ControllerPlayer;
 import Entity.Player.Player;
+import GameScreen.ControllerScreen;
+import GameScreen.PlayScreen;
+
+import java.awt.font.FontRenderContext;
 
 public class Update {
 
@@ -24,7 +30,7 @@ public class Update {
        checkBomb();
        updateExplosion();
        updatePlayer(delta);
-
+       claimItem();
 
        checkEndGame();
    }
@@ -46,9 +52,14 @@ public class Update {
        }
 
        if (playerRemain==1){
+           int playerNumber= 0;
            for (int i=0; i< player.getJumlahPlayer(); i++){
+               playerNumber+=1;
                if (player.isAlive(i)) {
-
+                   ControllerScreen.playerWin=playerNumber;
+                   ControllerScreen.win=true;
+                   ControllerScreen.play=false;
+                   PlayScreen.music.dispose();
                }
            }
        }
@@ -65,80 +76,150 @@ public class Update {
        for (int i=0; i<player.getJumlahPlayer(); i++){
            if (player.getPergerakan(i)=="up"){
                if (player.getI(i)!=map.getJumlahTileRumput()-1) {
-                   if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
-                       player.setUp(true, i);
-                   } else {
-                       if (player.getXPositionPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i)) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i)) + map.widthTile) {
-                           //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
-                           if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
-                               player.setUp(false,i);
+
+                   if (player.getXPositionPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i)) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i)) + map.widthTile) {
+                       //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
+                       if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
                            } else {
-                               if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
-                                   player.setUp(false, i);
-                               } else {
-                                   player.setUp(true, i);
-                               }
+                           player.setUp(false, i);
                            }
-                       } else if (player.getJ(i) == 0) {
-                           if (map.isWall(player.getI(i) + 1, player.getJ(i) + 1)) {
-                               player.setUp(false, i);
-                           } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
-                               player.setUp(false, i);
-                           } else {
-                               if (map.isBox(player.getI(i) + 1, player.getJ(i) + 1)) {
-                                   player.setUp(false, i);
-                               } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
-                                   player.setUp(false, i);
-                               } else {
+                       } else {
+                           if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
                                    player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
                                }
+                           } else {
+                               player.setUp(true, i);
                            }
-                       } else if (player.getJ(i) == map.getJumlahTileRumput()-1) {
-                           if (map.isWall(player.getI(i), player.getJ(i) - 1)) {
-                               player.setUp(false, i);
-                           } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
-                               player.setUp(false, i);
+                       }
+                   } else if (player.getJ(i) == 0) {
+                       if (map.isWall(player.getI(i) + 1, player.getJ(i) + 1)) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
                            } else {
-                               if (map.isBox(player.getI(i), player.getJ(i) - 1)) {
-                                   player.setUp(false, i);
-                               } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
-                                   player.setUp(false, i);
-                               } else {
-                                   player.setUp(true, i);
-                               }
+                               player.setUp(false, i);
                            }
-                       } else if (player.getXPositionPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i) - 1) && player.getXPositionPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i) - 1) + map.getWidthTile()) {
-                           //cek posisi belakang player karena x player tertingga dibelakang alias hanya setengah badan yang memasuki tile berikutnya
-                           if (map.isWall(player.getI(i) + 1, player.getJ(i) - 1)) {
-                               player.setUp(false, i);
-                           } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
-                               player.setUp(false, i);
+                       } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
                            } else {
-                               if (map.isBox(player.getI(i) + 1, player.getJ(i) - 1)) {
-                                   player.setUp(false, i);
-                               } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
-                                   player.setUp(false, i);
-                               } else {
-                                   player.setUp(true, i);
-                               }
+                               player.setUp(false, i);
                            }
-                       } else if (player.getXPositionPlayer(i) + player.getWidthPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i) + 1) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i) + 1) + map.getWidthTile()) {
-                           if (map.isWall(player.getI(i) + 1, player.getJ(i) + 1)) {
-                               player.setUp(false, i);
-                           } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
-                               player.setUp(false, i);
-                           } else {
-                               if (map.isBox(player.getI(i) + 1, player.getJ(i) + 1)) {
-                                   player.setUp(false, i);
-                               } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
-                                   player.setUp(false, i);
-                               } else {
+                       } else {
+                           if (map.isBox(player.getI(i) + 1, player.getJ(i) + 1)) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
                                    player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
                                }
+                           } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                                   player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
+                               }
+                           } else {
+                               player.setUp(true, i);
+                           }
+                       }
+                   } else if (player.getJ(i) == map.getJumlahTileRumput() - 1) {
+                       if (map.isWall(player.getI(i), player.getJ(i) - 1)) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
+                           } else {
+                               player.setUp(false, i);
+                           }
+                       } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
+                           } else {
+                               player.setUp(false, i);
+                           }
+                       } else {
+                           if (map.isBox(player.getI(i), player.getJ(i) - 1)) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                                   player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
+                               }
+                           } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                                   player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
+                               }
+                           } else {
+                               player.setUp(true, i);
+                           }
+                       }
+                   } else if (player.getXPositionPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i) - 1) && player.getXPositionPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i) - 1) + map.getWidthTile()) {
+                       //cek posisi belakang player karena x player tertingga dibelakang alias hanya setengah badan yang memasuki tile berikutnya
+                       if (map.isWall(player.getI(i) + 1, player.getJ(i) - 1)) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
+                           } else {
+                               player.setUp(false, i);
+                           }
+                       } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
+                           } else {
+                               player.setUp(false, i);
+                           }
+                       } else {
+                           if (map.isBox(player.getI(i) + 1, player.getJ(i) - 1)) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                                   player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
+                               }
+                           } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                                   player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
+                               }
+                           } else {
+                               player.setUp(true, i);
+                           }
+                       }
+                   } else if (player.getXPositionPlayer(i) + player.getWidthPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i) + 1) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i) + 1) + map.getWidthTile()) {
+                       if (map.isWall(player.getI(i) + 1, player.getJ(i) + 1)) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
+                           } else {
+                               player.setUp(false, i);
+                           }
+                       } else if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
+                           if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                               player.setUp(true, i);
+                           } else {
+                               player.setUp(false, i);
+                           }
+                       } else {
+                           if (map.isBox(player.getI(i) + 1, player.getJ(i) + 1)) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                                   player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
+                               }
+                           } else if (map.isBox(player.getI(i) + 1, player.getJ(i))) {
+                               if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
+                                   player.setUp(true, i);
+                               } else {
+                                   player.setUp(false, i);
+                               }
+                           } else {
+                               player.setUp(true, i);
                            }
                        }
                    }
-               } else {
+               }
+                else {
                    if (player.getYPositionPlayer(i)+player.getHeightPlayer(i)<map.getyPosition(map.getJumlahTileRumput()-1,map.getJumlahTileRumput()-1)+map.heightTile){
                        player.setUp(true,i);
                    } else {
@@ -410,16 +491,49 @@ public class Update {
        }
    }
 
+   public void claimItem(){
+       for (int index=0; index< player.getJumlahPlayer(); index++){
+           HitBox hitBox1= player.getHitbox(index);
+           for (int i=0; i<map.getJumlahTileRumput(); i++){
+               for (int j=0; j<map.getJumlahTileRumput(); j++){
+                   if (map.isItems(i, j)) {
+                       Item item= map.getItem(i,j);
+                       HitBox hitBox2= item.getHitBox();
+                       if (hitBox1.getxCenter()>hitBox2.getX()&&hitBox1.getxCenter()<hitBox2.getX()+hitBox2.getWidth()&&hitBox1.getyCenter()>hitBox2.getY()&&hitBox1.getyCenter()<hitBox2.getY()+hitBox2.getHeight()){
+                           player.claimItem(map.getNamaItem(i,j),index);
+                       }
+                   }
+               }
+           }
+       }
+   }
+
    public void updateExplosion(){
        for (int i=0; i<map.ledakan.size(); i++){
            Ledakan ledakan= map.getLedakan(i);
            HitBox hitBox2= ledakan.getHitBox();
+
+           //kondisi mengcheck apakah hitBox yang terdapat pada player, mengenai hitBox pada ledakan
            for (int index=0; index< player.getJumlahPlayer(); index++){
                if (player.isAlive(index)) {
                    HitBox hitBox1= player.getHitbox(index);
 
                    if (hitBox1.getxCenter()>hitBox2.getX()&&hitBox1.getxCenter()<hitBox2.getX()+hitBox2.getWidth()&&hitBox1.getyCenter()>hitBox2.getY()&&hitBox1.getyCenter()<hitBox2.getY()+hitBox2.getHeight()){
                        player.playerDead(index);
+                   }
+               }
+           }
+
+           //kondisi mengcheck apakah hitBox yang terdapat pada box, mengenai hitBox pada ledakan
+           for (int ii=0; ii<map.getJumlahTileRumput(); ii++){
+               for (int j=0; j<map.getJumlahTileRumput(); j++){
+                   if (map.isBox(ii, j)) {
+                       Box box= map.getBox(ii,j);
+                       HitBox hitBox1= box.getHitBox();
+
+                       if (hitBox1.getxCenter()>hitBox2.getX()&&hitBox1.getxCenter()<hitBox2.getX()+hitBox2.getWidth()&&hitBox1.getyCenter()>hitBox2.getY()&&hitBox1.getyCenter()<hitBox2.getY()+hitBox2.getHeight()){
+                           map.DestroyBox(ii,j);
+                       }
                    }
                }
            }

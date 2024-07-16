@@ -14,7 +14,7 @@ public class ControllerScreen implements Screen {
     public static boolean mainMenu;
     public static boolean play;
     public static boolean exitGame;
-    public static boolean win;
+    public static boolean win= false;
     public static int playerWin = 0;
 
     Screen mainMenuScreen;
@@ -59,7 +59,10 @@ public class ControllerScreen implements Screen {
             }
         } else if (win){
 
-            winScreen= new WinScreen(playerWin);
+            if (winScreen==null){
+                winScreen= new WinScreen(playerWin);
+            }
+
             winScreen.render(delta);
         }
 

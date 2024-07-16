@@ -208,10 +208,22 @@ public class    Tile {
     }
 
     public Item getItems() {
-        return items;
+
+        if (item){
+            return items;
+        }
+        return null;
     }
 
     public Box getBoxs() {
         return boxs;
+    }
+
+    public boolean isItem() {
+        return item;
+    }
+
+    public String getNameItem(){
+        return items.getNama();
     }
 }

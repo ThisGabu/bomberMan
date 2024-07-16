@@ -1,6 +1,6 @@
 package Entity.Item;
 
-import com.badlogic.gdx.Gdx;
+import Utility.HitBox;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,9 +11,9 @@ public class BombCapacity extends Item{
     private static final int rows = 1;
     private static final float delayFrame = Item.delayFrame;
     float stateTime;
+    HitBox hitBox;
 
     Texture sheet;
-
 
     public BombCapacity(){
         setNama("bombCapacity");
@@ -31,12 +31,21 @@ public class BombCapacity extends Item{
         }
 
         animation= new Animation<TextureRegion>(delayFrame, frame);
+        hitBox= new HitBox(super.width,super.height,xPosition,yPosition);
+    }
+
+    public HitBox getHitBox() {
+        return hitBox;
     }
 
     public Animation getAnimation(){
         return animation;
     }
 
+    @Override
+    public void setNama(String nama) {
+        super.setNama(nama);
+    }
 
     @Override
     public void setPicture() {

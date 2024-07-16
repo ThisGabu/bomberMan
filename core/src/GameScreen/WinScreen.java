@@ -1,8 +1,10 @@
 package GameScreen;
 
+import Entity.Bomb.Bomb;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -21,6 +23,8 @@ public class WinScreen implements Screen {
     Texture ExitHover;
     Texture WinText;
     Texture WinPlayer;
+
+    public static Music music;
 
     //Ukuran dan Penempatan Background
     private static final float width = BomberMan.widthScreen;
@@ -64,6 +68,7 @@ public class WinScreen implements Screen {
         Exit= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\exit2.png");
         ExitHover= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\exit2Hover.png");
         WinText= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\winText.png");
+        music= Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundWin.mp3"));
     }
 
 
@@ -74,6 +79,14 @@ public class WinScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
+        PlayScreen.music.dispose();
+        Bomb.soundMeledak.dispose();
+
+        music.setVolume(0.3f);
+        music.setLooping(true);
+        music.play();
+
         batch.begin();
 
         //Mengecek Player yang win
@@ -95,6 +108,7 @@ public class WinScreen implements Screen {
                 ControllerScreen.play=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
+                music.dispose();
             } else {
                 batch.draw(RestartHover, xRestart, yRestart, widthRestart, heightRestart);
             }
@@ -106,6 +120,7 @@ public class WinScreen implements Screen {
                 ControllerScreen.mainMenu=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
+                music.dispose();
             } else {
                 batch.draw(ExitHover, xExit, yExit, widthExit, heightExit);
             }

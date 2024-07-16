@@ -1,5 +1,6 @@
 package Entity.Item;
 
+import Utility.HitBox;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,10 +11,17 @@ public abstract class Item {
 
     String nama;
     Texture picture;
+    HitBox hitBox;
 
     float xPosition;
     float yPosition;
-    static final float delayFrame = 0.025f;
+    float width= 25;
+    float height= 25;
+    static final float delayFrame = 0.15f;
+
+    public Item(){
+        hitBox=new HitBox(getWidth(),getHeight(),getxPosition(),getyPosition());
+    }
 
     public void setPicture(Texture picture) {
         this.picture = picture;
@@ -51,5 +59,18 @@ public abstract class Item {
 
     public Animation getAnimation(){
         return animation;
+    }
+
+
+    public HitBox getHitBox() {
+        return hitBox;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public float getWidth() {
+        return width;
     }
 }

@@ -10,9 +10,13 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+
+import java.security.PublicKey;
 
 public class PlayScreen implements Screen {
 
@@ -22,6 +26,8 @@ public class PlayScreen implements Screen {
     MapGame map;
     ControllerPlayer player;
     Update update;
+
+    public static Music music;
 
 
     private static final float width = BomberMan.widthScreen;
@@ -42,8 +48,8 @@ public class PlayScreen implements Screen {
         this.map= map;
         player= new ControllerPlayer(jumlahPlayer, map.spawnTile);
         update= new Update(player,map);
+        music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundPlayGame.mp3"));
     }
-
 
     @Override
     public void show() {
@@ -53,6 +59,9 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
 
+        music.setVolume(0.3f);
+        music.setLooping(true);
+        music.play();
 
         batch.begin();
         batch.draw(backgorund, xBackground, yBackgorund, width, height);
@@ -76,12 +85,9 @@ public class PlayScreen implements Screen {
             }
         }
 
-
-
-
-
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             pause=true;
+            music.dispose();
         }
 
         update.update(delta);
@@ -123,21 +129,6 @@ public class PlayScreen implements Screen {
             }
         }
 
-        int index=0;
-        for (int i=0; i<map.jumlahTileRumput; i++){
-            for (int j=0; j<map.jumlahTileRumput; j++){
-
-                    if ((player.getXPositionPlayer(index)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index)<=map.tile[i][j].getyPosition()+map.heightTile)||(player.getXPositionPlayer(index)+player.getWidthPlayer(index)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index)+player.getWidthPlayer(index)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index)+player.getHeightPlayer(index)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index)+player.getHeightPlayer(index)<=map.tile[i][j].getyPosition()+map.heightTile)){
-                        map.setPlayer(i,j,true);
-                    } else if ((player.getXPositionPlayer(1)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index+1)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index+1)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index+1)<=map.tile[i][j].getyPosition()+map.heightTile)||(player.getXPositionPlayer(index+1)+player.getWidthPlayer(index+1)>=map.tile[i][j].getxPosition()&&player.getXPositionPlayer(index+1)+player.getWidthPlayer(index+1)<=map.tile[i][j].getxPosition()+map.widthTile&&player.getYPositionPlayer(index+1)+player.getHeightPlayer(index+1)>=map.tile[i][j].getyPosition()&&player.getYPositionPlayer(index+1)+player.getHeightPlayer(index+1)<=map.tile[i][j].getyPosition()+map.heightTile)) {
-                        map.setPlayer(i,j,true);
-                    } else {
-                        map.setPlayer(i,j,false);
-                    }
-
-            }
-        }
-
         for (int i=0; i<map.bombs.size(); i++) {
             batch.draw(map.getBombAnimation(i, delta), map.xBomb(i), map.yBomb(i), map.widthBomb(i), map.heightBomb(i));
         }
@@ -159,6 +150,7 @@ public class PlayScreen implements Screen {
                 batch.draw(hitBox1.getPicture(), hitBox1.getX(), hitBox1.getY(), hitBox1.getWidth(), hitBox1.getHeight());
             }
         }
+
 
         batch.end();
 

@@ -30,7 +30,7 @@ public class MapGame {
     public static float xBorder = xPosition - widthTile;
     public static float yBorder = yPosition - heightTile;
 
-    public Tile[][] tile;
+    public static Tile[][] tile;
     public Border[][] border;
     public SpawnTile[] spawnTile;
 
@@ -292,7 +292,7 @@ public class MapGame {
         return bomb.getHeight();
     }
 
-    public void setBox(int i, int j) {
+    public void DestroyBox(int i, int j) {
         tile[i][j].boxDesroy();
     }
 
@@ -404,5 +404,13 @@ public class MapGame {
         } else {
             return null;
         }
+    }
+
+    public boolean isItems(int i, int j){
+        return tile[i][j].isItem();
+    }
+
+    public String getNamaItem(int i, int j){
+        return tile[i][j].getNameItem();
     }
 }

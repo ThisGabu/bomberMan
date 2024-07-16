@@ -1,5 +1,7 @@
 package Entity.Bomb;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -8,6 +10,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.awt.*;
 
 public class Bomb {
+
+
+    public static Sound soundMeledak;
+    private static float volume= 0.1f;
+
 
     boolean meledak=false;
     boolean ledakan=false;
@@ -24,6 +31,8 @@ public class Bomb {
     private final int rows = 6;
     private final float delayFrame = 0.33f;
     private float timer = 0;
+
+    public static boolean playSound= false;
 
     Texture picture;
     public Animation<TextureRegion> animation;
@@ -67,6 +76,7 @@ public class Bomb {
         setJ(j);
 
         picture = new Texture("D:\\Project coding\\bomberMan\\assets\\BombAnimation\\bombMeledak.png");
+        soundMeledak = Gdx.audio.newSound(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\meledak.mp3"));
 
         TextureRegion[][] tmpBomb = TextureRegion.split(picture, picture.getWidth() / cols, picture.getHeight() / rows);
         TextureRegion[] frameBomb = new TextureRegion[cols * rows];
@@ -126,8 +136,16 @@ public class Bomb {
     }
 
 
+    public static void duarr() {
+        long id = soundMeledak.play(volume);
+        soundMeledak.setPitch(id, 0.5f);
+        soundMeledak.setLooping(id, false);
+        playSound=true;
+    }
+
     public void update(float delta){
         setTimer(timer+delta);
+        duarr();
         removeBomb();
     }
 
@@ -149,5 +167,9 @@ public class Bomb {
 
     public void setRangeExplosion(int rangeExplosion) {
         this.rangeExplosion = rangeExplosion;
+    }
+
+    public int getRangeExplosion() {
+        return rangeExplosion;
     }
 }

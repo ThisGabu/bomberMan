@@ -1,5 +1,6 @@
 package Entity.Item;
 
+import Utility.HitBox;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,12 +12,12 @@ public class Stun extends Item{
     private static final float delayFrame = Item.delayFrame;
     float stateTime;
 
-
+    HitBox hitBox;
     Texture sheet;
 
 
     public Stun(){
-        setNama("bombCapacity");
+        super.setNama("stun");
         setPicture();
         sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\stun.png");
 
@@ -31,6 +32,7 @@ public class Stun extends Item{
         }
 
         animation= new Animation<TextureRegion>(delayFrame, frame);
+        hitBox= new HitBox(super.width,super.height,xPosition,yPosition);
     }
 
 

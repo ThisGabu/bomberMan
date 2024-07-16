@@ -1,9 +1,11 @@
 package Entity.Player;
 
 import Entity.Bomb.Bomb;
+import Entity.Item.Item;
 import Utility.HitBox;
 import Utility.MapGame;
 import Utility.SpawnTile;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class ControllerPlayer {
@@ -155,4 +157,11 @@ public class ControllerPlayer {
         player[i].update(map, delta);
     }
 
+    public void claimItem(String item, int index){
+        player[index].claimItem(item);
+    }
+
+    public Sound getSound(int index){
+        return player[index].getSoundJalan();
+    }
 }

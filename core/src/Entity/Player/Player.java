@@ -8,6 +8,8 @@ import Utility.HitBox;
 import Utility.MapGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -39,12 +41,21 @@ public class Player {
     boolean left= true;
 
     boolean alive= true;
+    boolean shield= false;
+    boolean stun= false;
+
+    float shieldTime= 0;
+    float stunTime= 0;
+
 
     int numberPlayer = 0;
 
     boolean placeBomb=false;
 
     Analog analog;
+
+    public static Sound soundJalan;
+    public static Music music;
 
     private static final int colsIdle = 1;
     private static final int rowsIdle = 12;
@@ -90,6 +101,8 @@ public class Player {
         this.x = x;
         this.y = y;
         numberPlayer=player;
+
+        soundJalan = Gdx.audio.newSound(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\jalan.mp3"));
 
         if (player == 0) {
             analog= new Analog1();
@@ -318,6 +331,9 @@ public class Player {
 
         bombUpdate();
         pergerakan= analog.update();
+        System.out.println("shield"+shield);
+        System.out.println("stun"+stun);
+        System.out.println("capacity"+capacityBomb);
 
         if (placeBomb){
             Animation<TextureRegion> animation1;
@@ -340,6 +356,7 @@ public class Player {
                     if (up){
                         animation=animationWalkUp;
                         walkUp();
+
                     } else {
                         animation = animationIdle;
                     }
@@ -500,4 +517,21 @@ public class Player {
         return capacityBomb;
     }
 
+    public void claimItem(String item){
+        if (item=="shield"){
+            shield= true;
+            shieldTime= 0;
+        } else if (item == "stun") {
+            stun=true;
+            stunTime= 0;
+        } else if (item == "bombCapacity") {
+            setCapacityBomb(getCapacityBomb()+1);
+        } else if (item == "bombRange") {
+            bom.setRangeExplosion(bom.getRangeExplosion()+1);
+        }
+    }
+
+    public static Sound getSoundJalan() {
+        return soundJalan;
+    }
 }

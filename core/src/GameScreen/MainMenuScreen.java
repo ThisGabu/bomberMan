@@ -2,6 +2,7 @@ package GameScreen;
 
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -41,6 +42,8 @@ public class MainMenuScreen implements Screen {
     Texture exitHover;
     Texture startHover;
 
+    public static Music music;
+
 
     public MainMenuScreen(){
         batch = new SpriteBatch();
@@ -52,7 +55,7 @@ public class MainMenuScreen implements Screen {
         exit = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\Exit.png");
         exitHover = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitHover.png");
         exitPress = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitPress.png");
-
+        music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundMainMenu.mp3"));
     }
 
 
@@ -63,16 +66,23 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
         batch.begin();
         batch.draw(backgorund, xBackground, yBackgorund, width, height);
         batch.draw(logo, xLogo, yLogo, widthLogo, heightLogo);
         batch.draw(start, xStart, yStart, widthStart, heightStart);
         batch.draw(exit, xExit, yExit, widthExit, heightExit);
+
+        music.setVolume(0.5f);
+        music.setLooping(true);
+        music.play();
+
         if (Gdx.input.getX()>xStart&&Gdx.input.getX()<xStart+widthStart&&Gdx.input.getY()<height-yStart&&Gdx.input.getY()>height-yStart-heightStart){
             if (Gdx.input.isTouched()){
                 batch.draw(startPress, xStart, yStart, widthStart, heightStart);
                 ControllerScreen.mainMenu=false;
                 ControllerScreen.play=true;
+                music.dispose();
 
             } else {
                 batch.draw(startHover, xStart, yStart, widthStart, heightStart);
