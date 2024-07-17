@@ -17,7 +17,7 @@ public class ControllerPlayer {
     int jumlahPlayer;
     Player[] player;
     float stateTime;
-    Random random;
+    Random random= new Random();
 
     public ControllerPlayer(int jumlahPlayer, SpawnTile[] spawnTile) {
         this.jumlahPlayer = jumlahPlayer;
@@ -35,7 +35,7 @@ public class ControllerPlayer {
 
 
     public void playerDead(int i) {
-        player[i].setAlive(false);
+        player[i].setDeath(true);
     }
 
     public boolean isAlive(int i) {
@@ -141,11 +141,7 @@ public class ControllerPlayer {
     public TextureRegion drawPlayer(int i, float delta) {
         stateTime += delta;
         TextureRegion currentFrame;
-        if (player[i].placeBomb) {
-            currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, true);
-        } else {
-            currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, true);
-        }
+        currentFrame = (TextureRegion) player[i].getAnimation().getKeyFrame(stateTime, true);
 
         return currentFrame;
     }
@@ -222,5 +218,9 @@ public class ControllerPlayer {
 
     public Texture getPictureStun(int index) {
         return player[index].getStunEffect();
+    }
+
+    public void bombExplosion(int index){
+        player[index].bombExplosion();
     }
 }

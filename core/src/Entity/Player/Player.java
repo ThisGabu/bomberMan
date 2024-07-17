@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Player {
 
     final float delayFrame=0.25f;
+    final float delayBombFrame=0.1f;
     final float speed=1;
     final float width=20;
     final float height=20;
@@ -46,6 +47,7 @@ public class Player {
     boolean upCapacity=false;
 
     boolean alive= true;
+    boolean death=false;
     boolean shield= false;
     boolean stun= false;
 
@@ -234,7 +236,7 @@ public class Player {
             animationWalkUp = new Animation<TextureRegion>(delayFrame, frameUp);
             animationWalkLeft = new Animation<TextureRegion>(delayFrame, frameLeft);
             animationWalkRight = new Animation<TextureRegion>(delayFrame, frameRight);
-            animationPlaceBomb = new Animation<TextureRegion>(delayFrame, frameBomb);
+            animationPlaceBomb = new Animation<TextureRegion>(delayBombFrame, frameBomb);
 
             animation=animationIdle;
         } else {
@@ -327,7 +329,7 @@ public class Player {
             animationWalkUp = new Animation<TextureRegion>(delayFrame, frameUp);
             animationWalkLeft = new Animation<TextureRegion>(delayFrame, frameLeft);
             animationWalkRight = new Animation<TextureRegion>(delayFrame, frameRight);
-            animationPlaceBomb = new Animation<TextureRegion>(delayFrame, frameBomb);
+            animationPlaceBomb = new Animation<TextureRegion>(delayBombFrame, frameBomb);
 
             animation=animationIdle;
         }
@@ -370,6 +372,16 @@ public class Player {
         this.isBomb=isBomb;
     }
 
+    public void deadAnimation(float delta){
+        if (timer<animationDead.getAnimationDuration()/2){
+            timer+=delta;
+        } else {
+            death=false;
+            alive=false;
+            timer=0;
+        }
+    }
+
     public void update(MapGame map, float delta){
 
         bombUpdate();
@@ -381,65 +393,68 @@ public class Player {
         }
         pergerakan= analog.update();
 
-        if (!stun) {
-            if (placeBomb) {
-                Animation<TextureRegion> animation1;
-                animation1 = bom.getAnimation();
-                if (timer >= animation1.getAnimationDuration() / 2) {
-                    placeBomb = false;
-                    capacityBomb++;
-                    isBomb = true;
+        if (death){
+            animation=animationDead;
+            deadAnimation(delta);
+        } else {
+            if (!stun) {
+                if (placeBomb) {
+                    if (timer < animationPlaceBomb.getAnimationDuration() / 2) {
+                        timer += delta;
+                    } else {
+                        timer=0;
+                        placeBomb = false;
+                        isBomb = true;
+                    }
                 } else {
-                    timer += delta;
-                }
-            } else {
-                if (pergerakan == "bomb" && capacityBomb > 0) {
-                    animation = animationPlaceBomb;
-                    timer = 0;
-                    placeBomb = true;
-                    capacityBomb--;
-                } else if (pergerakan == "up") {
-                    if (y + height + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getyPosition()) {
-                        if (up) {
-                            animation = animationWalkUp;
-                            walkUp();
+                    if (pergerakan == "bomb" && capacityBomb > 0) {
+                        animation = animationPlaceBomb;
+                        timer = 0;
+                        placeBomb = true;
+                        capacityBomb--;
+                    } else if (pergerakan == "up") {
+                        if (y + height + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getyPosition()) {
+                            if (up) {
+                                animation = animationWalkUp;
+                                walkUp();
 
+                            } else {
+                                animation = animationIdle;
+                            }
+                        }
+                    } else if (pergerakan == "down") {
+                        if (y - 1 > map.border[0][0].getyPosition() + map.heightTile) {
+                            if (down) {
+                                animation = animationWalkDown;
+                                walkDown();
+                            } else {
+                                animation = animationIdle;
+                            }
+                        }
+                    } else if (pergerakan == "right") {
+                        if (x + width + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getxPosition()) {
+                            if (right) {
+                                animation = animationWalkRight;
+                                walkRight();
+                            } else {
+                                animation = animationIdle;
+                            }
                         } else {
                             animation = animationIdle;
                         }
-                    }
-                } else if (pergerakan == "down") {
-                    if (y - 1 > map.border[0][0].getyPosition() + map.heightTile) {
-                        if (down) {
-                            animation = animationWalkDown;
-                            walkDown();
-                        } else {
-                            animation = animationIdle;
-                        }
-                    }
-                } else if (pergerakan == "right") {
-                    if (x + width + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getxPosition()) {
-                        if (right) {
-                            animation = animationWalkRight;
-                            walkRight();
-                        } else {
-                            animation = animationIdle;
+
+                    } else if (pergerakan == "left") {
+                        if (x - 1 > map.border[0][0].getxPosition() + map.widthTile) {
+                            if (left) {
+                                animation = animationWalkLeft;
+                                walkLeft();
+                            } else {
+                                animation = animationIdle;
+                            }
                         }
                     } else {
                         animation = animationIdle;
                     }
-
-                } else if (pergerakan == "left") {
-                    if (x - 1 > map.border[0][0].getxPosition() + map.widthTile) {
-                        if (left) {
-                            animation = animationWalkLeft;
-                            walkLeft();
-                        } else {
-                            animation = animationIdle;
-                        }
-                    }
-                } else {
-                    animation = animationIdle;
                 }
             }
         }
@@ -553,6 +568,10 @@ public class Player {
         this.alive = alive;
     }
 
+    public void setDeath(boolean death) {
+        this.death = death;
+    }
+
     public String getPergerakanBefore() {
         return pergerakanBefore;
     }
@@ -627,5 +646,9 @@ public class Player {
 
     public Texture getShieldEffect() {
         return shieldEffect;
+    }
+
+    public void bombExplosion(){
+        capacityBomb+=1;
     }
 }
