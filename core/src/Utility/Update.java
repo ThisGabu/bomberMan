@@ -698,6 +698,7 @@ public class Update {
                int j= bomb.getJ();
                Bomb bomb1= new Bomb(centerX, centerY,l,j,rangeExplosion);
                map.createBomb(bomb1);
+               player.bombExplosion(i);
                player.setIsBomb(i,false);
            }
        }

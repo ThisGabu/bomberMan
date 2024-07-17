@@ -327,36 +327,186 @@ public class MapGame {
         createLedakan = new Ledakan("center", bomb.getX(), bomb.getY(), bomb.getWidth(), bomb.getHeight());
         ledakan.add(createLedakan);
 
+        int indexRight=0;
         boolean right=true;
-        boolean left=true;
-        boolean up=true;
-        boolean down=true;
+        boolean rightEnd=false;
 
-        for (int i = 0; i < bomb.getRangeExplosion(); i++) {
-            if (i < bomb.rangeExplosion - 1) {
-                createLedakan = new Ledakan("up", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
-                createLedakan = null;
-                createLedakan = new Ledakan("down", bomb.getX(), bomb.getY() - bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
-                createLedakan = null;
-                createLedakan = new Ledakan("right", bomb.getX() + bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
-                createLedakan = null;
-                createLedakan = new Ledakan("left", bomb.getX() - bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
+        int indexLeft=0;
+        boolean left=true;
+        boolean leftEnd=false;
+
+        int indexUp=0;
+        boolean up=true;
+        boolean upEnd=false;
+
+        int indexDown=0;
+        boolean down=true;
+        boolean downEnd=false;
+
+        for (int i = 1; i <= bomb.getRangeExplosion(); i++) {
+
+            if (i < bomb.rangeExplosion) {
+                if (up){
+                    if (bomb.getI()+i<jumlahTileRumput){
+                        if (isWall(bomb.getI()+i,bomb.getJ())){
+                            up=false;
+                        } else {
+                            if (isBox(bomb.getI()+i,bomb.getJ())){
+                                upEnd=true;
+                                up=false;
+                                indexUp=i;
+                            } else {
+                                createLedakan = new Ledakan("up", bomb.getX(), bomb.getY() + bomb.getHeight() * (i), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        }
+                    } else {
+                        up=false;
+                    }
+                }
+
+                if (down){
+                    if (bomb.getI()-i>=0){
+                        if (isWall(bomb.getI()-i,bomb.getJ())){
+                            down=false;
+                        } else {
+                            if (isBox(bomb.getI()-i,bomb.getJ())){
+                                downEnd=true;
+                                down=false;
+                                indexDown=i;
+                            } else {
+                                createLedakan = new Ledakan("down", bomb.getX(), bomb.getY() - bomb.getHeight() * (i), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        }
+                    } else {
+                        down=false;
+                    }
+                }
+
+                if (left){
+                    if (bomb.getJ()-i>=0){
+                        if (isWall(bomb.getI(),bomb.getJ()-i)){
+                            left=false;
+                        } else {
+                            if (isBox(bomb.getI(),bomb.getJ()-i)){
+                                leftEnd=true;
+                                left=false;
+                                indexLeft=i;
+                            } else {
+                                createLedakan = new Ledakan("left", bomb.getX() - bomb.getWidth() * (i), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        }
+                    } else {
+                        left=false;
+                    }
+                }
+
+                if (right){
+                    if (bomb.getJ()+i<jumlahTileRumput){
+                        if (isWall(bomb.getI(),bomb.getJ()+i)){
+                            right=false;
+                        } else {
+                            if (isBox(bomb.getI(),bomb.getJ()+i)){
+                                rightEnd=true;
+                                right=false;
+                                indexRight=i;
+                            } else {
+                                createLedakan = new Ledakan("right", bomb.getX() + bomb.getWidth() * (i), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        }
+                    } else {
+                        right=false;
+                    }
+                }
+
+
             } else {
-                createLedakan = new Ledakan("endUp", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
-                createLedakan = null;
-                createLedakan = new Ledakan("endDown", bomb.getX(), bomb.getY() - bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
-                createLedakan = null;
-                createLedakan = new Ledakan("endRight", bomb.getX() + bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
-                createLedakan = null;
-                createLedakan = new Ledakan("endLeft", bomb.getX() - bomb.getWidth() * (i + 1), bomb.getY(), bomb.getWidth(), bomb.getHeight());
-                ledakan.add(createLedakan);
+                if (up||upEnd){
+                    if (up){
+                        if (bomb.getI()+i<jumlahTileRumput-1){
+                            if (isWall(bomb.getI()+i,bomb.getJ())){
+                                up=false;
+                            } else {
+                                createLedakan = new Ledakan("endUp", bomb.getX(), bomb.getY() + bomb.getHeight() * (i), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        } else {
+                            up=false;
+                        }
+                    } else if (upEnd) {
+                        createLedakan = new Ledakan("endUp", bomb.getX(), bomb.getY() + bomb.getHeight() * (indexUp), bomb.getWidth(), bomb.getHeight());
+                        ledakan.add(createLedakan);
+                        createLedakan = null;
+                    }
+                }
+
+                if (down||downEnd){
+                    if (down){
+                        if (bomb.getI()-i>=0){
+                            if (isWall(bomb.getI()-i,bomb.getJ())){
+                                down=false;
+                            } else {
+                                createLedakan = new Ledakan("endDown", bomb.getX(), bomb.getY() - bomb.getHeight() * (i), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        } else {
+                            down=false;
+                        }
+                    } else if (downEnd) {
+                        createLedakan = new Ledakan("endDown", bomb.getX(), bomb.getY() - bomb.getHeight() * (indexDown), bomb.getWidth(), bomb.getHeight());
+                        ledakan.add(createLedakan);
+                        createLedakan = null;
+                    }
+                }
+
+                if (left||leftEnd){
+                    if (left){
+                        if (bomb.getJ()-i>=0){
+                            if (isWall(bomb.getI(),bomb.getJ()-i)){
+                                left=false;
+                            } else {
+                                createLedakan = new Ledakan("endLeft", bomb.getX() - bomb.getWidth() * (i), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        } else {
+                            left=false;
+                        }
+                    } else if (leftEnd){
+                        createLedakan = new Ledakan("endLeft", bomb.getX() - bomb.getWidth() * (indexLeft), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                        ledakan.add(createLedakan);
+                        createLedakan = null;
+                    }
+                }
+
+                if (right||rightEnd){
+                    if (right){
+                        if (bomb.getJ()+i<jumlahTileRumput){
+                            if (isWall(bomb.getI(),bomb.getJ()+i)){
+                                right=false;
+                            } else {
+                                createLedakan = new Ledakan("endRight", bomb.getX() + bomb.getWidth() * (i), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                                ledakan.add(createLedakan);
+                                createLedakan = null;
+                            }
+                        } else {
+                            right=false;
+                        }
+                    } else if (rightEnd) {
+                        createLedakan = new Ledakan("endRight", bomb.getX() + bomb.getWidth() * (indexRight), bomb.getY(), bomb.getWidth(), bomb.getHeight());
+                        ledakan.add(createLedakan);
+                        createLedakan = null;
+                    }
+                }
             }
         }
     }
