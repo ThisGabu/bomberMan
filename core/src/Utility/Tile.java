@@ -136,14 +136,14 @@ public class    Tile {
                 number=rand.nextInt(100);
                 System.out.println(number);
                 if (number<40){
-                    items= new BombCapacity();
+                    items= new BombCapacity(xPosition,yPosition);
                 } else if (number<80) {
-                    items= new BombRange();
+                    items= new BombRange(xPosition,yPosition);
                 } else {
-                    items= new Shield();
+                    items= new Shield(xPosition,yPosition);
                 }
             } else {
-                items= new Stun();
+                items= new Stun(xPosition,yPosition);
             }
         } else {
             item= false;
@@ -158,6 +158,7 @@ public class    Tile {
 
     public void terimaItem(){
         item=false;
+        items= null;
         perubahan=true;
     }
 

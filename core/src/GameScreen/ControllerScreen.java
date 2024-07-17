@@ -45,12 +45,14 @@ public class ControllerScreen implements Screen {
         if (restartMap){
             map= new MapGame();
             playScreen = new PlayScreen(map);
+            winScreen=null;
             restartMap=false;
         }
 
         if (mainMenu){
             mainMenuScreen.render(delta);
         } else if (play) {
+            playerWin=0;
             if (PlayScreen.pause){
                 pauseScreen.render(delta);
             }

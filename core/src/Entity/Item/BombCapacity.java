@@ -15,7 +15,9 @@ public class BombCapacity extends Item{
 
     Texture sheet;
 
-    public BombCapacity(){
+    public BombCapacity(float x, float y) {
+        setxPosition(x);
+        setyPosition(y);
         setNama("bombCapacity");
         setPicture();
         sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\bombCapacity.png");
@@ -31,7 +33,7 @@ public class BombCapacity extends Item{
         }
 
         animation= new Animation<TextureRegion>(delayFrame, frame);
-        hitBox= new HitBox(super.width,super.height,xPosition,yPosition);
+        hitBox= new HitBox(width,height,xPosition,yPosition);
     }
 
     public HitBox getHitBox() {

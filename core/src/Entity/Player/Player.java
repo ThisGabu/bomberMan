@@ -1,6 +1,7 @@
 package Entity.Player;
 
 import Entity.Bomb.Bomb;
+import Entity.Item.Item;
 import Utility.Analog.Analog;
 import Utility.Analog.Analog1;
 import Utility.Analog.Analog2;
@@ -22,6 +23,7 @@ public class Player {
     final float height=20;
 
     int capacityBomb = 2;
+    int rangeBomb= 2;
     int capacityBombBefore;
 
     Bomb bom;
@@ -40,12 +42,17 @@ public class Player {
     boolean right= true;
     boolean left= true;
 
+    boolean upRange=false;
+    boolean upCapacity=false;
+
     boolean alive= true;
     boolean shield= false;
     boolean stun= false;
 
-    float shieldTime= 0;
-    float stunTime= 0;
+    float shieldTime= 5;
+    float stunTime= 3;
+    float shieldTimer= 0;
+    float stunTimer= 0;
 
 
     int numberPlayer = 0;
@@ -93,6 +100,16 @@ public class Player {
     Texture playerPlaceBomb;
     Animation<TextureRegion> animationPlaceBomb;
 
+    private static final int colsStun = 1;
+    private static final int rowsStun = 8;
+    Texture stunEffect;
+    Animation<TextureRegion> animationStun;
+
+    private static final int colsShield = 10;
+    private static final int rowsShield = 1;
+    Texture shieldEffect;
+    Animation<TextureRegion> animationShield;
+
     float timer = 0;
 
     Animation<TextureRegion> animation;
@@ -103,6 +120,32 @@ public class Player {
         numberPlayer=player;
 
         soundJalan = Gdx.audio.newSound(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\jalan.mp3"));
+        stunEffect = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\effect\\stunEffect.png");
+        shieldEffect = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\effect\\shieldEffect.png");
+
+        TextureRegion[][] tmpStun = TextureRegion.split(stunEffect, stunEffect.getWidth() / colsStun, stunEffect.getHeight() / rowsStun);
+        TextureRegion[] frameStun = new TextureRegion[colsStun * rowsStun];
+        TextureRegion[][] tmpShield = TextureRegion.split(shieldEffect, shieldEffect.getWidth() / colsShield, shieldEffect.getHeight() / rowsShield);
+        TextureRegion[] frameShield = new TextureRegion[colsShield * rowsShield];
+
+        int i1= 0;
+
+        for (int i = 0; i < rowsStun; i++) {
+            for (int j = 0; j < colsStun; j++) {
+                frameStun[i1++] = tmpStun[i][j];
+            }
+        }
+
+        i1= 0;
+
+        for (int i = 0; i < rowsShield; i++) {
+            for (int j = 0; j < colsShield; j++) {
+                frameShield[i1++] = tmpShield[i][j];
+            }
+        }
+
+        animationShield = new Animation<TextureRegion>(delayFrame, frameShield);
+        animationStun = new Animation<TextureRegion>(delayFrame, frameStun);
 
         if (player == 0) {
             analog= new Analog1();
@@ -289,7 +332,7 @@ public class Player {
             animation=animationIdle;
         }
 
-        bom= new Bomb(x,y,i,j);
+        bom= new Bomb(x,y,i,j,rangeBomb);
         capacityBombBefore=capacityBomb;
         hitBox= new HitBox(getWidth(),getHeight(),getX(),getY());
     }
@@ -316,7 +359,7 @@ public class Player {
         bom.setI(i);
         bom.setJ(j);
         bom.setPlayer(numberPlayer);
-
+        bom.setRangeExplosion(rangeBomb);
     }
 
     public boolean getIsBomb(){
@@ -330,69 +373,74 @@ public class Player {
     public void update(MapGame map, float delta){
 
         bombUpdate();
+        if (shield) {
+            updateShield(delta);
+        }
+        if (stun) {
+            updateStun(delta);
+        }
         pergerakan= analog.update();
-        System.out.println("shield"+shield);
-        System.out.println("stun"+stun);
-        System.out.println("capacity"+capacityBomb);
 
-        if (placeBomb){
-            Animation<TextureRegion> animation1;
-            animation1=bom.getAnimation();
-            if (timer>=animation1.getAnimationDuration()/2){
-                placeBomb=false;
-                capacityBomb++;
-                isBomb=true;
+        if (!stun) {
+            if (placeBomb) {
+                Animation<TextureRegion> animation1;
+                animation1 = bom.getAnimation();
+                if (timer >= animation1.getAnimationDuration() / 2) {
+                    placeBomb = false;
+                    capacityBomb++;
+                    isBomb = true;
+                } else {
+                    timer += delta;
+                }
             } else {
-                timer+=delta;
-            }
-        } else {
-            if (pergerakan=="bomb"&&capacityBomb>0){
-                animation=animationPlaceBomb;
-                timer=0;
-                placeBomb=true;
-                capacityBomb--;
-            } else if (pergerakan=="up"){
-                if (y+height+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getyPosition()){
-                    if (up){
-                        animation=animationWalkUp;
-                        walkUp();
+                if (pergerakan == "bomb" && capacityBomb > 0) {
+                    animation = animationPlaceBomb;
+                    timer = 0;
+                    placeBomb = true;
+                    capacityBomb--;
+                } else if (pergerakan == "up") {
+                    if (y + height + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getyPosition()) {
+                        if (up) {
+                            animation = animationWalkUp;
+                            walkUp();
 
+                        } else {
+                            animation = animationIdle;
+                        }
+                    }
+                } else if (pergerakan == "down") {
+                    if (y - 1 > map.border[0][0].getyPosition() + map.heightTile) {
+                        if (down) {
+                            animation = animationWalkDown;
+                            walkDown();
+                        } else {
+                            animation = animationIdle;
+                        }
+                    }
+                } else if (pergerakan == "right") {
+                    if (x + width + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getxPosition()) {
+                        if (right) {
+                            animation = animationWalkRight;
+                            walkRight();
+                        } else {
+                            animation = animationIdle;
+                        }
                     } else {
                         animation = animationIdle;
                     }
-                }
-            } else if (pergerakan=="down") {
-                if (y-1>map.border[0][0].getyPosition()+map.heightTile){
-                    if (down){
-                        animation=animationWalkDown;
-                        walkDown();
-                    } else {
-                        animation = animationIdle;
-                    }
-                }
-            } else if (pergerakan=="right") {
-                if (x+width+1<map.border[map.jumlahTileMetal-1][map.jumlahTileMetal-1].getxPosition()) {
-                    if (right){
-                        animation = animationWalkRight;
-                        walkRight();
-                    } else {
-                        animation = animationIdle;
+
+                } else if (pergerakan == "left") {
+                    if (x - 1 > map.border[0][0].getxPosition() + map.widthTile) {
+                        if (left) {
+                            animation = animationWalkLeft;
+                            walkLeft();
+                        } else {
+                            animation = animationIdle;
+                        }
                     }
                 } else {
                     animation = animationIdle;
                 }
-
-            } else if (pergerakan=="left") {
-                if (x-1>map.border[0][0].getxPosition()+map.widthTile){
-                    if (left){
-                        animation=animationWalkLeft;
-                        walkLeft();
-                    } else {
-                        animation=animationIdle;
-                    }
-                }
-            } else {
-                animation=animationIdle;
             }
         }
 
@@ -518,20 +566,66 @@ public class Player {
     }
 
     public void claimItem(String item){
+
         if (item=="shield"){
             shield= true;
-            shieldTime= 0;
+            shieldTimer= 0;
         } else if (item == "stun") {
             stun=true;
-            stunTime= 0;
+            stunTimer= 0;
         } else if (item == "bombCapacity") {
-            setCapacityBomb(getCapacityBomb()+1);
+            capacityBomb++;
         } else if (item == "bombRange") {
-            bom.setRangeExplosion(bom.getRangeExplosion()+1);
+            rangeBomb++;
         }
     }
 
     public static Sound getSoundJalan() {
         return soundJalan;
+    }
+
+    public void upRangeBomb(){
+        bom.upRange();
+        upRange=false;
+    }
+
+    public void updateShield(float delta){
+        if (shieldTimer<shieldTime){
+            shieldTimer+=delta;
+        } else {
+            shield=false;
+        }
+    }
+
+    public void updateStun(float delta){
+        if (stunTimer<stunTime){
+            stunTimer+=delta;
+        } else {
+            stun=false;
+        }
+    }
+
+    public boolean isShield() {
+        return shield;
+    }
+
+    public boolean isStun() {
+        return stun;
+    }
+
+    public Animation<TextureRegion> getAnimationStun() {
+        return animationStun;
+    }
+
+    public Animation<TextureRegion> getAnimationShield() {
+        return animationShield;
+    }
+
+    public Texture getStunEffect() {
+        return stunEffect;
+    }
+
+    public Texture getShieldEffect() {
+        return shieldEffect;
     }
 }

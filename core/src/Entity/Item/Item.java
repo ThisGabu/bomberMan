@@ -17,11 +17,10 @@ public abstract class Item {
     float yPosition;
     float width= 25;
     float height= 25;
-    static final float delayFrame = 0.15f;
+    static final float delayFrame = 0.1f;
 
-    public Item(){
-        hitBox=new HitBox(getWidth(),getHeight(),getxPosition(),getyPosition());
-    }
+    float statetime=0;
+
 
     public void setPicture(Texture picture) {
         this.picture = picture;
@@ -72,5 +71,13 @@ public abstract class Item {
 
     public float getWidth() {
         return width;
+    }
+
+    public float getStatetime() {
+        return statetime;
+    }
+
+    public void setStatetime(float statetime) {
+        this.statetime = statetime;
     }
 }

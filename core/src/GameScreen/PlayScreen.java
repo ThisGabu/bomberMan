@@ -126,6 +126,14 @@ public class PlayScreen implements Screen {
         for (int i=0; i<jumlahPlayer; i++){
             if (player.isAlive(i)) {
                 batch.draw(player.drawPlayer(i, delta), player.getXPositionPlayer(i), player.getYPositionPlayer(i), player.getWidthPlayer(i), player.getHeightPlayer(i));
+
+                if (player.isShield(i)){
+                    batch.draw(player.drawShield(i,delta),((player.getXPositionPlayer(i)+player.getWidthPlayer(i)/2))-(player.getPictureShield(i).getHeight()/2),player.getYPositionPlayer(i)+(player.getHeightPlayer(i)/2)-(player.getPictureShield(i).getHeight()/2));
+                }
+
+                if (player.isStun(i)){
+                    batch.draw(player.drawStun(i,delta),((player.getXPositionPlayer(i)+player.getWidthPlayer(i)/2))-(15/2),player.getYPositionPlayer(i)+(player.getHeightPlayer(i)),15,15);
+                }
             }
         }
 
@@ -154,7 +162,7 @@ public class PlayScreen implements Screen {
 
         batch.end();
 
-        System.out.println(player.getI(0)+" "+player.getJ(0));
+
     }
 
     @Override

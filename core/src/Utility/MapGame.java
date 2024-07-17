@@ -30,7 +30,7 @@ public class MapGame {
     public static float xBorder = xPosition - widthTile;
     public static float yBorder = yPosition - heightTile;
 
-    public static Tile[][] tile;
+    public Tile[][] tile;
     public Border[][] border;
     public SpawnTile[] spawnTile;
 
@@ -297,8 +297,9 @@ public class MapGame {
     }
 
     public TextureRegion drawItem(int i, int j, float delta) {
-        stateTime += delta;
-        TextureRegion currentFrame = (TextureRegion) tile[i][j].items.getAnimation().getKeyFrame(stateTime, true);
+        Item items=tile[i][j].getItems();
+        items.setStatetime(delta+items.getStatetime());
+        TextureRegion currentFrame = (TextureRegion) tile[i][j].items.getAnimation().getKeyFrame(items.getStatetime(), true);
 
         return currentFrame;
     }
@@ -331,7 +332,7 @@ public class MapGame {
         boolean up=true;
         boolean down=true;
 
-        for (int i = 0; i < bomb.rangeExplosion; i++) {
+        for (int i = 0; i < bomb.getRangeExplosion(); i++) {
             if (i < bomb.rangeExplosion - 1) {
                 createLedakan = new Ledakan("up", bomb.getX(), bomb.getY() + bomb.getHeight() * (i + 1), bomb.getWidth(), bomb.getHeight());
                 ledakan.add(createLedakan);
@@ -412,5 +413,9 @@ public class MapGame {
 
     public String getNamaItem(int i, int j){
         return tile[i][j].getNameItem();
+    }
+
+    public void claim(int i, int j){
+        tile[i][j].terimaItem();
     }
 }

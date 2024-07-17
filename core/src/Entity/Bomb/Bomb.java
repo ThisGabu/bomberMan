@@ -23,7 +23,7 @@ public class Bomb {
     float y;
     int i;
     int j;
-    public int rangeExplosion = 2;
+    public int rangeExplosion;
 
     private final float width = 26.6f;
     private final float height = 26.6f;
@@ -69,7 +69,8 @@ public class Bomb {
         this.meledak = remove;
     }
 
-    public Bomb(float x, float y, int i, int j){
+    public Bomb(float x, float y, int i, int j, int rangeExplosion){
+        setRangeExplosion(rangeExplosion);
         setX(x);
         setY(y);
         setI(i);
@@ -171,5 +172,9 @@ public class Bomb {
 
     public int getRangeExplosion() {
         return rangeExplosion;
+    }
+
+    public void upRange(){
+        rangeExplosion++;
     }
 }

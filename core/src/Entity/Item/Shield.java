@@ -16,9 +16,11 @@ public class Shield extends Item{
     Texture sheet;
 
 
-    public Shield(){
-        super.setNama("shield");
+    public Shield(float x, float y){
+        setNama("shield");
         setPicture();
+        setyPosition(y);
+        setxPosition(x);
         sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\shield.png");
 
         TextureRegion[][] tmp= TextureRegion.split(sheet, sheet.getWidth()/cols, sheet.getHeight()/rows);
@@ -32,12 +34,25 @@ public class Shield extends Item{
         }
 
         animation= new Animation<TextureRegion>(delayFrame, frame);
-        hitBox= new HitBox(super.width,super.height,xPosition,yPosition);
+        hitBox= new HitBox(width,height,xPosition,yPosition);
     }
 
 
+    public HitBox getHitBox() {
+        return hitBox;
+    }
+
+    public Animation getAnimation(){
+        return animation;
+    }
+
+    @Override
+    public void setNama(String nama) {
+        super.setNama(nama);
+    }
+
     @Override
     public void setPicture() {
-        super.picture = new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\shield.png");
+
     }
 }
