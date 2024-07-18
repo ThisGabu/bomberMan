@@ -117,9 +117,9 @@ public class WinScreen implements Screen {
         //Exit Hover
         if (Gdx.input.getX()>xExit&&Gdx.input.getX()<xExit+widthExit&&Gdx.input.getY()<height-yExit&&Gdx.input.getY()>height-yExit-heightExit){
             if (Gdx.input.justTouched()){
-                ControllerScreen.mainMenu=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
+                ControllerScreen.mainMenu=true;
                 music.dispose();
             } else {
                 batch.draw(ExitHover, xExit, yExit, widthExit, heightExit);
