@@ -104,7 +104,7 @@ public class WinScreen implements Screen {
 
         //Restart Hover
         if (Gdx.input.getX()>xRestart&&Gdx.input.getX()<xRestart+widthRestart&&Gdx.input.getY()<height-yRestart&&Gdx.input.getY()>height-yRestart-heightRestart){
-            if (Gdx.input.isTouched()){
+            if (Gdx.input.justTouched()){
                 ControllerScreen.play=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
@@ -116,7 +116,7 @@ public class WinScreen implements Screen {
 
         //Exit Hover
         if (Gdx.input.getX()>xExit&&Gdx.input.getX()<xExit+widthExit&&Gdx.input.getY()<height-yExit&&Gdx.input.getY()>height-yExit-heightExit){
-            if (Gdx.input.isTouched()){
+            if (Gdx.input.justTouched()){
                 ControllerScreen.mainMenu=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
