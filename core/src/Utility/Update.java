@@ -8,6 +8,8 @@ import Entity.Player.ControllerPlayer;
 import Entity.Player.Player;
 import GameScreen.ControllerScreen;
 import GameScreen.PlayScreen;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 
 import java.awt.font.FontRenderContext;
 
@@ -17,6 +19,7 @@ public class Update {
    MapGame map;
    Bomb bomb;
    HitBox hitBox;
+   Music music;
 
    public Update(ControllerPlayer player, MapGame map) {
        this.player = player;
@@ -716,6 +719,18 @@ public class Update {
                        if (hitBox1.getxCenter()>hitBox2.getX()&&hitBox1.getxCenter()<hitBox2.getX()+hitBox2.getWidth()&&hitBox1.getyCenter()>hitBox2.getY()&&hitBox1.getyCenter()<hitBox2.getY()+hitBox2.getHeight()){
                            map.claim(i,j);
                            player.claimItem(item.getNama(),index);
+                           if (item.getNama()=="stun"){
+                               music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\dapetdebuff.mp3"));
+                               music.setVolume(0.3f);
+                               music.setLooping(false);
+                               music.play();
+                           } else {
+                               music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\dapetbuff.mp3"));
+                               music.setVolume(0.3f);
+                               music.setLooping(false);
+                               music.play();
+                           }
+
                        }
                    }
                }

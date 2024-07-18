@@ -1,6 +1,7 @@
 package Entity.Bomb;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -12,7 +13,7 @@ import java.awt.*;
 public class Bomb {
 
 
-    public static Sound soundMeledak;
+    public static Music soundMeledak;
     private static float volume= 0.1f;
 
 
@@ -78,7 +79,7 @@ public class Bomb {
         setPlayer(player);
 
         picture = new Texture("D:\\Project coding\\bomberMan\\assets\\BombAnimation\\bombMeledak.png");
-        soundMeledak = Gdx.audio.newSound(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\meledak.mp3"));
+        soundMeledak = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\meledak.mp3"));
 
         TextureRegion[][] tmpBomb = TextureRegion.split(picture, picture.getWidth() / cols, picture.getHeight() / rows);
         TextureRegion[] frameBomb = new TextureRegion[cols * rows];
@@ -139,10 +140,9 @@ public class Bomb {
 
 
     public static void duarr() {
-        long id = soundMeledak.play(volume);
-        soundMeledak.setPitch(id, 0.5f);
-        soundMeledak.setLooping(id, false);
-        playSound=true;
+        soundMeledak.setVolume(0.5f);
+        soundMeledak.setLooping(false);
+        soundMeledak.play();
     }
 
     public void update(float delta){

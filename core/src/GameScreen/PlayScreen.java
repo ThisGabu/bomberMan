@@ -59,7 +59,7 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        music.setVolume(0.3f);
+        music.setVolume(0.15f);
         music.setLooping(true);
         music.play();
 
