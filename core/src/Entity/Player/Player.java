@@ -57,7 +57,7 @@ public class Player {
     float stunTimer= 0;
 
 
-    int numberPlayer = 0;
+    int numberPlayer;
 
     boolean placeBomb=false;
 
@@ -334,7 +334,7 @@ public class Player {
             animation=animationIdle;
         }
 
-        bom= new Bomb(x,y,i,j,rangeBomb);
+        bom= new Bomb(x,y,i,j,rangeBomb,numberPlayer);
         capacityBombBefore=capacityBomb;
         hitBox= new HitBox(getWidth(),getHeight(),getX(),getY());
     }

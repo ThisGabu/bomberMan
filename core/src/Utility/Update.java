@@ -694,9 +694,10 @@ public class Update {
                float centerX= map.getxPosition(player.getI(i),player.getJ(i))+((map.widthTile-bomb.getWidth())/2);
                float centerY= map.getyPosition(player.getI(i),player.getJ(i))+((map.heightTile-bomb.getHeight())/2);
                int rangeExplosion= player.getRangeExplosion(i);
+               int playerNumber=i;
                int l= bomb.getI();
                int j= bomb.getJ();
-               Bomb bomb1= new Bomb(centerX, centerY,l,j,rangeExplosion);
+               Bomb bomb1= new Bomb(centerX, centerY,l,j,rangeExplosion,playerNumber);
                map.createBomb(bomb1);
                player.bombExplosion(i);
                player.setIsBomb(i,false);

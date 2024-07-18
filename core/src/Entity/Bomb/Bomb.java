@@ -69,12 +69,13 @@ public class Bomb {
         this.meledak = remove;
     }
 
-    public Bomb(float x, float y, int i, int j, int rangeExplosion){
+    public Bomb(float x, float y, int i, int j, int rangeExplosion,int player){
         setRangeExplosion(rangeExplosion);
         setX(x);
         setY(y);
         setI(i);
         setJ(j);
+        setPlayer(player);
 
         picture = new Texture("D:\\Project coding\\bomberMan\\assets\\BombAnimation\\bombMeledak.png");
         soundMeledak = Gdx.audio.newSound(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\meledak.mp3"));

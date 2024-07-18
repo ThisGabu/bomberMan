@@ -30,7 +30,7 @@ public class MapGame {
     public static float xBorder = xPosition - widthTile;
     public static float yBorder = yPosition - heightTile;
 
-    public Tile[][] tile;
+    public static Tile[][] tile;
     public Border[][] border;
     public SpawnTile[] spawnTile;
 
