@@ -45,111 +45,113 @@ public class MapGame {
     float stateTime = 0f;
 
 
-    public MapGame() {
-        tile = new Tile[jumlahTileRumput][jumlahTileRumput];
-        border = new Border[jumlahTileMetal][jumlahTileMetal];
-        spawnTile = new SpawnTile[jumlahSpawnTile];
+    public MapGame(int number) {
+        if (number == 1) {
+            tile = new Tile[jumlahTileRumput][jumlahTileRumput];
+            border = new Border[jumlahTileMetal][jumlahTileMetal];
+            spawnTile = new SpawnTile[jumlahSpawnTile];
 
-        for (int i = 0; i < jumlahTileRumput; i++) {
-            for (int j = 0; j < jumlahTileRumput; j++) {
-                tile[i][j] = new Tile();
-            }
-        }
-
-        for (int i = 0; i < jumlahTileMetal; i++) {
-            for (int j = 0; j < jumlahTileMetal; j++) {
-                border[i][j] = new Border();
-            }
-        }
-
-        for (int i = 0; i < jumlahSpawnTile; i++) {
-            spawnTile[i] = new SpawnTile();
-        }
-
-
-        for (int i = 0; i < jumlahTileRumput; i++) {
-            if (i % 2 == 0) {
+            for (int i = 0; i < jumlahTileRumput; i++) {
                 for (int j = 0; j < jumlahTileRumput; j++) {
-                    if (i == 0 && j == 0) {
-                        tile[i][j].box = false;
-                    } else if (i == jumlahTileRumput - 1 && j == 0) {
-                        tile[i][j].box = false;
-                    } else if (i == 0 && j == jumlahTileRumput - 1) {
-                        tile[i][j].box = false;
-                    } else if (i == jumlahTileRumput - 1 && j == jumlahTileRumput - 1) {
-                        tile[i][j].box = false;
-                    } else if (j % 2 == 0) {
-                        tile[i][j].box = true;
-                        jumlahBox++;
-                    } else {
-                        tile[i][j].box = false;
+                    tile[i][j] = new Tile();
+                }
+            }
+
+            for (int i = 0; i < jumlahTileMetal; i++) {
+                for (int j = 0; j < jumlahTileMetal; j++) {
+                    border[i][j] = new Border();
+                }
+            }
+
+            for (int i = 0; i < jumlahSpawnTile; i++) {
+                spawnTile[i] = new SpawnTile();
+            }
+
+
+            for (int i = 0; i < jumlahTileRumput; i++) {
+                if (i % 2 == 0) {
+                    for (int j = 0; j < jumlahTileRumput; j++) {
+                        if (i == 0 && j == 0) {
+                            tile[i][j].box = false;
+                        } else if (i == jumlahTileRumput - 1 && j == 0) {
+                            tile[i][j].box = false;
+                        } else if (i == 0 && j == jumlahTileRumput - 1) {
+                            tile[i][j].box = false;
+                        } else if (i == jumlahTileRumput - 1 && j == jumlahTileRumput - 1) {
+                            tile[i][j].box = false;
+                        } else if (j % 2 == 0) {
+                            tile[i][j].box = true;
+                            jumlahBox++;
+                        } else {
+                            tile[i][j].box = false;
+                        }
+                    }
+                } else {
+                    for (int j = 0; j < jumlahTileRumput; j++) {
+                        if (i == 0 && j == 0) {
+                            tile[i][j].box = false;
+                        } else if (i == jumlahTileRumput - 1 && j == 0) {
+                            tile[i][j].box = false;
+                        } else if (i == 0 && j == jumlahTileRumput - 1) {
+                            tile[i][j].box = false;
+                        } else if (i == jumlahTileRumput - 1 && j == jumlahTileRumput - 1) {
+                            tile[i][j].box = false;
+                        } else if (j % 2 == 0) {
+                            tile[i][j].box = false;
+                        } else {
+                            tile[i][j].wall = true;
+                            jumlahWall++;
+                        }
                     }
                 }
-            } else {
+
+            }
+
+            for (int i = 0; i < jumlahTileRumput; i++) {
                 for (int j = 0; j < jumlahTileRumput; j++) {
-                    if (i == 0 && j == 0) {
-                        tile[i][j].box = false;
-                    } else if (i == jumlahTileRumput - 1 && j == 0) {
-                        tile[i][j].box = false;
-                    } else if (i == 0 && j == jumlahTileRumput - 1) {
-                        tile[i][j].box = false;
-                    } else if (i == jumlahTileRumput - 1 && j == jumlahTileRumput - 1) {
-                        tile[i][j].box = false;
-                    } else if (j % 2 == 0) {
-                        tile[i][j].box = false;
-                    } else {
-                        tile[i][j].wall = true;
-                        jumlahWall++;
+                    tile[i][j].setPicture(i, j);
+                }
+            }
+
+            for (int i = 0; i < jumlahTileRumput; i++) {
+                for (int j = 0; j < jumlahTileRumput; j++) {
+                    tile[i][j].setxPosition(xPosition + widthTile * j);
+                    tile[i][j].setyPosition(yPosition + heightTile * i);
+                }
+            }
+
+            for (int i = 0; i < jumlahTileMetal; i++) {
+                for (int j = 0; j < jumlahTileMetal; j++) {
+                    border[i][j].setPicture();
+                }
+            }
+
+            for (int i = 0; i < jumlahTileMetal; i++) {
+                for (int j = 0; j < jumlahTileMetal; j++) {
+                    border[i][j].setxPosition(xBorder + widthTile * j);
+                    border[i][j].setyPosition(yBorder + heightTile * i);
+                }
+            }
+
+            int index = 0;
+            for (int i = 0; i < jumlahTileRumput; i++) {
+                for (int j = 0; j < jumlahTileRumput; j++) {
+                    if (i == jumlahTileRumput - 1 && j == jumlahTileRumput - 1) {
+                        spawnTile[index].setxPosition(tile[i][j].getxPosition());
+                        spawnTile[index].setyPosition(tile[i][j].getyPosition());
+                        index++;
+                    } else if (i == 0 && j == 0) {
+                        spawnTile[index].setyPosition(tile[i][j].getyPosition());
+                        spawnTile[index].setxPosition(tile[i][j].getxPosition());
+                        index++;
                     }
                 }
             }
 
-        }
-
-        for (int i = 0; i < jumlahTileRumput; i++) {
-            for (int j = 0; j < jumlahTileRumput; j++) {
-                tile[i][j].setPicture(i, j);
-            }
-        }
-
-        for (int i = 0; i < jumlahTileRumput; i++) {
-            for (int j = 0; j < jumlahTileRumput; j++) {
-                tile[i][j].setxPosition(xPosition + widthTile * j);
-                tile[i][j].setyPosition(yPosition + heightTile * i);
-            }
-        }
-
-        for (int i = 0; i < jumlahTileMetal; i++) {
-            for (int j = 0; j < jumlahTileMetal; j++) {
-                border[i][j].setPicture();
-            }
-        }
-
-        for (int i = 0; i < jumlahTileMetal; i++) {
-            for (int j = 0; j < jumlahTileMetal; j++) {
-                border[i][j].setxPosition(xBorder + widthTile * j);
-                border[i][j].setyPosition(yBorder + heightTile * i);
-            }
-        }
-
-        int index = 0;
-        for (int i = 0; i < jumlahTileRumput; i++) {
-            for (int j = 0; j < jumlahTileRumput; j++) {
-                if (i == jumlahTileRumput - 1 && j == jumlahTileRumput - 1) {
-                    spawnTile[index].setxPosition(tile[i][j].getxPosition());
-                    spawnTile[index].setyPosition(tile[i][j].getyPosition());
-                    index++;
-                } else if (i == 0 && j == 0) {
-                    spawnTile[index].setyPosition(tile[i][j].getyPosition());
-                    spawnTile[index].setxPosition(tile[i][j].getxPosition());
-                    index++;
+            for (int i = 0; i < jumlahTileRumput; i++) {
+                for (int j = 0; j < jumlahTileRumput; j++) {
+                    tile[i][j].create();
                 }
-            }
-        }
-
-        for (int i = 0; i < jumlahTileRumput; i++) {
-            for (int j = 0; j < jumlahTileRumput; j++) {
-                tile[i][j].create();
             }
         }
     }
