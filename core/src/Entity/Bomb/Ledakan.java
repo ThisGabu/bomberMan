@@ -1,6 +1,7 @@
 package Entity.Bomb;
 
 import Utility.HitBox;
+import Utility.MapGame;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,8 +18,8 @@ public class Ledakan {
     boolean up= true;
     boolean down= true;
 
-    private float width = 26.6f;
-    private float height = 26.6f;
+    private float width;
+    private float height;
     private final int cols = 1;
     private final int rows = 8;
     private final float delayFrame = 0.1f;

@@ -7,6 +7,7 @@ import Utility.Analog.Analog1;
 import Utility.Analog.Analog2;
 import Utility.HitBox;
 import Utility.MapGame;
+import bomberman.game.BomberMan;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
@@ -19,9 +20,9 @@ public class Player {
 
     final float delayFrame=0.25f;
     final float delayBombFrame=0.1f;
-    final float speed=1;
-    final float width=20;
-    final float height=20;
+    final float speed= BomberMan.heightScreen/MapGame.heightTile/4/4;
+    final float width=MapGame.widthTile-15;
+    final float height=MapGame.heightTile-15;
 
     int capacityBomb = 2;
     int rangeBomb= 2;
