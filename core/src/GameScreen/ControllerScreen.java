@@ -25,7 +25,7 @@ public class ControllerScreen implements Screen {
     MapGame map;
 
     public ControllerScreen(){
-        map= new MapGame();
+        map= new MapGame(2);
 
         mainMenuScreen = new MainMenuScreen();
         playScreen = new PlayScreen(map);
@@ -43,7 +43,7 @@ public class ControllerScreen implements Screen {
     public void render(float delta) {
 
         if (restartMap){
-            map= new MapGame();
+            map= new MapGame(2);
             playScreen = new PlayScreen(map);
             winScreen=null;
             restartMap=false;

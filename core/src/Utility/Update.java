@@ -82,7 +82,7 @@ public class Update {
            if (player.getPergerakan(i)=="up"){
                if (player.getI(i)!=map.getJumlahTileRumput()-1) {
 
-                   if (player.getXPositionPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i)) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i)) + map.widthTile) {
+                   if (player.getXPositionPlayer(i) >= map.getxPosition(player.getI(i), player.getJ(i)) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) <= map.getxPosition(player.getI(i), player.getJ(i)) + map.widthTile) {
                        //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
                        if (map.isWall(player.getI(i) + 1, player.getJ(i))) {
                            if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
@@ -233,7 +233,7 @@ public class Update {
                }
            } else if (player.getPergerakan(i) == "down") {
                if (player.getI(i) != 0) {
-                   if (player.getXPositionPlayer(i) > map.getxPosition(player.getI(i), player.getJ(i)) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) < map.getxPosition(player.getI(i), player.getJ(i)) + map.widthTile) {
+                   if (player.getXPositionPlayer(i) >= map.getxPosition(player.getI(i), player.getJ(i)) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) <= map.getxPosition(player.getI(i), player.getJ(i)) + map.widthTile) {
                        //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
                        if (map.isWall(player.getI(i) - 1, player.getJ(i))) {
                            if (player.getYPositionPlayer(i)>map.getyPosition(player.getI(i),player.getJ(i))){
@@ -385,7 +385,7 @@ public class Update {
            } else if (player.getPergerakan(i)=="right"){
                if (player.getJ(i)!=map.getJumlahTileRumput()-1) {
 
-                       if (player.getYPositionPlayer(i) > map.getyPosition(player.getI(i), player.getJ(i)) && player.getYPositionPlayer(i) + player.getHeightPlayer(i) < map.getyPosition(player.getI(i), player.getJ(i)) + map.heightTile) {
+                       if (player.getYPositionPlayer(i) >= map.getyPosition(player.getI(i), player.getJ(i)) && player.getYPositionPlayer(i) + player.getHeightPlayer(i) <= map.getyPosition(player.getI(i), player.getJ(i)) + map.heightTile) {
                            //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
                            if (map.isWall(player.getI(i), player.getJ(i) + 1)) {
                                if (player.getXPositionPlayer(i)+player.getWidthPlayer(i)<map.getxPosition(player.getI(i),player.getJ(i))+map.widthTile){
@@ -536,8 +536,7 @@ public class Update {
                }
            } else if (player.getPergerakan(i)=="left"){
                if (player.getJ(i)!=0) {
-
-                       if (player.getYPositionPlayer(i) > map.getyPosition(player.getI(i), player.getJ(i)) && player.getYPositionPlayer(i) + player.getHeightPlayer(i) < map.getyPosition(player.getI(i), player.getJ(i)) + map.heightTile) {
+                       if (player.getYPositionPlayer(i) >= map.getyPosition(player.getI(i), player.getJ(i)) && player.getYPositionPlayer(i) + player.getHeightPlayer(i) <= map.getyPosition(player.getI(i), player.getJ(i)) + map.heightTile) {
                            //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
                            if (map.isWall(player.getI(i), player.getJ(i) - 1)) {
                                if (player.getXPositionPlayer(i)>map.getxPosition(player.getI(i),player.getJ(i))){
@@ -775,4 +774,6 @@ public class Update {
            }
        }
    }
+
+
 }

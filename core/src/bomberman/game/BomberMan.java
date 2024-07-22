@@ -14,11 +14,9 @@ public class BomberMan extends Game {
 	public static final int widthScreen= gd.getDisplayMode().getWidth();
 	public static final int heightScreen= gd.getDisplayMode().getHeight();
 
-
 	Screen controller;
 
 
-	
 	@Override
 	public void create () {
 		controller = new ControllerScreen();
@@ -31,8 +29,7 @@ public class BomberMan extends Game {
 			Gdx.app.exit();
 		}
 
-			controller.render(Gdx.graphics.getDeltaTime());
-
+		controller.render(Gdx.graphics.getDeltaTime());
 	}
 
 	@Override
