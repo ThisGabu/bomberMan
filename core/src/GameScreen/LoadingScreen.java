@@ -21,11 +21,6 @@ public class LoadingScreen implements Screen {
     private final int cols= 1;
     private final int rows= 12;
 
-    Texture black;
-    Animation<TextureRegion> animationBlack;
-    private final int colsBlack=1;
-    private final int rowsBlack=4;
-
     Texture backgorund;;
     float widthBackground=BomberMan.widthScreen;
     float heightBackground=BomberMan.heightScreen;
@@ -37,11 +32,8 @@ public class LoadingScreen implements Screen {
 
     LoadingScreen(){
         picture= new Texture("D:\\Project coding\\bomberMan\\assets\\LoadingScreen\\loading.png");
-        black = new Texture("D:\\Project coding\\bomberMan\\assets\\LoadingScreen\\blackScreen.png");
         TextureRegion[][] tmpLoading= TextureRegion.split(picture, picture.getWidth()/cols, picture.getHeight()/rows);
         TextureRegion[] frameLoading= new TextureRegion[cols*rows];
-        TextureRegion[][] tmpBlack= TextureRegion.split(black, black.getWidth()/colsBlack, black.getHeight()/rowsBlack);
-        TextureRegion[] frameBlack= new TextureRegion[colsBlack*rowsBlack];
 
         int index=0;
 
@@ -51,15 +43,6 @@ public class LoadingScreen implements Screen {
             }
         }
 
-        index=0;
-
-        for (int i=0; i<rowsBlack; i++){
-            for (int j=0; j<colsBlack; j++){
-                frameBlack[index++] = tmpBlack[i][j];
-            }
-        }
-
-        animationBlack= new Animation<TextureRegion>(delayFrame,frameBlack);
         animationLoading= new Animation<TextureRegion>(delayFrame,frameLoading);
 
         backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
@@ -74,12 +57,6 @@ public class LoadingScreen implements Screen {
         return currentFrame;
     }
 
-    public TextureRegion blind(float delta) {
-        TextureRegion currentFrame;
-        currentFrame = (TextureRegion) animationBlack.getKeyFrame(stateTime, false);
-
-        return currentFrame;
-    }
 
 
     @Override
