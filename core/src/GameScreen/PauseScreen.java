@@ -82,9 +82,9 @@ public class PauseScreen implements Screen {
                 ControllerScreen.mainMenu=true;
                 PlayScreen.pause=false;
                 ControllerScreen.restartMap=true;
+                ControllerScreen.loading=true;
                 MainMenuScreen.music.dispose();
             } else {
-                System.out.println("true");
                 batch.draw(exitHover, xExit, yExit, widthExit, heightExit);
             }
         } else if (Gdx.input.getX()>xContinue&&Gdx.input.getX()<xContinue+widthContinue&&Gdx.input.getY()<BomberMan.heightScreen-yContinue&&Gdx.input.getY()>BomberMan.heightScreen-yContinue-heightContinue){
@@ -93,17 +93,17 @@ public class PauseScreen implements Screen {
                 PlayScreen.pause=false;
                 MainMenuScreen.music.dispose();
             } else {
-                ControllerScreen.restartMap=true;
-                System.out.println("false");
+
                 batch.draw(continueHover, xContinue, yContinue, widthContinue, heightContinue);
             }
 
         } else if (Gdx.input.getX()>xRestart&&Gdx.input.getX()<xRestart+widthRestart&&Gdx.input.getY()<BomberMan.heightScreen-yRestart&&Gdx.input.getY()>BomberMan.heightScreen-yRestart-heightRestart) {
             if (Gdx.input.isTouched()){
                 PlayScreen.pause=false;
+                ControllerScreen.restartMap=true;
+                ControllerScreen.loading=true;
                 MainMenuScreen.music.dispose();
             } else {
-                System.out.println("false");
                 batch.draw(restartHover, xRestart, yRestart, widthRestart, heightRestart);
             }
         }

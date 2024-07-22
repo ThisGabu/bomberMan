@@ -14,6 +14,7 @@ public class ControllerScreen implements Screen {
     public static boolean mainMenu;
     public static boolean play;
     public static boolean exitGame;
+    public static boolean loading;
     public static boolean win= false;
     public static int playerWin = 0;
 
@@ -21,17 +22,18 @@ public class ControllerScreen implements Screen {
     Screen playScreen;
     Screen pauseScreen;
     Screen winScreen;
+    Screen loadingScreen;
 
     MapGame map;
 
     public ControllerScreen(){
         map= new MapGame(2);
-
+        loadingScreen= new LoadingScreen();
         mainMenuScreen = new MainMenuScreen();
         playScreen = new PlayScreen(map);
         pauseScreen = new PauseScreen();
         mainMenu = true;
-
+        loading=false;
     }
 
     @Override
@@ -42,33 +44,36 @@ public class ControllerScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        if (restartMap){
-            map= new MapGame(2);
-            playScreen = new PlayScreen(map);
-            winScreen=null;
-            restartMap=false;
+        if (true) {
+            if (restartMap) {
+                map = new MapGame(2);
+                playScreen = new PlayScreen(map);
+                winScreen = null;
+                restartMap = false;
+            }
+
+            if (loading){
+                loadingScreen.render(delta);
+            } else if (mainMenu) {
+                mainMenuScreen.render(delta);
+            } else if (play) {
+                playerWin = 0;
+                if (PlayScreen.pause) {
+                    pauseScreen.render(delta);
+                } else {
+                    playScreen.render(delta);
+                }
+            } else if (win) {
+
+                if (winScreen == null) {
+                    winScreen = new WinScreen(playerWin);
+                }
+
+                winScreen.render(delta);
+            }
+        } else {
+
         }
-
-        if (mainMenu){
-            mainMenuScreen.render(delta);
-        } else if (play) {
-            playerWin=0;
-            if (PlayScreen.pause){
-                pauseScreen.render(delta);
-            }
-             else {
-                playScreen.render(delta);
-            }
-        } else if (win){
-
-            if (winScreen==null){
-                winScreen= new WinScreen(playerWin);
-            }
-
-            winScreen.render(delta);
-        }
-
-
     }
 
     @Override

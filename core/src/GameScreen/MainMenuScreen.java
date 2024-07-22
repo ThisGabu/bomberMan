@@ -82,6 +82,7 @@ public class MainMenuScreen implements Screen {
                 batch.draw(startPress, xStart, yStart, widthStart, heightStart);
                 ControllerScreen.mainMenu=false;
                 ControllerScreen.play=true;
+                ControllerScreen.loading=true;
                 music.dispose();
 
             } else {
