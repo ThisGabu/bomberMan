@@ -1,6 +1,7 @@
 package Entity.Item;
 
 import Utility.HitBox;
+import Utility.MapGame;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,8 +16,8 @@ public abstract class Item {
 
     float xPosition;
     float yPosition;
-    float width= 25;
-    float height= 25;
+    float width= MapGame.widthTile-1;
+    float height= MapGame.heightTile-1;
     static final float delayFrame = 0.1f;
 
     float statetime=0;

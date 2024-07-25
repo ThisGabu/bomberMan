@@ -16,21 +16,21 @@ import java.util.Map;
 
 public class MapGame {
 
-    public static final int jumlahTileRumput = 25;
-    public static final int jumlahTileMetal = 27;
+    public static final int jumlahTileRumput = 19;
+    public static final int jumlahTileMetal = 21;
     public static final int jumlahSpawnTile = 2;
     public int jumlahBox = 0;
     public int jumlahWall = 0;
 
-    public static float widthTile = 26.5f;
-    public static float heightTile = 26.5f;
+    public static float widthTile = BomberMan.heightScreen/jumlahTileMetal;
+    public static float heightTile = BomberMan.heightScreen/jumlahTileMetal;
     public static float xPosition = (BomberMan.widthScreen - widthTile * jumlahTileMetal) / 2 + widthTile;
-    public static float yPosition = heightTile;
+    public static float yPosition = BomberMan.heightScreen/2-heightTile*(jumlahTileMetal/2);
 
     public static float xBorder = xPosition - widthTile;
     public static float yBorder = yPosition - heightTile;
 
-    public static Tile[][] tile;
+    public Tile[][] tile;
     public Border[][] border;
     public SpawnTile[] spawnTile;
 

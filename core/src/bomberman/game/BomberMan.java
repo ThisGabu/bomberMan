@@ -6,10 +6,13 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
+import java.awt.*;
+
 public class BomberMan extends Game {
 
-	public static final int widthScreen=1280;
-	public static final int heightScreen=720;
+	static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	public static final int widthScreen= gd.getDisplayMode().getWidth();
+	public static final int heightScreen= gd.getDisplayMode().getHeight();
 
 
 	Screen controller;

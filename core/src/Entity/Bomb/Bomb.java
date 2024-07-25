@@ -1,5 +1,6 @@
 package Entity.Bomb;
 
+import Utility.MapGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -26,8 +27,8 @@ public class Bomb {
     int j;
     public int rangeExplosion;
 
-    private final float width = 26.6f;
-    private final float height = 26.6f;
+    private final float width = MapGame.widthTile;
+    private final float height = MapGame.heightTile;
     private final int cols = 1;
     private final int rows = 6;
     private final float delayFrame = 0.33f;
