@@ -23,6 +23,7 @@ public class ControllerScreen implements Screen {
     Screen pauseScreen;
     Screen winScreen;
     Screen loadingScreen;
+    Screen settingScreen;
 
     MapGame map;
 
@@ -34,6 +35,7 @@ public class ControllerScreen implements Screen {
         pauseScreen = new PauseScreen();
         mainMenu = true;
         loading=false;
+        settingScreen= new SettingScreen();
     }
 
     @Override
@@ -45,14 +47,15 @@ public class ControllerScreen implements Screen {
     public void render(float delta) {
 
         if (true) {
-            if (restartMap) {
-                map = new MapGame(2);
-                playScreen = new PlayScreen(map);
-                winScreen = null;
-                restartMap = false;
-            }
+
 
             if (loading){
+                if (restartMap) {
+                    map = new MapGame(2);
+                    playScreen = new PlayScreen(map);
+                    winScreen = null;
+                    restartMap = false;
+                }
                 loadingScreen.render(delta);
             } else if (mainMenu) {
                 mainMenuScreen.render(delta);
@@ -72,7 +75,7 @@ public class ControllerScreen implements Screen {
                 winScreen.render(delta);
             }
         } else {
-
+            settingScreen.render(delta);
         }
     }
 

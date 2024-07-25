@@ -20,7 +20,7 @@ public class Player {
 
     final float delayFrame=0.25f;
     final float delayBombFrame=0.1f;
-    final float speed= BomberMan.heightScreen/MapGame.heightTile/4/4;
+    final float speed= BomberMan.heightScreen/MapGame.heightTile/4/3;
     final float width=MapGame.widthTile-15;
     final float height=MapGame.heightTile-15;
 
