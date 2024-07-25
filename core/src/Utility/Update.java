@@ -223,8 +223,7 @@ public class Update {
                            }
                        }
                    }
-               }
-                else {
+               } else {
                    if (player.getYPositionPlayer(i)+player.getHeightPlayer(i)<map.getyPosition(map.getJumlahTileRumput()-1,map.getJumlahTileRumput()-1)+map.heightTile){
                        player.setUp(true,i);
                    } else {

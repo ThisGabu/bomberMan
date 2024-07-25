@@ -21,8 +21,8 @@ public class Player {
     final float delayFrame=0.25f;
     final float delayBombFrame=0.1f;
     final float speed= BomberMan.heightScreen/MapGame.heightTile/4/3;
-    final float width=MapGame.widthTile-15;
-    final float height=MapGame.heightTile-15;
+    float width=MapGame.widthTile-15;
+    float height=MapGame.heightTile-15;
 
     int capacityBomb = 2;
     int rangeBomb= 2;
@@ -651,5 +651,13 @@ public class Player {
 
     public void bombExplosion(){
         capacityBomb+=1;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
     }
 }

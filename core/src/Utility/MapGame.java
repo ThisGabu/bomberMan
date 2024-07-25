@@ -16,9 +16,11 @@ import java.util.Map;
 
 public class MapGame {
 
-    public static final int jumlahTileRumput = 19;
-    public static final int jumlahTileMetal = 21;
-    public static final int jumlahSpawnTile = 2;
+    public static int jumlahMap=2;
+
+    public static int jumlahTileRumput = 19;
+    public static int jumlahTileMetal = 21;
+    public static int jumlahSpawnTile = 2;
     public int jumlahBox = 0;
     public int jumlahWall = 0;
 
@@ -46,7 +48,29 @@ public class MapGame {
 
 
     public MapGame(int number) {
-        if (number == 1) {
+        if (number==0){
+            border= new Border[jumlahTileMetal][jumlahTileMetal];
+
+            for (int i=0; i<jumlahTileMetal; i++){
+                for (int j=0; j<jumlahTileMetal; i++){
+                    border[i][j]= new Border();
+                }
+            }
+
+            for (int i = 0; i < jumlahTileMetal; i++) {
+                for (int j = 0; j < jumlahTileMetal; j++) {
+                    border[i][j].setPicture();
+                }
+            }
+
+            for (int i = 0; i < jumlahTileMetal; i++) {
+                for (int j = 0; j < jumlahTileMetal; j++) {
+                    border[i][j].setxPosition(xBorder + widthTile * j);
+                    border[i][j].setyPosition(yBorder + heightTile * i);
+                }
+            }
+
+        } else if (number == 1) {
             tile = new Tile[jumlahTileRumput][jumlahTileRumput];
             border = new Border[jumlahTileMetal][jumlahTileMetal];
             spawnTile = new SpawnTile[jumlahSpawnTile];

@@ -1,5 +1,6 @@
 package GameScreen;
 
+import Utility.MapGame;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -39,6 +40,32 @@ public class SettingScreen implements Screen {
         batch.begin();
         batch.draw(backgorund,xBackground,yBackground,widthBackground,heightBackground);
         batch.draw(settingBackground,xSettingBackground,ySettingBackground,widthSettingBackground,heghtSettingBackground);
+
+        if (ControllerScreen.numberMap==1){
+            //tampilkan angka 01
+        } else if (ControllerScreen.numberMap==2){
+            //tampilkan angka 02
+        }
+
+        if (false){
+            //nambah nomor angka map
+            if (ControllerScreen.numberMap==MapGame.jumlahMap){
+                ControllerScreen.numberMap=1;
+            } else {
+                ControllerScreen.numberMap++;
+            }
+        }
+
+        if (false){
+            //nambah panjang dan tinggi map
+            MapGame.jumlahTileRumput+=2;
+            MapGame.jumlahTileMetal+=2;
+        } else if (false) {
+            //kurangi panjang dan tinggi map
+            MapGame.jumlahTileRumput-=2;
+            MapGame.jumlahTileMetal-=2;
+        }
+
 
         batch.end();
     }

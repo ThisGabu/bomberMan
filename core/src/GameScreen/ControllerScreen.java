@@ -15,8 +15,10 @@ public class ControllerScreen implements Screen {
     public static boolean play;
     public static boolean exitGame;
     public static boolean loading;
+    public static boolean instruction= false;
     public static boolean win= false;
     public static int playerWin = 0;
+    public static int numberMap=1;
 
     Screen mainMenuScreen;
     Screen playScreen;
@@ -24,11 +26,12 @@ public class ControllerScreen implements Screen {
     Screen winScreen;
     Screen loadingScreen;
     Screen settingScreen;
+    Screen instructionScreen;
 
     MapGame map;
 
     public ControllerScreen(){
-        map= new MapGame(2);
+        map= new MapGame(numberMap);
         loadingScreen= new LoadingScreen();
         mainMenuScreen = new MainMenuScreen();
         playScreen = new PlayScreen(map);
@@ -36,6 +39,7 @@ public class ControllerScreen implements Screen {
         mainMenu = true;
         loading=false;
         settingScreen= new SettingScreen();
+        instructionScreen= new InstructionScreen();
     }
 
     @Override
@@ -50,13 +54,13 @@ public class ControllerScreen implements Screen {
 
 
             if (loading){
+                loadingScreen.render(delta);
                 if (restartMap) {
-                    map = new MapGame(2);
+                    map = new MapGame(numberMap);
                     playScreen = new PlayScreen(map);
                     winScreen = null;
                     restartMap = false;
                 }
-                loadingScreen.render(delta);
             } else if (mainMenu) {
                 mainMenuScreen.render(delta);
             } else if (play) {
@@ -73,9 +77,11 @@ public class ControllerScreen implements Screen {
                 }
 
                 winScreen.render(delta);
+            } else if (instruction) {
+                instructionScreen.render(delta);
             }
         } else {
-            settingScreen.render(delta);
+            instructionScreen.render(delta);
         }
     }
 

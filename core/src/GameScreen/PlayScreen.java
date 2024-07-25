@@ -41,7 +41,7 @@ public class PlayScreen implements Screen {
     boolean destroy;
     boolean hitBox=true;
 
-    final int jumlahPlayer=2;
+    public static final int jumlahPlayer=2;
 
     PlayScreen(MapGame map){
         batch = new SpriteBatch();
