@@ -46,7 +46,7 @@ public class ControllerScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        if (true) {
+        if (false) {
 
 
             if (loading){
