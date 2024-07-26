@@ -17,6 +17,7 @@ public class ControllerScreen implements Screen {
     public static boolean loading;
     public static boolean win= false;
     public static int playerWin = 0;
+    public static int mapNumber= 1;
 
     Screen mainMenuScreen;
     Screen playScreen;
@@ -28,7 +29,7 @@ public class ControllerScreen implements Screen {
     MapGame map;
 
     public ControllerScreen(){
-        map= new MapGame(2);
+        map= new MapGame(mapNumber);
         loadingScreen= new LoadingScreen();
         mainMenuScreen = new MainMenuScreen();
         playScreen = new PlayScreen(map);
@@ -51,7 +52,7 @@ public class ControllerScreen implements Screen {
 
             if (loading){
                 if (restartMap) {
-                    map = new MapGame(2);
+                    map = new MapGame(mapNumber);
                     playScreen = new PlayScreen(map);
                     winScreen = null;
                     restartMap = false;
