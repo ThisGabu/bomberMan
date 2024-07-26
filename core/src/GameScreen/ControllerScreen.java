@@ -14,24 +14,32 @@ public class ControllerScreen implements Screen {
     public static boolean mainMenu;
     public static boolean play;
     public static boolean exitGame;
+    public static boolean loading;
+    public static boolean instruction= false;
     public static boolean win= false;
     public static int playerWin = 0;
+    public static int numberMap=1;
 
     Screen mainMenuScreen;
     Screen playScreen;
     Screen pauseScreen;
     Screen winScreen;
+    Screen loadingScreen;
+    Screen settingScreen;
+    Screen instructionScreen;
 
     MapGame map;
 
     public ControllerScreen(){
-        map= new MapGame();
-
+        map= new MapGame(numberMap);
+        loadingScreen= new LoadingScreen();
         mainMenuScreen = new MainMenuScreen();
         playScreen = new PlayScreen(map);
         pauseScreen = new PauseScreen();
         mainMenu = true;
-
+        loading=false;
+        settingScreen= new SettingScreen();
+        instructionScreen= new InstructionScreen();
     }
 
     @Override
@@ -42,33 +50,39 @@ public class ControllerScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        if (restartMap){
-            map= new MapGame();
-            playScreen = new PlayScreen(map);
-            winScreen=null;
-            restartMap=false;
+        if (true) {
+
+
+            if (loading){
+                loadingScreen.render(delta);
+                if (restartMap) {
+                    map = new MapGame(numberMap);
+                    playScreen = new PlayScreen(map);
+                    winScreen = null;
+                    restartMap = false;
+                }
+            } else if (instruction) {
+                instructionScreen.render(delta);
+            } else if (play) {
+                playerWin = 0;
+                if (PlayScreen.pause) {
+                    pauseScreen.render(delta);
+                } else {
+                    playScreen.render(delta);
+                }
+            } else if (win) {
+
+                if (winScreen == null) {
+                    winScreen = new WinScreen(playerWin);
+                }
+
+                winScreen.render(delta);
+            } else if (mainMenu) {
+                mainMenuScreen.render(delta);
+            }
+        } else {
+            instructionScreen.render(delta);
         }
-
-        if (mainMenu){
-            mainMenuScreen.render(delta);
-        } else if (play) {
-            playerWin=0;
-            if (PlayScreen.pause){
-                pauseScreen.render(delta);
-            }
-             else {
-                playScreen.render(delta);
-            }
-        } else if (win){
-
-            if (winScreen==null){
-                winScreen= new WinScreen(playerWin);
-            }
-
-            winScreen.render(delta);
-        }
-
-
     }
 
     @Override

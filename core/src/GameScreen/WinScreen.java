@@ -60,15 +60,15 @@ public class WinScreen implements Screen {
     WinScreen(int winPlayer){
         batch= new SpriteBatch();
         this.winPlayer= winPlayer;
-        winPlayer1= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\Win1.png");
-        winPlayer2= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\Win2.png");
-        Background = new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\background.png");
-        Restart= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\restart.png");
-        RestartHover= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\restartHover.png");
-        Exit= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\exit2.png");
-        ExitHover= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\exit2Hover.png");
-        WinText= new Texture("D:\\Project coding\\bomberMan\\assets\\WinScreen\\winText.png");
-        music= Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundWin.mp3"));
+        winPlayer1= new Texture("..\\bomberMan\\assets\\WinScreen\\Win1.png");
+        winPlayer2= new Texture("..\\bomberMan\\assets\\WinScreen\\Win2.png");
+        Background = new Texture("..\\bomberMan\\assets\\WinScreen\\background.png");
+        Restart= new Texture("..\\bomberMan\\assets\\WinScreen\\restart.png");
+        RestartHover= new Texture("..\\bomberMan\\assets\\WinScreen\\restartHover.png");
+        Exit= new Texture("..\\bomberMan\\assets\\WinScreen\\exit2.png");
+        ExitHover= new Texture("..\\bomberMan\\assets\\WinScreen\\exit2Hover.png");
+        WinText= new Texture("..\\bomberMan\\assets\\WinScreen\\winText.png");
+        music= Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\Music\\BacksoundWin.mp3"));
     }
 
 
@@ -108,6 +108,7 @@ public class WinScreen implements Screen {
                 ControllerScreen.play=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
+                ControllerScreen.loading=true;
                 music.dispose();
             } else {
                 batch.draw(RestartHover, xRestart, yRestart, widthRestart, heightRestart);
@@ -120,6 +121,7 @@ public class WinScreen implements Screen {
                 ControllerScreen.mainMenu=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
+                ControllerScreen.loading=true;
                 music.dispose();
             } else {
                 batch.draw(ExitHover, xExit, yExit, widthExit, heightExit);

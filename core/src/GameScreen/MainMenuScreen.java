@@ -16,19 +16,27 @@ public class MainMenuScreen implements Screen {
     private static final float widthLogo=852;
     private static final float heightLogo=114;
     private static final float xLogo= (width/2)-(widthLogo/2);
-    private static final float yLogo= (height*0.7f);
+    private static final float yLogo= height-heightLogo-heightLogo;
 
     private static final float widthStart=305;
     private static final float heightStart=79;
     private static final float xStart= width/2-widthStart/2;
-    private static final float yStart= height/2-heightStart;
+    private static final float yStart= height/2;
 
-    private static final float widthExit=200;
-    private static final float heightExit=77;
+    private static final float widthSetting=467-130;
+    private static final float heightSetting=119-40;
+    private static final float xSetting= width/2-widthSetting/2;
+    private static final float ySetting= yStart-heightSetting-heightStart/2;
+
+    private static final float widthInstruction=493-45;
+    private static final float heightInstruction=94-15;
+    private static final float xInstruction= width/2-widthInstruction/2;
+    private static final float yInstruction= ySetting-heightInstruction-heightStart/2;
+
+    private static final float widthExit=202;
+    private static final float heightExit=79;
     private static final float xExit= width/2-widthExit/2;
-    private static final float yExit= yStart/2;
-
-
+    private static final float yExit= yInstruction-heightExit-heightStart/2;
 
 
     SpriteBatch batch;
@@ -41,21 +49,29 @@ public class MainMenuScreen implements Screen {
     Texture exitPress;
     Texture exitHover;
     Texture startHover;
+    Texture setting;
+    Texture settingHover;
+    Texture instruction;
+    Texture instructionHover;
 
     public static Music music;
 
 
     public MainMenuScreen(){
         batch = new SpriteBatch();
-        logo = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\logo.png");
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
-        start = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\Start.png");
-        startHover = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\startHover.png");
-        startPress = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\StartPress.png");
-        exit = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\Exit.png");
-        exitHover = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitHover.png");
-        exitPress = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitPress.png");
-        music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundMainMenu.mp3"));
+        logo = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\logo.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        start = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\Start.png");
+        startHover = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\startHover.png");
+        startPress = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\StartPress.png");
+        exit = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\Exit.png");
+        exitHover = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\exitHover.png");
+        exitPress = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\exitPress.png");
+        setting= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\setting.png");
+        settingHover= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\settingHover.png");
+        instruction= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\instruction.png");
+        instructionHover= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\instructionHover.png");
+        music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\Music\\BacksoundMainMenu.mp3"));
     }
 
 
@@ -72,6 +88,8 @@ public class MainMenuScreen implements Screen {
         batch.draw(logo, xLogo, yLogo, widthLogo, heightLogo);
         batch.draw(start, xStart, yStart, widthStart, heightStart);
         batch.draw(exit, xExit, yExit, widthExit, heightExit);
+        batch.draw(setting,xSetting,ySetting,widthSetting,heightSetting);
+        batch.draw(instruction,xInstruction,yInstruction,widthInstruction,heightInstruction);
 
         music.setVolume(0.5f);
         music.setLooping(true);
@@ -82,6 +100,7 @@ public class MainMenuScreen implements Screen {
                 batch.draw(startPress, xStart, yStart, widthStart, heightStart);
                 ControllerScreen.mainMenu=false;
                 ControllerScreen.play=true;
+                ControllerScreen.loading=true;
                 music.dispose();
 
             } else {
@@ -95,7 +114,21 @@ public class MainMenuScreen implements Screen {
             } else {
                 batch.draw(exitHover, xExit, yExit, widthExit, heightExit);
             }
+        } else if (Gdx.input.getX()>xSetting&&Gdx.input.getX()<xSetting+widthSetting&&Gdx.input.getY()<height-ySetting&&Gdx.input.getY()>height-ySetting-heightSetting) {
+            if (Gdx.input.isTouched()){
+
+            } else {
+                batch.draw(settingHover,xSetting,ySetting,widthSetting,heightSetting);
+            }
+        } else if (Gdx.input.getX()>xInstruction&&Gdx.input.getX()<xInstruction+widthInstruction&&Gdx.input.getY()<height-yInstruction&&Gdx.input.getY()>height-yInstruction-heightInstruction) {
+            if (Gdx.input.isTouched()){
+                ControllerScreen.mainMenu=false;
+                ControllerScreen.instruction=true;
+            } else {
+                batch.draw(instructionHover,xInstruction,yInstruction,widthInstruction,heightInstruction);
+            }
         }
+
         batch.end();
     }
 

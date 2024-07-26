@@ -223,4 +223,12 @@ public class ControllerPlayer {
     public void bombExplosion(int index){
         player[index].bombExplosion();
     }
+
+    public void setWidth(float width, int index){
+        player[index].setWidth(width);
+    }
+
+    public void setHeight(float height, int index){
+        player[index].setHeight(height);
+    }
 }

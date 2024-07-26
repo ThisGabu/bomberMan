@@ -21,7 +21,7 @@ public class Stun extends Item{
         setPicture();
         setxPosition(x);
         setyPosition(y);
-        sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\stun.png");
+        sheet= new Texture("..\\bomberMan\\assets\\Item\\stun.png");
 
         TextureRegion[][] tmp= TextureRegion.split(sheet, sheet.getWidth()/cols, sheet.getHeight()/rows);
         TextureRegion[] frame = new TextureRegion[cols*rows];

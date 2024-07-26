@@ -37,7 +37,7 @@ public class HitBox {
     float yCenter;
 
     public HitBox(float width, float height, float x, float y){
-        picture= new Texture("D:\\Project coding\\bomberMan\\assets\\utility\\hitbox.png");
+        picture= new Texture("..\\bomberMan\\assets\\utility\\hitbox.png");
         this.width=width;
         this.height=height;
         this.x=x;
