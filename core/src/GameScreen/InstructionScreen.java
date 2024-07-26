@@ -223,6 +223,7 @@ class InstructionScreen implements Screen {
 
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             ControllerScreen.instruction=false;
+            ControllerScreen.mainMenu=true;
         }
 
         batch.end();

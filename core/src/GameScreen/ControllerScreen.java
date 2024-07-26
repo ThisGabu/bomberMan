@@ -61,8 +61,8 @@ public class ControllerScreen implements Screen {
                     winScreen = null;
                     restartMap = false;
                 }
-            } else if (mainMenu) {
-                mainMenuScreen.render(delta);
+            } else if (instruction) {
+                instructionScreen.render(delta);
             } else if (play) {
                 playerWin = 0;
                 if (PlayScreen.pause) {
@@ -77,8 +77,8 @@ public class ControllerScreen implements Screen {
                 }
 
                 winScreen.render(delta);
-            } else if (instruction) {
-                instructionScreen.render(delta);
+            } else if (mainMenu) {
+                mainMenuScreen.render(delta);
             }
         } else {
             instructionScreen.render(delta);

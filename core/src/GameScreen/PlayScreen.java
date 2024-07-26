@@ -2,6 +2,7 @@ package GameScreen;
 
 import Entity.Bomb.Bomb;
 import Entity.Bomb.Ledakan;
+import Entity.Item.Item;
 import Entity.Player.ControllerPlayer;
 import Utility.HitBox;
 import Utility.MapGame;
@@ -109,7 +110,7 @@ public class PlayScreen implements Screen {
         for (int i=0; i<map.jumlahTileRumput; i++){
             for (int j=0; j<map.jumlahTileRumput; j++){
                 if (map.tile[i][j].item()){
-                    batch.draw(map.drawItem(i,j, delta), map.tile[i][j].xPosition, map.tile[i][j].yPosition);
+                    batch.draw(map.drawItem(i,j, delta), map.tile[i][j].xPosition, map.tile[i][j].yPosition, Item.width,Item.height);
 
                 }
             }

@@ -16,8 +16,8 @@ public abstract class Item {
 
     float xPosition;
     float yPosition;
-    float width= MapGame.widthTile-1;
-    float height= MapGame.heightTile-1;
+    public static float width= MapGame.widthTile;
+    public static float height= MapGame.heightTile;
     static final float delayFrame = 0.1f;
 
     float statetime=0;

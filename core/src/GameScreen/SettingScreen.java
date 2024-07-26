@@ -10,7 +10,7 @@ public class SettingScreen implements Screen {
 
     SpriteBatch batch;
 
-    Texture backgorund;;
+    Texture backgorund;
     float widthBackground=BomberMan.widthScreen;
     float heightBackground=BomberMan.heightScreen;
     float xBackground=0;
