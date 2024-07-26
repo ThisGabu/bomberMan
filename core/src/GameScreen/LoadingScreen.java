@@ -31,7 +31,7 @@ public class LoadingScreen implements Screen {
 
 
     LoadingScreen(){
-        picture= new Texture("D:\\Project coding\\bomberMan\\assets\\LoadingScreen\\loading.png");
+        picture= new Texture("..\\bomberMan\\assets\\LoadingScreen\\loading.png");
         TextureRegion[][] tmpLoading= TextureRegion.split(picture, picture.getWidth()/cols, picture.getHeight()/rows);
         TextureRegion[] frameLoading= new TextureRegion[cols*rows];
 
@@ -45,7 +45,7 @@ public class LoadingScreen implements Screen {
 
         animationLoading= new Animation<TextureRegion>(delayFrame,frameLoading);
 
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
         batch= new SpriteBatch();
     }
 

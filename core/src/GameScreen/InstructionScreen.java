@@ -100,21 +100,21 @@ class InstructionScreen implements Screen {
 
         map= new MapGame(1);
 
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
-        instructionBackground= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\background.png");
-        center= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\center.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        instructionBackground= new Texture("..\\bomberMan\\assets\\IntructionScreen\\background.png");
+        center= new Texture("..\\bomberMan\\assets\\IntructionScreen\\center.png");
 
-        aButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\KeyboardA.png");
-        wButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\KeyboardW.png");
-        sButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\KeyboardS.png");
-        dButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\KeyboardD.png");
-        spaceButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\KeyboardSpace.png");
+        aButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\KeyboardA.png");
+        wButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\KeyboardW.png");
+        sButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\KeyboardS.png");
+        dButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\KeyboardD.png");
+        spaceButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\KeyboardSpace.png");
 
-        upButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\arrowUp.png");
-        downButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\arrowDown.png");
-        rightButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\arrowRight.png");
-        leftButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\arrowLeft.png");
-        ctrlButton= new Texture("D:\\Project coding\\bomberMan\\assets\\IntructionScreen\\keyboardCTRL.png");
+        upButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\arrowUp.png");
+        downButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\arrowDown.png");
+        rightButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\arrowRight.png");
+        leftButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\arrowLeft.png");
+        ctrlButton= new Texture("..\\bomberMan\\assets\\IntructionScreen\\keyboardCTRL.png");
 
         spawnTile= new SpawnTile[PlayScreen.jumlahPlayer];
         batch= new SpriteBatch();

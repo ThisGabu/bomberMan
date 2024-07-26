@@ -718,12 +718,12 @@ public class Update {
                            map.claim(i,j);
                            player.claimItem(item.getNama(),index);
                            if (item.getNama()=="stun"){
-                               music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\dapetdebuff.mp3"));
+                               music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\SoundEffect\\dapetdebuff.mp3"));
                                music.setVolume(0.3f);
                                music.setLooping(false);
                                music.play();
                            } else {
-                               music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\dapetbuff.mp3"));
+                               music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\SoundEffect\\dapetbuff.mp3"));
                                music.setVolume(0.3f);
                                music.setLooping(false);
                                music.play();

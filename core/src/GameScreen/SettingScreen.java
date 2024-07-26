@@ -25,8 +25,8 @@ public class SettingScreen implements Screen {
 
     SettingScreen(){
         batch= new SpriteBatch();
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
-        settingBackground= new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\settingBackground.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        settingBackground= new Texture("..\\bomberMan\\assets\\SettingScreen\\settingBackground.png");
     }
 
 

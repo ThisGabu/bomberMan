@@ -20,7 +20,7 @@ public class BombCapacity extends Item{
         setyPosition(y);
         setNama("bombCapacity");
         setPicture();
-        sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\bombCapacity.png");
+        sheet= new Texture("..\\bomberMan\\assets\\Item\\bombCapacity.png");
 
         TextureRegion[][] tmp= TextureRegion.split(sheet, sheet.getWidth()/cols, sheet.getHeight()/rows);
         TextureRegion[] frame = new TextureRegion[cols*rows];

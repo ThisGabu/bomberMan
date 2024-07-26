@@ -59,19 +59,19 @@ public class MainMenuScreen implements Screen {
 
     public MainMenuScreen(){
         batch = new SpriteBatch();
-        logo = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\logo.png");
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
-        start = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\Start.png");
-        startHover = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\startHover.png");
-        startPress = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\StartPress.png");
-        exit = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\Exit.png");
-        exitHover = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitHover.png");
-        exitPress = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\exitPress.png");
-        setting= new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\setting.png");
-        settingHover= new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\settingHover.png");
-        instruction= new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\instruction.png");
-        instructionHover= new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\instructionHover.png");
-        music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundMainMenu.mp3"));
+        logo = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\logo.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        start = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\Start.png");
+        startHover = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\startHover.png");
+        startPress = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\StartPress.png");
+        exit = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\Exit.png");
+        exitHover = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\exitHover.png");
+        exitPress = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\exitPress.png");
+        setting= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\setting.png");
+        settingHover= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\settingHover.png");
+        instruction= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\instruction.png");
+        instructionHover= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\instructionHover.png");
+        music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\Music\\BacksoundMainMenu.mp3"));
     }
 
 

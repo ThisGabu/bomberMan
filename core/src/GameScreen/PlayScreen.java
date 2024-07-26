@@ -46,12 +46,12 @@ public class PlayScreen implements Screen {
 
     PlayScreen(MapGame map){
         batch = new SpriteBatch();
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
         pauseScreen = new PauseScreen();
         this.map= map;
         player= new ControllerPlayer(jumlahPlayer, map.spawnTile);
         update= new Update(player,map);
-        music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundPlayGame.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\Music\\BacksoundPlayGame.mp3"));
     }
 
     @Override

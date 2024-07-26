@@ -102,17 +102,17 @@ public class    Tile {
     public void setPicture(int i, int j) {
         if (i % 2 == 0) {
             if (j % 2 == 0) {
-                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+                picture = new Texture("..\\bomberMan\\assets\\MapGame\\tile2.png");
             } else {
-                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+                picture = new Texture("..\\bomberMan\\assets\\MapGame\\tile1.png");
             }
 
 
         } else {
             if (j % 2 == 0) {
-                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile1.png");
+                picture = new Texture("..\\bomberMan\\assets\\MapGame\\tile1.png");
             } else {
-                picture = new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\tile2.png");
+                picture = new Texture("..\\bomberMan\\assets\\MapGame\\tile2.png");
             }
         }
     }

@@ -48,14 +48,14 @@ public class PauseScreen implements Screen {
     PauseScreen(){
         batch = new SpriteBatch();
 
-        pause = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\paused.png");
-        Continue = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\continue.png");
-        continueHover = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\continueHover.png");
-        exit = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\exit2.png");
-        exitHover = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\exit2Hover.png");
-        backgroundPause = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\backgroundPause5.png");
-        restart = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\restart.png");
-        restartHover = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\restartHover.png");
+        pause = new Texture("..\\bomberMan\\assets\\PauseScreen\\paused.png");
+        Continue = new Texture("..\\bomberMan\\assets\\PauseScreen\\continue.png");
+        continueHover = new Texture("..\\bomberMan\\assets\\PauseScreen\\continueHover.png");
+        exit = new Texture("..\\bomberMan\\assets\\PauseScreen\\exit2.png");
+        exitHover = new Texture("..\\bomberMan\\assets\\PauseScreen\\exit2Hover.png");
+        backgroundPause = new Texture("..\\bomberMan\\assets\\PauseScreen\\backgroundPause5.png");
+        restart = new Texture("..\\bomberMan\\assets\\PauseScreen\\restart.png");
+        restartHover = new Texture("..\\bomberMan\\assets\\PauseScreen\\restartHover.png");
     }
 
 

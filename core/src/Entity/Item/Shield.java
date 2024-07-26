@@ -21,7 +21,7 @@ public class Shield extends Item{
         setPicture();
         setyPosition(y);
         setxPosition(x);
-        sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\shield.png");
+        sheet= new Texture("..\\bomberMan\\assets\\Item\\shield.png");
 
         TextureRegion[][] tmp= TextureRegion.split(sheet, sheet.getWidth()/cols, sheet.getHeight()/rows);
         TextureRegion[] frame = new TextureRegion[cols*rows];

@@ -122,9 +122,9 @@ public class Player {
         this.y = y;
         numberPlayer=player;
 
-        soundJalan = Gdx.audio.newSound(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\jalan.mp3"));
-        stunEffect = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\effect\\stunEffect.png");
-        shieldEffect = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\effect\\shieldEffect.png");
+        soundJalan = Gdx.audio.newSound(Gdx.files.internal("..\\bomberMan\\assets\\SoundEffect\\jalan.mp3"));
+        stunEffect = new Texture("..\\bomberMan\\assets\\playerAnimation\\effect\\stunEffect.png");
+        shieldEffect = new Texture("..\\bomberMan\\assets\\playerAnimation\\effect\\shieldEffect.png");
 
         TextureRegion[][] tmpStun = TextureRegion.split(stunEffect, stunEffect.getWidth() / colsStun, stunEffect.getHeight() / rowsStun);
         TextureRegion[] frameStun = new TextureRegion[colsStun * rowsStun];
@@ -152,13 +152,13 @@ public class Player {
 
         if (player == 0) {
             analog= new Analog1();
-            playerDead = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerDead.png");
-            playerIdle = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerIdle.png");
-            playerWalkDown = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkDown.png");
-            playerWalkUp = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkUp.png");
-            playerWalkLeft = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkLeft.png");
-            playerWalkRight = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkRight.png");
-            playerPlaceBomb = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player1\\playerPlaceBomb.png");
+            playerDead = new Texture("..\\bomberMan\\assets\\playerAnimation\\player1\\playerDead.png");
+            playerIdle = new Texture("..\\bomberMan\\assets\\playerAnimation\\player1\\playerIdle.png");
+            playerWalkDown = new Texture("..\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkDown.png");
+            playerWalkUp = new Texture("..\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkUp.png");
+            playerWalkLeft = new Texture("..\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkLeft.png");
+            playerWalkRight = new Texture("..\\bomberMan\\assets\\playerAnimation\\player1\\playerWalkRight.png");
+            playerPlaceBomb = new Texture("..\\bomberMan\\assets\\playerAnimation\\player1\\playerPlaceBomb.png");
 
             TextureRegion[][] tmpDead = TextureRegion.split(playerDead, playerDead.getWidth() / colsDead, playerDead.getHeight() / rowsDead);
             TextureRegion[][] tmpIdle = TextureRegion.split(playerIdle, playerIdle.getWidth() / colsIdle, playerIdle.getHeight() / rowsIdle);
@@ -242,13 +242,13 @@ public class Player {
             animation=animationIdle;
         } else {
             analog= new Analog2();
-            playerDead = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerDead.png");
-            playerIdle = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerIdle.png");
-            playerWalkDown = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkDown.png");
-            playerWalkUp = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkUp.png");
-            playerWalkLeft = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkLeft.png");
-            playerWalkRight = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkRight.png");
-            playerPlaceBomb = new Texture("D:\\Project coding\\bomberMan\\assets\\playerAnimation\\player2\\playerPlaceBomb.png");
+            playerDead = new Texture("..\\bomberMan\\assets\\playerAnimation\\player2\\playerDead.png");
+            playerIdle = new Texture("..\\bomberMan\\assets\\playerAnimation\\player2\\playerIdle.png");
+            playerWalkDown = new Texture("..\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkDown.png");
+            playerWalkUp = new Texture("..\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkUp.png");
+            playerWalkLeft = new Texture("..\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkLeft.png");
+            playerWalkRight = new Texture("..\\bomberMan\\assets\\playerAnimation\\player2\\playerWalkRight.png");
+            playerPlaceBomb = new Texture("..\\bomberMan\\assets\\playerAnimation\\player2\\playerPlaceBomb.png");
 
             TextureRegion[][] tmpDead = TextureRegion.split(playerDead, playerDead.getWidth() / colsDead, playerDead.getHeight() / rowsDead);
             TextureRegion[][] tmpIdle = TextureRegion.split(playerIdle, playerIdle.getWidth() / colsIdle, playerIdle.getHeight() / rowsIdle);
