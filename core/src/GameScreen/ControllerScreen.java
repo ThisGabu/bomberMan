@@ -16,9 +16,14 @@ public class ControllerScreen implements Screen {
     public static boolean exitGame;
     public static boolean loading;
     public static boolean instruction= false;
+    public static boolean setting=false;
     public static boolean win= false;
     public static int playerWin = 0;
+
     public static int numberMap=1;
+    public static int jumlahMap=2;
+    public static int jumlahTileRumput=21;
+    public static int jumlahTileMetal=jumlahTileRumput+2;
 
     Screen mainMenuScreen;
     Screen playScreen;
@@ -31,13 +36,12 @@ public class ControllerScreen implements Screen {
     MapGame map;
 
     public ControllerScreen(){
-        map= new MapGame(numberMap);
         loadingScreen= new LoadingScreen();
         mainMenuScreen = new MainMenuScreen();
-        playScreen = new PlayScreen(map);
         pauseScreen = new PauseScreen();
         mainMenu = true;
         loading=false;
+        restartMap=true;
         settingScreen= new SettingScreen();
         instructionScreen= new InstructionScreen();
     }
@@ -56,13 +60,15 @@ public class ControllerScreen implements Screen {
             if (loading){
                 loadingScreen.render(delta);
                 if (restartMap) {
-                    map = new MapGame(numberMap);
+                    map = new MapGame(numberMap,jumlahTileRumput);
                     playScreen = new PlayScreen(map);
                     winScreen = null;
                     restartMap = false;
                 }
             } else if (instruction) {
                 instructionScreen.render(delta);
+            } else if (setting) {
+                settingScreen.render(delta);
             } else if (play) {
                 playerWin = 0;
                 if (PlayScreen.pause) {

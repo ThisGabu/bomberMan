@@ -1,7 +1,9 @@
 package GameScreen;
 
+import Utility.MapGame;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,11 +12,12 @@ public class SettingScreen implements Screen {
 
     SpriteBatch batch;
 
-    public int SizeSekarang = 7;
+    public int SizeSekarang = ControllerScreen.jumlahTileRumput;
     public int MapType = 1;
     Texture[] Angka = new Texture[10];
     Texture angka1;
     Texture angka2;
+    Texture angka3;
 
     Texture backgorund;;
     Texture SettingBackground;
@@ -32,47 +35,47 @@ public class SettingScreen implements Screen {
     float xBackground=0;
     float yBackground=0;
 
-    private final float widthSettingBackground=1038/1.3f;
+    private final float widthSettingBackground=1038;
     private final float heightSettingBackground=614;
     private final float xSettingBackground= BomberMan.widthScreen/2-widthSettingBackground/2;
     private final float ySettingBackground= BomberMan.heightScreen/2-heightSettingBackground/2;
 
-    private final float widthSettingText=467/3.6f;
-    private final float heightSettingText=119/3.6f;
-    private final float xSettingText=widthBackground/3.7f-widthSettingText/2;
-    private final float ySettingText=heightBackground/1.177f-heightSettingText/2;
+    private final float widthSettingText=widthSettingBackground/4/2;
+    private final float heightSettingText=heightSettingBackground/4/4;
+    private final float xSettingText=xSettingBackground+widthSettingText/4;
+    private final float ySettingText=ySettingBackground+heightSettingBackground-heightSettingText-heightSettingText/2;
 
-    private final float widthPanjangText=615/1.4f;
-    private final float heightPanjangText=100/1.4f;
+    private final float widthPanjangText=widthSettingBackground/2;
+    private final float heightPanjangText=heightSettingBackground/5;
     private final float xPanjangText=widthBackground/2-widthPanjangText/2;
-    private final float yPanjangText=heightBackground/1.34f-heightPanjangText/2;
+    private final float yPanjangText=ySettingText-heightPanjangText-heightPanjangText/6;
 
-    private final float widthArrow=35*1.75f;
-    private final float heightArrow=26*1.75f;
+    private final float widthAngka=66;
+    private final float heightAngka=93;
 
-    private final float widthAngka=66*1.2f;
-    private final float heightAngka=93*1.2f;
+    private final float widthArrow=heightAngka/5*7;
+    private final float heightArrow=heightAngka;
 
-    private final float xAngkaPertamaPanjang=widthBackground/2-widthAngka/2-widthAngka/2;
-    private final float yAngkaPertamaPanjang=yPanjangText-17-heightAngka;
-    private final float xAngkaKeduaPanjang=widthBackground/2+widthAngka/4;
+    private final float xAngkaPertamaPanjang=widthBackground/2-widthAngka;
+    private final float yAngkaPertamaPanjang=yPanjangText-heightAngka-heightAngka/4;
+    private final float xAngkaKeduaPanjang=xAngkaPertamaPanjang+widthAngka;
     private final float yAngkaKeduaPanjang=yAngkaPertamaPanjang;
-    private final float xArrowKananPanjang=xAngkaKeduaPanjang+widthAngka+widthArrow*2;
-    private final float yArrowKananPanjang=yAngkaKeduaPanjang+heightAngka/2-heightArrow/1.7f;
-    private final float xArrowKiriPanjang=xAngkaPertamaPanjang-widthAngka-widthArrow*1.7f;
-    private final float yArrowKiriPanjang=yAngkaKeduaPanjang+heightAngka/2-heightArrow/2;
+    private final float xArrowKananPanjang=xAngkaKeduaPanjang+widthAngka+widthArrow;
+    private final float yArrowKananPanjang=yAngkaPertamaPanjang;
+    private final float xArrowKiriPanjang=xAngkaPertamaPanjang-widthAngka-widthAngka-widthArrow;
+    private final float yArrowKiriPanjang=yArrowKananPanjang;
 
-    private final float widthMapText=321/1.6f;
-    private final float heightMapText=115/1.6f;
+    private final float widthMapText=heightPanjangText/1.5f/23*64;
+    private final float heightMapText=heightPanjangText/1.5f;
     private final float xMapText=widthBackground/2-widthMapText/2;
-    private final float yMapText=yAngkaPertamaPanjang-heightMapText*1.65f;
+    private final float yMapText=yAngkaPertamaPanjang-heightMapText-heightMapText/2;
 
     private final float xAngkaPertamaMap=widthBackground/2-widthAngka/2;
-    private final float yAngkaPertamaMap=yMapText-22-heightAngka;
-    private final float xArrowKananMap=xAngkaPertamaMap+widthAngka+widthArrow*2;
-    private final float yArrowKananMap=yAngkaPertamaMap+heightAngka/2-heightArrow/1.7f;
-    private final float xArrowKiriMap=xAngkaPertamaMap-widthAngka-widthArrow*1.7f;
-    private final float yArrowKiriMap=yAngkaPertamaMap+heightAngka/2-heightArrow/2;
+    private final float yAngkaPertamaMap=yMapText-heightAngka-heightAngka/4;
+    private final float xArrowKananMap=xArrowKananPanjang;
+    private final float yArrowKananMap=yAngkaPertamaMap;
+    private final float xArrowKiriMap=xArrowKiriPanjang;
+    private final float yArrowKiriMap=yAngkaPertamaMap;
 
 
 
@@ -83,8 +86,9 @@ public class SettingScreen implements Screen {
         SettingText = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\Setting.png");
         MapText = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\MAP.png");
         PanjangMapText = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\panjang map.png");
-        angka1 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\1.png");
-        angka2 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\2.png");
+        angka1 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
+        angka2 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
+        angka3 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
         Angka[0] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
         Angka[1] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\1.png");
         Angka[2] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\2.png");
@@ -110,26 +114,33 @@ public class SettingScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
+        SizeSekarang = ControllerScreen.jumlahTileRumput;
+        angka2= Angka[ControllerScreen.jumlahTileRumput%10];
+        angka1= Angka[ (int) ControllerScreen.jumlahTileRumput/10];
+        angka3= Angka[ControllerScreen.numberMap%10];
+
         batch.begin();
         batch.draw(backgorund,xBackground,yBackground,widthBackground,heightBackground);
         batch.draw(SettingBackground,xSettingBackground,ySettingBackground,widthSettingBackground,heightSettingBackground);
         batch.draw(SettingText,xSettingText,ySettingText,widthSettingText,heightSettingText);
         batch.draw(PanjangMapText,xPanjangText,yPanjangText,widthPanjangText,heightPanjangText);
-        batch.draw(Angka[0],xAngkaPertamaPanjang,yAngkaPertamaPanjang,widthAngka,heightAngka);
-        batch.draw(Angka[3],xAngkaKeduaPanjang,yAngkaKeduaPanjang,widthAngka,heightAngka);
+        batch.draw(angka1,xAngkaPertamaPanjang,yAngkaPertamaPanjang,widthAngka,heightAngka);
+        batch.draw(angka2,xAngkaKeduaPanjang,yAngkaKeduaPanjang,widthAngka,heightAngka);
         batch.draw(ArrowKanan,xArrowKananPanjang,yArrowKananPanjang,widthArrow,heightArrow);
         batch.draw(ArrowKiri,xArrowKiriPanjang,yArrowKiriPanjang,widthArrow,heightArrow);
         batch.draw(MapText, xMapText, yMapText, widthMapText, heightMapText);
-        batch.draw(angka1,xAngkaPertamaMap,yAngkaPertamaMap,widthAngka,heightAngka);
+        batch.draw(angka3,xAngkaPertamaMap,yAngkaPertamaMap,widthAngka,heightAngka);
         batch.draw(ArrowKanan,xArrowKananMap,yArrowKananMap,widthArrow,heightArrow);
         batch.draw(ArrowKiri,xArrowKiriMap,yArrowKiriMap,widthArrow,heightArrow);
 
         if (Gdx.input.getX()>xArrowKiriPanjang&&Gdx.input.getX()<xArrowKiriPanjang+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKiriPanjang&&Gdx.input.getY()>heightBackground-yArrowKiriPanjang-heightArrow*2){
-            if(Gdx.input.isTouched()){
-                if (SizeSekarang > 7){
-                    //Kurangi Tile
-                    //SizeSekarang-=2;
+            if(Gdx.input.justTouched()){
+                if (SizeSekarang == 7){
+                    ControllerScreen.jumlahTileRumput=39;
                     //for array number -1 (2kali for)
+                } else {
+                    ControllerScreen.jumlahTileRumput-=2;
                 }
 
             } else{
@@ -138,34 +149,44 @@ public class SettingScreen implements Screen {
         }
 
         if (Gdx.input.getX()>xArrowKananPanjang&&Gdx.input.getX()<xArrowKananPanjang+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKananPanjang&&Gdx.input.getY()>heightBackground-yArrowKananPanjang-heightArrow*2){
-            if(Gdx.input.isTouched()){
-                if (SizeSekarang > 7){
-                    //Tambah Tile
-                    //SizeSekarang+=2;
-                    //for array number +1 (2kali for)
+            if(Gdx.input.justTouched()){
+                if (SizeSekarang==39){
+                    ControllerScreen.jumlahTileRumput=7;
+                } else {
+                    ControllerScreen.jumlahTileRumput+=2;
                 }
-
+                    //for array number +1 (2kali for)
             } else{
                 batch.draw(ArrowKananHover,xArrowKananPanjang, yArrowKananPanjang, widthArrow, heightArrow);
             }
         }
 
         if (Gdx.input.getX()>xArrowKiriMap&&Gdx.input.getX()<xArrowKiriMap+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKiriMap&&Gdx.input.getY()>heightBackground-yArrowKiriMap-heightArrow*2){
-            if(ControllerScreen.mapNumber==2&&Gdx.input.isTouched()){
-                batch.draw(angka1,xAngkaPertamaMap,yAngkaPertamaMap,widthAngka,heightAngka);
-                ControllerScreen.mapNumber--;
+            if(Gdx.input.justTouched()){
+                if (ControllerScreen.numberMap==1){
+                    ControllerScreen.numberMap=ControllerScreen.jumlahMap;
+                } else {
+                    ControllerScreen.numberMap--;
+                }
             } else{
                 batch.draw(ArrowKiriHover,xArrowKiriMap, yArrowKiriMap, widthArrow, heightArrow);
             }
         }
 
         if (Gdx.input.getX()>xArrowKananMap&&Gdx.input.getX()<xArrowKananMap+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKananMap&&Gdx.input.getY()>heightBackground-yArrowKananMap-heightArrow*2){
-            if(ControllerScreen.mapNumber==1&&Gdx.input.isTouched()){
-                    batch.draw(angka2,xAngkaPertamaMap,yAngkaPertamaMap,widthAngka,heightAngka);
-                    ControllerScreen.mapNumber++;
+            if(Gdx.input.justTouched()){
+                if (ControllerScreen.numberMap==ControllerScreen.jumlahMap){
+                    ControllerScreen.numberMap=1;
+                } else {
+                    ControllerScreen.numberMap++;
+                }
             } else{
                 batch.draw(ArrowKananHover,xArrowKananMap, yArrowKananMap, widthArrow, heightArrow);
             }
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            ControllerScreen.setting=false;
         }
 
         batch.end();

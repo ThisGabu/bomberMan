@@ -116,7 +116,7 @@ public class MainMenuScreen implements Screen {
             }
         } else if (Gdx.input.getX()>xSetting&&Gdx.input.getX()<xSetting+widthSetting&&Gdx.input.getY()<height-ySetting&&Gdx.input.getY()>height-ySetting-heightSetting) {
             if (Gdx.input.isTouched()){
-
+                ControllerScreen.setting=true;
             } else {
                 batch.draw(settingHover,xSetting,ySetting,widthSetting,heightSetting);
             }
