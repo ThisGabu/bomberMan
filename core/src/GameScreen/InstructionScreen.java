@@ -25,8 +25,8 @@ class InstructionScreen implements Screen {
     float yBackground=0;
 
     Texture instructionBackground;
-    private final float widthInstruction= 776*2;
-    private final float heightInstruction= 361*2;
+    private final float widthInstruction= 776;
+    private final float heightInstruction= 361;
     private final float xInstruction= BomberMan.widthScreen/2-widthInstruction/2;
     private final float yInstruction= BomberMan.heightScreen/2-heightInstruction/2;
 
