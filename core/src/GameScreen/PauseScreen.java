@@ -13,25 +13,25 @@ public class PauseScreen implements Screen {
     private final float xBackground= BomberMan.widthScreen/2-widthBackground/2;
     private final float yBackgorund= BomberMan.heightScreen/2-heightBackground/2;
 
-    private final float widthExit= widthBackground/4;
-    private final float heightExit= heightBackground/5;
-    private final float xExit= BomberMan.widthScreen/2-widthExit/2;
-    private final float yExit= yBackgorund+heightExit*0.85f;
-
     private final float widthContinue= widthBackground/2;
     private final float heightContinue= heightBackground/5;
     private final float xContinue= BomberMan.widthScreen/2-widthContinue/2;
-    private final float yContinue= yBackgorund+heightBackground-heightContinue-heightContinue*0.75f;
+    private final float yContinue= yBackgorund+heightBackground-heightContinue-heightContinue/2;
+
+    private final float widthRestart= heightContinue/1.5f/25*120;
+    private final float heightRestart= heightContinue/1.5f;
+    private final float xRestart= BomberMan.widthScreen/2-widthRestart/2;
+    private final float yRestart= BomberMan.heightScreen/2-heightRestart/2;
+
+    private final float widthExit= widthBackground/4;
+    private final float heightExit= heightBackground/5;
+    private final float xExit= BomberMan.widthScreen/2-widthExit/2;
+    private final float yExit= yBackgorund+heightExit/2;
 
     private final float widthPaused=widthBackground/2f;
     private final float heightPaused= heightBackground/4;
     private final float xPaused= BomberMan.widthScreen/2-widthPaused/2;
     private final float yPaused= yBackgorund+heightBackground;
-
-    private final float widthRestart= 600/2;
-    private final float heightRestart= 124/2;
-    private final float xRestart= BomberMan.widthScreen/2-widthRestart/2;
-    private final float yRestart= BomberMan.heightScreen/2-heightRestart/2;
 
 
 
@@ -48,14 +48,14 @@ public class PauseScreen implements Screen {
     PauseScreen(){
         batch = new SpriteBatch();
 
-        pause = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\paused.png");
-        Continue = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\continue.png");
-        continueHover = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\continueHover.png");
-        exit = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\exit2.png");
-        exitHover = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\exit2Hover.png");
-        backgroundPause = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\backgroundPause5.png");
-        restart = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\restart.png");
-        restartHover = new Texture("D:\\Project coding\\bomberMan\\assets\\PauseScreen\\restartHover.png");
+        pause = new Texture("..\\bomberMan\\assets\\PauseScreen\\paused.png");
+        Continue = new Texture("..\\bomberMan\\assets\\PauseScreen\\continue.png");
+        continueHover = new Texture("..\\bomberMan\\assets\\PauseScreen\\continueHover.png");
+        exit = new Texture("..\\bomberMan\\assets\\PauseScreen\\exit2.png");
+        exitHover = new Texture("..\\bomberMan\\assets\\PauseScreen\\exit2Hover.png");
+        backgroundPause = new Texture("..\\bomberMan\\assets\\PauseScreen\\backgroundPause5.png");
+        restart = new Texture("..\\bomberMan\\assets\\PauseScreen\\restart.png");
+        restartHover = new Texture("..\\bomberMan\\assets\\PauseScreen\\restartHover.png");
     }
 
 
@@ -82,9 +82,9 @@ public class PauseScreen implements Screen {
                 ControllerScreen.mainMenu=true;
                 PlayScreen.pause=false;
                 ControllerScreen.restartMap=true;
+                ControllerScreen.loading=true;
                 MainMenuScreen.music.dispose();
             } else {
-                System.out.println("true");
                 batch.draw(exitHover, xExit, yExit, widthExit, heightExit);
             }
         } else if (Gdx.input.getX()>xContinue&&Gdx.input.getX()<xContinue+widthContinue&&Gdx.input.getY()<BomberMan.heightScreen-yContinue&&Gdx.input.getY()>BomberMan.heightScreen-yContinue-heightContinue){
@@ -93,17 +93,17 @@ public class PauseScreen implements Screen {
                 PlayScreen.pause=false;
                 MainMenuScreen.music.dispose();
             } else {
-                ControllerScreen.restartMap=true;
-                System.out.println("false");
+
                 batch.draw(continueHover, xContinue, yContinue, widthContinue, heightContinue);
             }
 
         } else if (Gdx.input.getX()>xRestart&&Gdx.input.getX()<xRestart+widthRestart&&Gdx.input.getY()<BomberMan.heightScreen-yRestart&&Gdx.input.getY()>BomberMan.heightScreen-yRestart-heightRestart) {
             if (Gdx.input.isTouched()){
                 PlayScreen.pause=false;
+                ControllerScreen.restartMap=true;
+                ControllerScreen.loading=true;
                 MainMenuScreen.music.dispose();
             } else {
-                System.out.println("false");
                 batch.draw(restartHover, xRestart, yRestart, widthRestart, heightRestart);
             }
         }

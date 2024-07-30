@@ -79,8 +79,8 @@ public class Bomb {
         setJ(j);
         setPlayer(player);
 
-        picture = new Texture("D:\\Project coding\\bomberMan\\assets\\BombAnimation\\bombMeledak.png");
-        soundMeledak = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\SoundEffect\\meledak.mp3"));
+        picture = new Texture("..\\bomberMan\\assets\\BombAnimation\\bombMeledak.png");
+        soundMeledak = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\SoundEffect\\meledak.mp3"));
 
         TextureRegion[][] tmpBomb = TextureRegion.split(picture, picture.getWidth() / cols, picture.getHeight() / rows);
         TextureRegion[] frameBomb = new TextureRegion[cols * rows];

@@ -1,6 +1,8 @@
 package GameScreen;
 
+import Entity.Bomb.Bomb;
 import Entity.Bomb.Ledakan;
+import Entity.Item.Item;
 import Entity.Player.ControllerPlayer;
 import Utility.HitBox;
 import Utility.MapGame;
@@ -17,6 +19,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.security.PublicKey;
+import java.util.Scanner;
 
 public class PlayScreen implements Screen {
 
@@ -39,16 +42,16 @@ public class PlayScreen implements Screen {
     boolean destroy;
     boolean hitBox=true;
 
-    final int jumlahPlayer=2;
+    public static final int jumlahPlayer=2;
 
     PlayScreen(MapGame map){
         batch = new SpriteBatch();
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
         pauseScreen = new PauseScreen();
         this.map= map;
         player= new ControllerPlayer(jumlahPlayer, map.spawnTile);
         update= new Update(player,map);
-        music = Gdx.audio.newMusic(Gdx.files.internal("D:\\Project coding\\bomberMan\\assets\\Music\\BacksoundPlayGame.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\Music\\BacksoundPlayGame.mp3"));
     }
 
     @Override
@@ -107,7 +110,7 @@ public class PlayScreen implements Screen {
         for (int i=0; i<map.jumlahTileRumput; i++){
             for (int j=0; j<map.jumlahTileRumput; j++){
                 if (map.tile[i][j].item()){
-                    batch.draw(map.drawItem(i,j, delta), map.tile[i][j].xPosition, map.tile[i][j].yPosition);
+                    batch.draw(map.drawItem(i,j, delta), map.tile[i][j].xPosition, map.tile[i][j].yPosition, Item.width,Item.height);
 
                 }
             }
@@ -162,6 +165,8 @@ public class PlayScreen implements Screen {
 
         batch.end();
 
+        System.out.println(player.getI(0));
+        System.out.println(player.getJ(0));
 
     }
 

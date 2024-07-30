@@ -21,7 +21,7 @@ public class Border {
     }
 
     public void setPicture() {
-        picture= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\metalwall.png");
+        picture= new Texture("..\\bomberMan\\assets\\MapGame\\metalwall.png");
     }
 
     public void setxPosition(float xPosition) {

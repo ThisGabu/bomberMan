@@ -16,7 +16,7 @@ public class Box {
     public Box(float x, float y){
         xPosition= (width+x)-width;
         yPosition= (height+y)-height;
-        picture= new Texture("D:\\Project coding\\bomberMan\\assets\\MapGame\\box.png");
+        picture= new Texture("..\\bomberMan\\assets\\MapGame\\box.png");
         hitBox= new HitBox(getWidth(),getHeight(),getxPosition(),getyPosition());
     }
 

@@ -1,9 +1,13 @@
 package Entity.Item;
 
 import Utility.HitBox;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import java.io.File;
+
 
 public class BombRange extends Item {
 
@@ -21,7 +25,10 @@ public class BombRange extends Item {
         setxPosition(x);
         setNama("bombRange");
         setPicture();
-        sheet= new Texture("D:\\Project coding\\bomberMan\\assets\\Item\\bombRange.png");
+
+//        FileHandle imag = new FileHandle(new File("..\\assets\\Item\\bombRange.png"));
+//        sheet = new Texture(imag);
+        sheet= new Texture("..\\bomberMan\\assets\\Item\\bombRange.png");
 
         TextureRegion[][] tmp= TextureRegion.split(sheet, sheet.getWidth()/cols, sheet.getHeight()/rows);
         TextureRegion[] frame = new TextureRegion[cols*rows];
