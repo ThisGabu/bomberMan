@@ -31,15 +31,15 @@ class InstructionScreen implements Screen {
     private final float yInstruction= BomberMan.heightScreen/2-heightInstruction/2;
 
     Texture center;
-    private final float widthCenter= 502*2;
-    private final float heightCenter= 152*3;
+    private final float widthCenter= heightInstruction/2/3*10;
+    private final float heightCenter= heightInstruction/2;
     private final float xCenter= BomberMan.widthScreen/2-widthCenter/2;
     private final float yCenter= yInstruction+heightInstruction/2-heightCenter/3;
 
     Texture sButton;
     Texture sHover;
-    private final float widthS= 54*2;
-    private final float heightS= 52*2;
+    private final float widthS= heightCenter/3;
+    private final float heightS= heightCenter/3;
     private final float xS= (xInstruction+widthInstruction)/4-widthS;
     private final float yS= (yInstruction+heightInstruction)/4;
 
@@ -66,15 +66,15 @@ class InstructionScreen implements Screen {
 
     Texture spaceButton;
     Texture spaceHover;
-    private final float widthSpace= 202*2;
-    private final float heightSpace= 52*2;
+    private final float widthSpace= widthA*3;
+    private final float heightSpace= heightA;
     private final float xSpace= xD+widthS+1;
     private final float ySpace= yS;
 
     Texture downButton;
     Texture downHover;
-    private final float widthDown= 54*2;
-    private final float heightDown= 52*2;
+    private final float widthDown= widthA;
+    private final float heightDown= heightA;
     private final float xDown= (xInstruction+widthInstruction)-(xS-xInstruction)-widthDown;
     private final float yDown= yS;
 
@@ -101,8 +101,8 @@ class InstructionScreen implements Screen {
 
     Texture ctrlButton;
     Texture ctrlHover;
-    private final float widthCTRL= 135*2;
-    private final float heightCTRL= 52*2;
+    private final float widthCTRL= widthA*2.5f;
+    private final float heightCTRL= heightA;
     private final float xCTRL= xLeft-widthCTRL-1;
     private final float yCTRL= yDown;
 
@@ -147,11 +147,11 @@ class InstructionScreen implements Screen {
 
         for (int i=0; i<PlayScreen.jumlahPlayer; i++){
             if (i==0){
-                spawnTile[i].setxPosition((xCenter+widthCenter)/3);
-                spawnTile[i].setyPosition((yCenter+heightCenter)/2);
+                spawnTile[i].setxPosition(BomberMan.widthScreen/2-widthA);
+                spawnTile[i].setyPosition(BomberMan.heightScreen/2);
             } else if (i==1){
-                spawnTile[i].setxPosition((xCenter+widthCenter)-(((xCenter+widthCenter)/3)-xCenter+widthCenter/10));
-                spawnTile[i].setyPosition((yCenter+heightCenter)/2);
+                spawnTile[i].setxPosition(BomberMan.widthScreen/2+widthA);
+                spawnTile[i].setyPosition(BomberMan.heightScreen/2);
             }
         }
 
