@@ -27,11 +27,12 @@ public class MapGame {
 
     public static float widthTile = BomberMan.heightScreen/jumlahTileMetal;
     public static float heightTile = BomberMan.heightScreen/jumlahTileMetal;
-    public static float xPosition = (BomberMan.widthScreen - widthTile * jumlahTileMetal) / 2 + widthTile;
-    public static float yPosition = BomberMan.heightScreen/2-heightTile*(jumlahTileMetal/2);
 
-    public static float xBorder = xPosition - widthTile;
-    public static float yBorder = yPosition - heightTile;
+    public static float xBorder = BomberMan.widthScreen/2 - BomberMan.heightScreen/2;
+    public static float yBorder = 0;
+
+    public static float xPosition = xBorder+widthTile;
+    public static float yPosition = yBorder+heightTile;
 
     public Tile[][] tile;
     public Border[][] border;
@@ -285,13 +286,6 @@ public class MapGame {
                 }
             }
 
-            for (int i = 0; i < jumlahTileRumput; i++) {
-                for (int j = 0; j < jumlahTileRumput; j++) {
-                    tile[i][j].setxPosition(xPosition + widthTile * j);
-                    tile[i][j].setyPosition(yPosition + heightTile * i);
-                }
-            }
-
             for (int i = 0; i < jumlahTileMetal; i++) {
                 for (int j = 0; j < jumlahTileMetal; j++) {
                     border[i][j].setPicture();
@@ -302,6 +296,13 @@ public class MapGame {
                 for (int j = 0; j < jumlahTileMetal; j++) {
                     border[i][j].setxPosition(xBorder + widthTile * j);
                     border[i][j].setyPosition(yBorder + heightTile * i);
+                }
+            }
+
+            for (int i = 0; i < jumlahTileRumput; i++) {
+                for (int j = 0; j < jumlahTileRumput; j++) {
+                    tile[i][j].setxPosition(border[0][0].getxPosition()+widthTile + widthTile * j);
+                    tile[i][j].setyPosition(border[0][0].getyPosition()+heightTile + heightTile * i);
                 }
             }
 
@@ -328,9 +329,9 @@ public class MapGame {
         }
     }
 
-    public MapGame(int number, int jumlahTileRumput) {
+    public MapGame(int number, int jumlahTileRumput, int jumlahTileMetal) {
         this.jumlahTileRumput=jumlahTileRumput;
-        this.jumlahTileMetal=jumlahTileRumput+2;
+        this.jumlahTileMetal=jumlahTileMetal;
         widthTile = BomberMan.heightScreen/jumlahTileMetal;
         heightTile = BomberMan.heightScreen/jumlahTileMetal;
         xPosition = (BomberMan.widthScreen - widthTile * jumlahTileMetal) / 2 + widthTile;
@@ -425,13 +426,6 @@ public class MapGame {
                 }
             }
 
-            for (int i = 0; i < jumlahTileRumput; i++) {
-                for (int j = 0; j < jumlahTileRumput; j++) {
-                    tile[i][j].setxPosition(xPosition + widthTile * j);
-                    tile[i][j].setyPosition(yPosition + heightTile * i);
-                }
-            }
-
             for (int i = 0; i < jumlahTileMetal; i++) {
                 for (int j = 0; j < jumlahTileMetal; j++) {
                     border[i][j].setPicture();
@@ -442,6 +436,13 @@ public class MapGame {
                 for (int j = 0; j < jumlahTileMetal; j++) {
                     border[i][j].setxPosition(xBorder + widthTile * j);
                     border[i][j].setyPosition(yBorder + heightTile * i);
+                }
+            }
+
+            for (int i = 0; i < jumlahTileRumput; i++) {
+                for (int j = 0; j < jumlahTileRumput; j++) {
+                    tile[i][j].setxPosition(border[0][0].getxPosition()+widthTile + widthTile * j);
+                    tile[i][j].setyPosition(border[0][0].getyPosition()+heightTile + heightTile * i);
                 }
             }
 
@@ -571,13 +572,6 @@ public class MapGame {
                 }
             }
 
-            for (int i = 0; i < jumlahTileRumput; i++) {
-                for (int j = 0; j < jumlahTileRumput; j++) {
-                    tile[i][j].setxPosition(xPosition + widthTile * j);
-                    tile[i][j].setyPosition(yPosition + heightTile * i);
-                }
-            }
-
             for (int i = 0; i < jumlahTileMetal; i++) {
                 for (int j = 0; j < jumlahTileMetal; j++) {
                     border[i][j].setPicture();
@@ -588,6 +582,13 @@ public class MapGame {
                 for (int j = 0; j < jumlahTileMetal; j++) {
                     border[i][j].setxPosition(xBorder + widthTile * j);
                     border[i][j].setyPosition(yBorder + heightTile * i);
+                }
+            }
+
+            for (int i = 0; i < jumlahTileRumput; i++) {
+                for (int j = 0; j < jumlahTileRumput; j++) {
+                    tile[i][j].setxPosition(border[0][0].getxPosition()+widthTile + widthTile * j);
+                    tile[i][j].setyPosition(border[0][0].getyPosition()+heightTile + heightTile * i);
                 }
             }
 

@@ -165,6 +165,8 @@ public class PlayScreen implements Screen {
 
         batch.end();
 
+        System.out.println(player.getI(0));
+        System.out.println(player.getJ(0));
 
     }
 

@@ -2,6 +2,8 @@ package Utility;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.Map;
+
 public class HitBox {
 
     Texture picture;
@@ -32,7 +34,7 @@ public class HitBox {
     float YCSudut;
     float YDSudut;
 
-    //X dan Y center adalah titik tengah dari hit box
+            //X dan Y center adalah titik tengah dari hit box
     float xCenter;
     float yCenter;
 
@@ -74,8 +76,8 @@ public class HitBox {
 
     //menghitung berada ditile keberapa
     public void setTile() {
-        i= (int) ((yCenter-MapGame.yPosition)/MapGame.heightTile);
-        j= (int) ((xCenter-MapGame.xPosition)/MapGame.widthTile);
+        i= (int) ((yCenter-MapGame.yBorder- MapGame.heightTile)/MapGame.heightTile);
+        j= (int) ((xCenter-MapGame.xBorder- MapGame.widthTile)/MapGame.widthTile);
     }
 
     public float getX() {

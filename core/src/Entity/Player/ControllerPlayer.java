@@ -231,4 +231,12 @@ public class ControllerPlayer {
     public void setHeight(float height, int index){
         player[index].setHeight(height);
     }
+
+    public void setX(int index, float x){
+        player[index].setX(x);
+    }
+
+    public void setY(int index,float y){
+        player[index].setY(y);
+    }
 }

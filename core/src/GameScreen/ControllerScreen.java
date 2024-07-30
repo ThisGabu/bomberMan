@@ -60,7 +60,7 @@ public class ControllerScreen implements Screen {
             if (loading){
                 loadingScreen.render(delta);
                 if (restartMap) {
-                    map = new MapGame(numberMap,jumlahTileRumput);
+                    map = new MapGame(numberMap,jumlahTileRumput,jumlahTileMetal);
                     playScreen = new PlayScreen(map);
                     winScreen = null;
                     restartMap = false;

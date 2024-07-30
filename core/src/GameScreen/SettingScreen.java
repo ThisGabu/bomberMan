@@ -81,28 +81,28 @@ public class SettingScreen implements Screen {
 
     SettingScreen(){
         batch= new SpriteBatch();
-        backgorund = new Texture("D:\\Project coding\\bomberMan\\assets\\MainMenuScreen\\background.png");
-        SettingBackground= new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\settingBackground.png");
-        SettingText = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\Setting.png");
-        MapText = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\MAP.png");
-        PanjangMapText = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\panjang map.png");
-        angka1 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
-        angka2 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
-        angka3 = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
-        Angka[0] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\0.png");
-        Angka[1] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\1.png");
-        Angka[2] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\2.png");
-        Angka[3] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\3.png");
-        Angka[4] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\4.png");
-        Angka[5] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\5.png");
-        Angka[6] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\6.png");
-        Angka[7] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\7.png");
-        Angka[8] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\8.png");
-        Angka[9] = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\9.png");
-        ArrowKanan = new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\arrow kanan.png");
-        ArrowKiri= new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\arrow kiri.png");
-        ArrowKananHover= new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\arrow kananHover.png");
-        ArrowKiriHover= new Texture("D:\\Project coding\\bomberMan\\assets\\SettingScreen\\arrow kiriHover.png");
+        backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
+        SettingBackground= new Texture("..\\bomberMan\\assets\\SettingScreen\\settingBackground.png");
+        SettingText = new Texture("..\\bomberMan\\assets\\SettingScreen\\Setting.png");
+        MapText = new Texture("..\\bomberMan\\assets\\SettingScreen\\MAP.png");
+        PanjangMapText = new Texture("..\\bomberMan\\assets\\SettingScreen\\panjang map.png");
+        angka1 = new Texture("..\\bomberMan\\assets\\SettingScreen\\0.png");
+        angka2 = new Texture("..\\bomberMan\\assets\\SettingScreen\\0.png");
+        angka3 = new Texture("..\\bomberMan\\assets\\SettingScreen\\0.png");
+        Angka[0] = new Texture("..\\bomberMan\\assets\\SettingScreen\\0.png");
+        Angka[1] = new Texture("..\\bomberMan\\assets\\SettingScreen\\1.png");
+        Angka[2] = new Texture("..\\bomberMan\\assets\\SettingScreen\\2.png");
+        Angka[3] = new Texture("..\\bomberMan\\assets\\SettingScreen\\3.png");
+        Angka[4] = new Texture("..\\bomberMan\\assets\\SettingScreen\\4.png");
+        Angka[5] = new Texture("..\\bomberMan\\assets\\SettingScreen\\5.png");
+        Angka[6] = new Texture("..\\bomberMan\\assets\\SettingScreen\\6.png");
+        Angka[7] = new Texture("..\\bomberMan\\assets\\SettingScreen\\7.png");
+        Angka[8] = new Texture("..\\bomberMan\\assets\\SettingScreen\\8.png");
+        Angka[9] = new Texture("..\\bomberMan\\assets\\SettingScreen\\9.png");
+        ArrowKanan = new Texture("..\\bomberMan\\assets\\SettingScreen\\arrow kanan.png");
+        ArrowKiri= new Texture("..\\bomberMan\\assets\\SettingScreen\\arrow kiri.png");
+        ArrowKananHover= new Texture("..\\bomberMan\\assets\\SettingScreen\\arrow kananHover.png");
+        ArrowKiriHover= new Texture("..\\bomberMan\\assets\\SettingScreen\\arrow kiriHover.png");
 
     }
 
@@ -136,11 +136,13 @@ public class SettingScreen implements Screen {
 
         if (Gdx.input.getX()>xArrowKiriPanjang&&Gdx.input.getX()<xArrowKiriPanjang+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKiriPanjang&&Gdx.input.getY()>heightBackground-yArrowKiriPanjang-heightArrow*2){
             if(Gdx.input.justTouched()){
-                if (SizeSekarang == 7){
+                if (SizeSekarang == 11){
                     ControllerScreen.jumlahTileRumput=39;
+                    ControllerScreen.jumlahTileMetal=ControllerScreen.jumlahTileRumput+2;
                     //for array number -1 (2kali for)
                 } else {
                     ControllerScreen.jumlahTileRumput-=2;
+                    ControllerScreen.jumlahTileMetal-=2;
                 }
 
             } else{
@@ -151,9 +153,11 @@ public class SettingScreen implements Screen {
         if (Gdx.input.getX()>xArrowKananPanjang&&Gdx.input.getX()<xArrowKananPanjang+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKananPanjang&&Gdx.input.getY()>heightBackground-yArrowKananPanjang-heightArrow*2){
             if(Gdx.input.justTouched()){
                 if (SizeSekarang==39){
-                    ControllerScreen.jumlahTileRumput=7;
+                    ControllerScreen.jumlahTileRumput=11;
+                    ControllerScreen.jumlahTileMetal=ControllerScreen.jumlahTileRumput+2;
                 } else {
                     ControllerScreen.jumlahTileRumput+=2;
+                    ControllerScreen.jumlahTileMetal+=2;
                 }
                     //for array number +1 (2kali for)
             } else{

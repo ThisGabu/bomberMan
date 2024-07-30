@@ -20,7 +20,7 @@ public class Player {
 
     final float delayFrame=0.25f;
     final float delayBombFrame=0.1f;
-    final float speed= BomberMan.heightScreen/MapGame.heightTile/4/3;
+    final float speed= MapGame.widthTile/4/8;
     float width=MapGame.widthTile-15;
     float height=MapGame.heightTile-15;
 
@@ -414,7 +414,7 @@ public class Player {
                         placeBomb = true;
                         capacityBomb--;
                     } else if (pergerakan == "up") {
-                        if (y + height + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getyPosition()) {
+                        if (y + height + 1 < map.border[map.border.length - 1][map.border.length - 1].getyPosition()) {
                             if (up) {
                                 animation = animationWalkUp;
                                 walkUp();
@@ -659,5 +659,13 @@ public class Player {
 
     public void setWidth(float width) {
         this.width = width;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setX(float x) {
+        this.x = x;
     }
 }

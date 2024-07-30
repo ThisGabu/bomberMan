@@ -9,9 +9,11 @@ import Entity.Player.Player;
 import GameScreen.ControllerScreen;
 import GameScreen.PlayScreen;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 
 import java.awt.font.FontRenderContext;
+import java.security.Key;
 
 public class Update {
 
@@ -34,8 +36,46 @@ public class Update {
        updateExplosion();
        updatePlayer(delta);
        claimItem();
-
+       positionPlayer();
        checkEndGame();
+   }
+
+   public void positionPlayer(){
+       for (int i=0; i< player.getJumlahPlayer();i++){
+           if (player.getPergerakan(i)=="up"){
+               if (player.isUp(i)){
+
+               } else {
+                   if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)>=map.getyPosition(player.getI(i), player.getJ(i) )){
+                       player.setY(i,map.getyPosition(player.getI(i), player.getJ(i))+map.heightTile- player.getHeightPlayer(i));
+                   }
+               }
+           } else if (player.getPergerakan(i)=="down") {
+               if (player.isDown(i)){
+
+               } else {
+                   if (player.getYPositionPlayer(i)<=map.getyPosition(player.getI(i), player.getJ(i) )+map.heightTile){
+                       player.setY(i,map.getyPosition(player.getI(i), player.getJ(i)));
+                   }
+               }
+           } else if (player.getPergerakan(i)=="left") {
+               if (player.isLeft(i)){
+
+               } else if (player.getXPositionPlayer(i)<=map.getxPosition(player.getI(i), player.getJ(i) )+map.widthTile){
+                   player.setX(i,map.getxPosition(player.getI(i), player.getJ(i)));
+               }
+           } else if (player.getPergerakan(i)=="right") {
+               if (player.isRight(i)){
+
+               } else {
+                   if (player.getXPositionPlayer(i)+ player.getWidthPlayer(i)>=map.getxPosition(player.getI(i), player.getJ(i) )){
+                       player.setX(i,map.getxPosition(player.getI(i), player.getJ(i))+map.widthTile- player.getWidthPlayer(i));
+                   }
+               }
+           }
+
+
+       }
    }
 
    public void updatePlayer(float delta){
