@@ -136,7 +136,7 @@ public class SettingScreen implements Screen {
 
         if (Gdx.input.getX()>xArrowKiriPanjang&&Gdx.input.getX()<xArrowKiriPanjang+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKiriPanjang&&Gdx.input.getY()>heightBackground-yArrowKiriPanjang-heightArrow*2){
             if(Gdx.input.justTouched()){
-                if (SizeSekarang == 11){
+                if (SizeSekarang == 15){
                     ControllerScreen.jumlahTileRumput=39;
                     ControllerScreen.jumlahTileMetal=ControllerScreen.jumlahTileRumput+2;
                     //for array number -1 (2kali for)
@@ -153,7 +153,7 @@ public class SettingScreen implements Screen {
         if (Gdx.input.getX()>xArrowKananPanjang&&Gdx.input.getX()<xArrowKananPanjang+widthArrow&&Gdx.input.getY()<heightBackground-yArrowKananPanjang&&Gdx.input.getY()>heightBackground-yArrowKananPanjang-heightArrow*2){
             if(Gdx.input.justTouched()){
                 if (SizeSekarang==39){
-                    ControllerScreen.jumlahTileRumput=11;
+                    ControllerScreen.jumlahTileRumput=15;
                     ControllerScreen.jumlahTileMetal=ControllerScreen.jumlahTileRumput+2;
                 } else {
                     ControllerScreen.jumlahTileRumput+=2;

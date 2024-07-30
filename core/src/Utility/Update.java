@@ -42,29 +42,29 @@ public class Update {
 
    public void positionPlayer(){
        for (int i=0; i< player.getJumlahPlayer();i++){
-           if (player.getPergerakan(i)=="up"){
+           if (player.getPergerakanBefore(i)=="up"){
                if (player.isUp(i)){
 
                } else {
                    if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)>=map.getyPosition(player.getI(i), player.getJ(i) )){
-                       player.setY(i,map.getyPosition(player.getI(i), player.getJ(i))+map.heightTile- player.getHeightPlayer(i));
+                       player.setY(i, player.getYPositionPlayer(i)- ((player.getYPositionPlayer(i)+ player.getHeightPlayer(i))-(map.getyPosition(player.getI(i), player.getJ(i))+map.heightTile)));
                    }
                }
-           } else if (player.getPergerakan(i)=="down") {
+           } else if (player.getPergerakanBefore(i)=="down") {
                if (player.isDown(i)){
 
                } else {
                    if (player.getYPositionPlayer(i)<=map.getyPosition(player.getI(i), player.getJ(i) )+map.heightTile){
-                       player.setY(i,map.getyPosition(player.getI(i), player.getJ(i)));
+                       player.setY(i, player.getYPositionPlayer(i)+(player.getYPositionPlayer(i)-map.getyPosition(player.getI(i), player.getJ(i))));
                    }
                }
-           } else if (player.getPergerakan(i)=="left") {
+           } else if (player.getPergerakanBefore(i)=="left") {
                if (player.isLeft(i)){
 
                } else if (player.getXPositionPlayer(i)<=map.getxPosition(player.getI(i), player.getJ(i) )+map.widthTile){
                    player.setX(i,map.getxPosition(player.getI(i), player.getJ(i)));
                }
-           } else if (player.getPergerakan(i)=="right") {
+           } else if (player.getPergerakanBefore(i)=="right") {
                if (player.isRight(i)){
 
                } else {

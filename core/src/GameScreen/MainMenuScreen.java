@@ -67,7 +67,7 @@ public class MainMenuScreen implements Screen {
         exit = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\Exit.png");
         exitHover = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\exitHover.png");
         exitPress = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\exitPress.png");
-        setting= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\setting.png");
+        setting= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\Setting.png");
         settingHover= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\settingHover.png");
         instruction= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\instruction.png");
         instructionHover= new Texture("..\\bomberMan\\assets\\MainMenuScreen\\instructionHover.png");

@@ -1,2 +1,5 @@
-aku pasrah, kuserahkan semua ditangan Tuhan
-(curhatan hati developer)
+BOMBERMAN CREATE BY
+
+PROJECT MANAGER : GABRIEL
+DESAINER : FADHIL & DZAKI
+BACKEND : DAVID & NABIL

@@ -392,6 +392,7 @@ public class Player {
         if (stun) {
             updateStun(delta);
         }
+        pergerakanBefore=pergerakan;
         pergerakan= analog.update();
 
         if (death){
@@ -418,7 +419,6 @@ public class Player {
                             if (up) {
                                 animation = animationWalkUp;
                                 walkUp();
-
                             } else {
                                 animation = animationIdle;
                             }
