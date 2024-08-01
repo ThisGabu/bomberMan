@@ -41,7 +41,6 @@ public class ControllerScreen implements Screen {
         pauseScreen = new PauseScreen();
         mainMenu = true;
         loading=false;
-        restartMap=true;
         settingScreen= new SettingScreen();
         instructionScreen= new InstructionScreen();
     }

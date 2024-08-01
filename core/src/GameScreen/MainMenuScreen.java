@@ -101,8 +101,8 @@ public class MainMenuScreen implements Screen {
                 ControllerScreen.mainMenu=false;
                 ControllerScreen.play=true;
                 ControllerScreen.loading=true;
+                ControllerScreen.restartMap=true;
                 music.dispose();
-
             } else {
                 batch.draw(startHover, xStart, yStart, widthStart, heightStart);
             }
@@ -117,6 +117,7 @@ public class MainMenuScreen implements Screen {
         } else if (Gdx.input.getX()>xSetting&&Gdx.input.getX()<xSetting+widthSetting&&Gdx.input.getY()<height-ySetting&&Gdx.input.getY()>height-ySetting-heightSetting) {
             if (Gdx.input.isTouched()){
                 ControllerScreen.setting=true;
+                ControllerScreen.restartMap=true;
             } else {
                 batch.draw(settingHover,xSetting,ySetting,widthSetting,heightSetting);
             }

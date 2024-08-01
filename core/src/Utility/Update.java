@@ -55,7 +55,7 @@ public class Update {
 
                } else {
                    if (player.getYPositionPlayer(i)<=map.getyPosition(player.getI(i), player.getJ(i) )+map.heightTile){
-                       player.setY(i, player.getYPositionPlayer(i)+(player.getYPositionPlayer(i)-map.getyPosition(player.getI(i), player.getJ(i))));
+                       player.setY(i, player.getYPositionPlayer(i)+(map.getyPosition(player.getI(i), player.getJ(i))-player.getYPositionPlayer(i)));
                    }
                }
            } else if (player.getPergerakanBefore(i)=="left") {
