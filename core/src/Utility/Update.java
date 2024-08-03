@@ -2,6 +2,8 @@ package Utility;
 
 import Entity.Bomb.Bomb;
 import Entity.Bomb.Ledakan;
+import Entity.Character.Character;
+import Entity.Character.Skill.Skill;
 import Entity.Item.Item;
 import Entity.Map.Box;
 import Entity.Player.ControllerPlayer;
@@ -816,5 +818,18 @@ public class Update {
        }
    }
 
-
+   void activasionSkill(){
+       for (int i=0; i< player.getJumlahPlayer(); i++){
+           Character character=player.getCharacter(i);
+           if (character.getSkill()== Skill.Destroy){
+               //skill desroyer
+           } else if (character.getSkill()== Skill.Penetrate) {
+               //skill ghoster
+           } else if (character.getSkill()== Skill.BombThrow) {
+               //skill bomber
+           } else if (character.getSkill()== Skill.Build) {
+               //skill builder
+           }
+       }
+   }
 }
