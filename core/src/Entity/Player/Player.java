@@ -433,7 +433,7 @@ public class Player {
                             }
                         }
                     } else if (pergerakan == "right") {
-                        if (x + width + 1 < map.border[map.jumlahTileMetal - 1][map.jumlahTileMetal - 1].getxPosition()) {
+                        if (x + width + 1 < map.border[map.border.length - 1][map.border.length - 1].getxPosition()) {
                             if (right) {
                                 animation = animationWalkRight;
                                 walkRight();

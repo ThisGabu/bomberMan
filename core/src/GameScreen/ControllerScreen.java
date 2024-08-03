@@ -24,6 +24,10 @@ public class ControllerScreen implements Screen {
     public static int jumlahMap=2;
     public static int jumlahTileRumput=21;
     public static int jumlahTileMetal=jumlahTileRumput+2;
+    public static int panjangMap= 21;
+    public static int tinggiMap= 21;
+    public static float volumeScreen=0.5f;
+    public static float volumeItem=0.25f;
 
     Screen mainMenuScreen;
     Screen playScreen;
@@ -59,7 +63,7 @@ public class ControllerScreen implements Screen {
             if (loading){
                 loadingScreen.render(delta);
                 if (restartMap) {
-                    map = new MapGame(numberMap,jumlahTileRumput,jumlahTileMetal);
+                    map = new MapGame(numberMap,jumlahTileRumput,jumlahTileRumput,jumlahTileMetal,jumlahTileMetal);
                     playScreen = new PlayScreen(map);
                     winScreen = null;
                     restartMap = false;

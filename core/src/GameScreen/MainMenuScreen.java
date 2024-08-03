@@ -91,11 +91,11 @@ public class MainMenuScreen implements Screen {
         batch.draw(setting,xSetting,ySetting,widthSetting,heightSetting);
         batch.draw(instruction,xInstruction,yInstruction,widthInstruction,heightInstruction);
 
-        music.setVolume(0.5f);
+        music.setVolume(ControllerScreen.volumeScreen);
         music.setLooping(true);
         music.play();
 
-        if (Gdx.input.getX()>xStart&&Gdx.input.getX()<xStart+widthStart&&Gdx.input.getY()<height-yStart&&Gdx.input.getY()>height-yStart-heightStart){
+        if (Gdx.input.getX()>=xStart&&Gdx.input.getX()<=xStart+widthStart&&Gdx.input.getY()<=height-yStart-heightStart/4&&Gdx.input.getY()>=height-yStart-heightStart-heightStart/2){
             if (Gdx.input.isTouched()){
                 batch.draw(startPress, xStart, yStart, widthStart, heightStart);
                 ControllerScreen.mainMenu=false;
@@ -107,21 +107,21 @@ public class MainMenuScreen implements Screen {
                 batch.draw(startHover, xStart, yStart, widthStart, heightStart);
             }
         }
-        else if (Gdx.input.getX()>xExit&&Gdx.input.getX()<xExit+widthExit&&Gdx.input.getY()<height-yExit&&Gdx.input.getY()>height-yExit-heightExit){
+        else if (Gdx.input.getX()>=xExit&&Gdx.input.getX()<=xExit+widthExit&&Gdx.input.getY()<=height-yExit-heightExit/4&&Gdx.input.getY()>=height-yExit-heightExit-heightExit/2){
             if (Gdx.input.isTouched()){
                 batch.draw(exitPress, xExit, yExit, widthExit, heightExit);
                 ControllerScreen.exitGame=true;
             } else {
                 batch.draw(exitHover, xExit, yExit, widthExit, heightExit);
             }
-        } else if (Gdx.input.getX()>xSetting&&Gdx.input.getX()<xSetting+widthSetting&&Gdx.input.getY()<height-ySetting&&Gdx.input.getY()>height-ySetting-heightSetting) {
+        } else if (Gdx.input.getX()>=xSetting&&Gdx.input.getX()<=xSetting+widthSetting&&Gdx.input.getY()<=height-ySetting-heightSetting/4&&Gdx.input.getY()>=height-ySetting-heightSetting-heightSetting/2) {
             if (Gdx.input.isTouched()){
                 ControllerScreen.setting=true;
                 ControllerScreen.restartMap=true;
             } else {
                 batch.draw(settingHover,xSetting,ySetting,widthSetting,heightSetting);
             }
-        } else if (Gdx.input.getX()>xInstruction&&Gdx.input.getX()<xInstruction+widthInstruction&&Gdx.input.getY()<height-yInstruction&&Gdx.input.getY()>height-yInstruction-heightInstruction) {
+        } else if (Gdx.input.getX()>=xInstruction&&Gdx.input.getX()<=xInstruction+widthInstruction&&Gdx.input.getY()<=height-yInstruction-heightInstruction/4&&Gdx.input.getY()>=height-yInstruction-heightInstruction-heightInstruction/2) {
             if (Gdx.input.isTouched()){
                 ControllerScreen.mainMenu=false;
                 ControllerScreen.instruction=true;
