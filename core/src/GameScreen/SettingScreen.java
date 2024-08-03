@@ -50,8 +50,8 @@ public class SettingScreen implements Screen {
     private final float xPanjangText=widthBackground/2-widthPanjangText/2;
     private final float yPanjangText=ySettingText-heightPanjangText-heightPanjangText/6;
 
-    private final float widthAngka=66;
-    private final float heightAngka=93;
+    private final float widthAngka=66*0.75f;
+    private final float heightAngka=93*0.75f;
 
     private final float widthArrow=heightAngka/5*7;
     private final float heightArrow=heightAngka;
@@ -103,7 +103,6 @@ public class SettingScreen implements Screen {
         ArrowKiri= new Texture("..\\bomberMan\\assets\\SettingScreen\\arrow kiri.png");
         ArrowKananHover= new Texture("..\\bomberMan\\assets\\SettingScreen\\arrow kananHover.png");
         ArrowKiriHover= new Texture("..\\bomberMan\\assets\\SettingScreen\\arrow kiriHover.png");
-
     }
 
 

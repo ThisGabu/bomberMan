@@ -83,7 +83,7 @@ public class WinScreen implements Screen {
         PlayScreen.music.dispose();
         Bomb.soundMeledak.dispose();
 
-        music.setVolume(0.3f);
+        music.setVolume(ControllerScreen.volumeScreen);
         music.setLooping(true);
         music.play();
 

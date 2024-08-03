@@ -107,6 +107,8 @@ public class Update {
                    PlayScreen.music.dispose();
                }
            }
+       } else if (playerRemain==0) {
+           
        }
    }
 
@@ -120,7 +122,7 @@ public class Update {
    public void checkPlayer(){
        for (int i=0; i<player.getJumlahPlayer(); i++){
            if (player.getPergerakan(i)=="up"){
-               if (player.getI(i)!=map.getJumlahTileRumput()-1) {
+               if (player.getI(i)!=map.tinggiMap-1) {
 
                    if (player.getXPositionPlayer(i) >= map.getxPosition(player.getI(i), player.getJ(i)) && player.getXPositionPlayer(i) + player.getWidthPlayer(i) <= map.getxPosition(player.getI(i), player.getJ(i)) + map.widthTile) {
                        //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
@@ -171,7 +173,7 @@ public class Update {
                                player.setUp(true, i);
                            }
                        }
-                   } else if (player.getJ(i) == map.getJumlahTileRumput() - 1) {
+                   } else if (player.getJ(i) == map.getPanjangMap() - 1) {
                        if (map.isWall(player.getI(i), player.getJ(i) - 1)) {
                            if (player.getYPositionPlayer(i)+ player.getHeightPlayer(i)<map.getyPosition(player.getI(i),player.getJ(i))+map.heightTile){
                                player.setUp(true, i);
@@ -264,7 +266,7 @@ public class Update {
                        }
                    }
                } else {
-                   if (player.getYPositionPlayer(i)+player.getHeightPlayer(i)<map.getyPosition(map.getJumlahTileRumput()-1,map.getJumlahTileRumput()-1)+map.heightTile){
+                   if (player.getYPositionPlayer(i)+player.getHeightPlayer(i)<map.getyPosition(map.tinggiMap-1,map.panjangMap-1)+map.heightTile){
                        player.setUp(true,i);
                    } else {
                        player.setUp(false,i);
@@ -291,7 +293,7 @@ public class Update {
                                player.setDown(true, i);
                            }
                        }
-                   } else if (player.getJ(i) == map.getJumlahTileRumput() - 1) {
+                   } else if (player.getJ(i) == map.panjangMap - 1) {
                        if (map.isWall(player.getI(i) - 1, player.getJ(i) - 1)) {
                            if (player.getYPositionPlayer(i)>map.getyPosition(player.getI(i),player.getJ(i))){
                                player.setDown(true, i);
@@ -422,7 +424,7 @@ public class Update {
                    }
                }
            } else if (player.getPergerakan(i)=="right"){
-               if (player.getJ(i)!=map.getJumlahTileRumput()-1) {
+               if (player.getJ(i)!=map.panjangMap-1) {
 
                        if (player.getYPositionPlayer(i) >= map.getyPosition(player.getI(i), player.getJ(i)) && player.getYPositionPlayer(i) + player.getHeightPlayer(i) <= map.getyPosition(player.getI(i), player.getJ(i)) + map.heightTile) {
                            //cek posisi player apakah sudah pas ditengah tile atau hanya sebagian tubuh saja untuk ini dicek lokasi panjang playernya apakah sudah berada didalam tile atau belum
@@ -473,7 +475,7 @@ public class Update {
                                    player.setRight(true, i);
                                }
                            }
-                       } else if (player.getI(i) == map.getJumlahTileRumput() - 1) {
+                       } else if (player.getI(i) == map.tinggiMap - 1) {
                            if (map.isWall(player.getI(i), player.getJ(i) + 1)) {
                                if (player.getXPositionPlayer(i)+player.getWidthPlayer(i)<map.getxPosition(player.getI(i),player.getJ(i))+map.widthTile){
                                    player.setRight(true,i);
@@ -567,7 +569,7 @@ public class Update {
                        }
 
                } else {
-                   if (player.getXPositionPlayer(i)+player.getWidthPlayer(i)<map.getxPosition(map.getJumlahTileRumput()-1,map.getJumlahTileRumput()-1)+map.widthTile){
+                   if (player.getXPositionPlayer(i)+player.getWidthPlayer(i)<map.getxPosition(map.tinggiMap-1,map.panjangMap-1)+map.widthTile){
                        player.setRight(true,i);
                    } else {
                        player.setRight(false,i);
@@ -594,7 +596,7 @@ public class Update {
                                    player.setLeft(true, i);
                                }
                            }
-                       } else if (player.getI(i) == map.getJumlahTileRumput() - 1) {
+                       } else if (player.getI(i) == map.tinggiMap - 1) {
                            if (map.isWall(player.getI(i) - 1, player.getJ(i) - 1)) {
                                if (player.getXPositionPlayer(i)>map.getxPosition(player.getI(i),player.getJ(i))){
                                    player.setLeft(true,i);
@@ -749,8 +751,8 @@ public class Update {
    public void claimItem(){
        for (int index=0; index< player.getJumlahPlayer(); index++){
            HitBox hitBox1= player.getHitbox(index);
-           for (int i=0; i<map.getJumlahTileRumput(); i++){
-               for (int j=0; j<map.getJumlahTileRumput(); j++){
+           for (int i=0; i<map.tinggiMap; i++){
+               for (int j=0; j<map.panjangMap; j++){
                    if (map.isItems(i, j)) {
                        Item item= map.getItem(i,j);
                        HitBox hitBox2= item.getHitBox();
@@ -759,12 +761,12 @@ public class Update {
                            player.claimItem(item.getNama(),index);
                            if (item.getNama()=="stun"){
                                music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\SoundEffect\\dapetdebuff.mp3"));
-                               music.setVolume(0.3f);
+                               music.setVolume(ControllerScreen.volumeItem);
                                music.setLooping(false);
                                music.play();
                            } else {
                                music = Gdx.audio.newMusic(Gdx.files.internal("..\\bomberMan\\assets\\SoundEffect\\dapetbuff.mp3"));
-                               music.setVolume(0.3f);
+                               music.setVolume(ControllerScreen.volumeItem);
                                music.setLooping(false);
                                music.play();
                            }
@@ -799,8 +801,8 @@ public class Update {
            }
 
            //kondisi mengcheck apakah hitBox yang terdapat pada box, mengenai hitBox pada ledakan
-           for (int ii=0; ii<map.getJumlahTileRumput(); ii++){
-               for (int j=0; j<map.getJumlahTileRumput(); j++){
+           for (int ii=0; ii<map.tinggiMap; ii++){
+               for (int j=0; j<map.panjangMap; j++){
                    if (map.isBox(ii, j)) {
                        Box box= map.getBox(ii,j);
                        HitBox hitBox1= box.getHitBox();

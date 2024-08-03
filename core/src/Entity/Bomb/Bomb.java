@@ -1,5 +1,6 @@
 package Entity.Bomb;
 
+import GameScreen.ControllerScreen;
 import Utility.MapGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -15,8 +16,6 @@ public class Bomb {
 
 
     public static Music soundMeledak;
-    private static float volume= 0.1f;
-
 
     boolean meledak=false;
     boolean ledakan=false;
@@ -141,7 +140,7 @@ public class Bomb {
 
 
     public static void duarr() {
-        soundMeledak.setVolume(0.5f);
+        soundMeledak.setVolume(ControllerScreen.volumeItem);
         soundMeledak.setLooping(false);
         soundMeledak.play();
     }

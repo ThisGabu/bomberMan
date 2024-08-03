@@ -62,7 +62,7 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        music.setVolume(0.15f);
+        music.setVolume(ControllerScreen.volumeItem);
         music.setLooping(true);
         music.play();
 
@@ -70,8 +70,8 @@ public class PlayScreen implements Screen {
         batch.draw(backgorund, xBackground, yBackgorund, width, height);
 
         if (Gdx.input.isKeyPressed(Input.Keys.M)){
-            for (int i=0; i<map.jumlahTileRumput; i++){
-                for (int j=0; j<map.jumlahTileRumput; j++){
+            for (int i=0; i<map.tinggiMap; i++){
+                for (int j=0; j<map.panjangMap; j++){
                     if (map.tile[i][j].getBox()){
                         map.tile[i][j].boxDesroy();
                     }
@@ -95,20 +95,20 @@ public class PlayScreen implements Screen {
 
         update.update(delta);
 
-        for (int i=0; i<map.jumlahTileMetal; i++){
-            for (int j=0; j<map.jumlahTileMetal; j++){
+        for (int i=0; i<map.tinggiBorder; i++){
+            for (int j=0; j<map.panjangBorder; j++){
                 batch.draw(map.getBorder(i,j), map.border[i][j].getxPosition(), map.border[i][j].getyPosition(), map.widthTile, map.heightTile);
             }
         }
 
-        for (int i=0; i<map.jumlahTileRumput; i++){
-            for (int j=0; j<map.jumlahTileRumput; j++){
+        for (int i=0; i<map.tinggiMap; i++){
+            for (int j=0; j<map.panjangMap; j++){
                 batch.draw(map.getTilePicture(i,j), map.tile[i][j].getxPosition(), map.tile[i][j].getyPosition(), map.widthTile, map.heightTile);
             }
         }
 
-        for (int i=0; i<map.jumlahTileRumput; i++){
-            for (int j=0; j<map.jumlahTileRumput; j++){
+        for (int i=0; i<map.tinggiMap; i++){
+            for (int j=0; j<map.panjangMap; j++){
                 if (map.tile[i][j].item()){
                     batch.draw(map.drawItem(i,j, delta), map.tile[i][j].xPosition, map.tile[i][j].yPosition, Item.width,Item.height);
 
@@ -116,8 +116,8 @@ public class PlayScreen implements Screen {
             }
         }
 
-        for (int i=0; i<map.jumlahTileRumput; i++){
-            for (int j=0; j<map.jumlahTileRumput; j++){
+        for (int i=0; i<map.getTinggiMap(); i++){
+            for (int j=0; j<map.getPanjangMap(); j++){
                 if (map.isBox(i,j)){
                     batch.draw(map.getBoxTexture(i,j), map.getxPositionBox(i,j), map.getyPositionBox(i,j), map.getWidthBox(i,j), map.getHeightBox(i,j));
                 } else if (map.isWall(i,j)){
