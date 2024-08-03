@@ -1,13 +1,12 @@
 package Entity.Player;
 
 import Entity.Bomb.Bomb;
-import Entity.Item.Item;
+import Entity.Character.Character;
 import Utility.HitBox;
 import Utility.MapGame;
 import Utility.SpawnTile;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.Random;
@@ -238,5 +237,13 @@ public class ControllerPlayer {
 
     public void setY(int index,float y){
         player[index].setY(y);
+    }
+
+    public boolean isDoSkill(int index){
+        return player[index].isDoSkill();
+    }
+
+    public Character getCharacter(int index){
+        return player[index].getCharacter();
     }
 }

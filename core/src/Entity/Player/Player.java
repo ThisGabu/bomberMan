@@ -18,19 +18,26 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Player {
 
+    Bomb bom;
+    HitBox hitBox;
+    Character character;
+    boolean isBomb = false;
+
     final float delayFrame=0.25f;
     final float delayBombFrame=0.1f;
     final float speed= MapGame.widthTile/4/8;
     float width=MapGame.widthTile-15;
     float height=MapGame.heightTile-15;
 
+    boolean doSkill=false;
+    boolean skillAktif=false;
+    boolean cooldownSkill=false;
+    float skillCooldown=10;
+    float timeSkill= 0;
+
     int capacityBomb = 2;
     int rangeBomb= 2;
     int capacityBombBefore;
-
-    Bomb bom;
-    HitBox hitBox;
-    boolean isBomb = false;
 
     float x;
     float y;
@@ -386,6 +393,8 @@ public class Player {
     public void update(MapGame map, float delta){
 
         bombUpdate();
+        updateSkill(delta);
+
         if (shield) {
             updateShield(delta);
         }
@@ -400,16 +409,25 @@ public class Player {
             deadAnimation(delta);
         } else {
             if (!stun) {
-                if (placeBomb) {
-                    if (timer < animationPlaceBomb.getAnimationDuration() / 2) {
-                        timer += delta;
+                if (placeBomb || skillAktif) {
+                    if (skillAktif){
+                        skillAktif=false;
+                        cooldownSkill=true;
+                        doSkill=true;
+                        timeSkill=0;
                     } else {
-                        timer=0;
-                        placeBomb = false;
-                        isBomb = true;
+                        if (timer < animationPlaceBomb.getAnimationDuration() / 2) {
+                            timer += delta;
+                        } else {
+                            timer = 0;
+                            placeBomb = false;
+                            isBomb = true;
+                        }
                     }
                 } else {
-                    if (pergerakan == "bomb" && capacityBomb > 0) {
+                    if (pergerakan== "skill" && timeSkill<skillCooldown){
+                        skillAktif=true;
+                    } else if (pergerakan == "bomb" && capacityBomb > 0) {
                         animation = animationPlaceBomb;
                         timer = 0;
                         placeBomb = true;
@@ -667,5 +685,33 @@ public class Player {
 
     public void setX(float x) {
         this.x = x;
+    }
+
+    public boolean isSkillAktif() {
+        return skillAktif;
+    }
+
+    public boolean isDoSkill() {
+        return doSkill;
+    }
+
+    public void setDoSkill(boolean doSkill) {
+        this.doSkill = doSkill;
+    }
+
+    void updateSkill(float delta){
+        if (cooldownSkill){
+            if (timeSkill<skillCooldown){
+                timeSkill+=delta;
+            } else {
+                timeSkill=0;
+                skillAktif=false;
+                cooldownSkill=false;
+            }
+        }
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 }
