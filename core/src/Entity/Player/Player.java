@@ -1,15 +1,13 @@
 package Entity.Player;
 
 import Entity.Bomb.Bomb;
-import Entity.Item.Item;
+import Entity.Character.Character;
 import Utility.Analog.Analog;
 import Utility.Analog.Analog1;
 import Utility.Analog.Analog2;
 import Utility.HitBox;
 import Utility.MapGame;
-import bomberman.game.BomberMan;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
