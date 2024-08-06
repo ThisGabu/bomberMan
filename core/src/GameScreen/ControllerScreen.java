@@ -28,6 +28,7 @@ public class ControllerScreen implements Screen {
     public static int tinggiMap= 21;
     public static float volumeScreen=0.5f;
     public static float volumeItem=0.25f;
+    public static float cooldownLoading;
 
     Screen mainMenuScreen;
     Screen playScreen;

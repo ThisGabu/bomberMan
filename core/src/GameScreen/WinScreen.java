@@ -121,7 +121,6 @@ public class WinScreen implements Screen {
                 ControllerScreen.mainMenu=true;
                 ControllerScreen.restartMap=true;
                 ControllerScreen.win=false;
-                ControllerScreen.loading=true;
                 music.dispose();
             } else {
                 batch.draw(ExitHover, xExit, yExit, widthExit, heightExit);
