@@ -96,7 +96,7 @@ public class MainMenuScreen implements Screen {
         music.play();
 
         if (Gdx.input.getX()>=xStart&&Gdx.input.getX()<=xStart+widthStart&&Gdx.input.getY()<=height-yStart-heightStart/4&&Gdx.input.getY()>=height-yStart-heightStart-heightStart/2){
-            if (Gdx.input.isTouched()){
+            if (Gdx.input.justTouched()){
                 batch.draw(startPress, xStart, yStart, widthStart, heightStart);
                 ControllerScreen.mainMenu=false;
                 ControllerScreen.play=true;
@@ -108,21 +108,21 @@ public class MainMenuScreen implements Screen {
             }
         }
         else if (Gdx.input.getX()>=xExit&&Gdx.input.getX()<=xExit+widthExit&&Gdx.input.getY()<=height-yExit-heightExit/4&&Gdx.input.getY()>=height-yExit-heightExit-heightExit/2){
-            if (Gdx.input.isTouched()){
+            if (Gdx.input.justTouched()){
                 batch.draw(exitPress, xExit, yExit, widthExit, heightExit);
                 ControllerScreen.exitGame=true;
             } else {
                 batch.draw(exitHover, xExit, yExit, widthExit, heightExit);
             }
         } else if (Gdx.input.getX()>=xSetting&&Gdx.input.getX()<=xSetting+widthSetting&&Gdx.input.getY()<=height-ySetting-heightSetting/4&&Gdx.input.getY()>=height-ySetting-heightSetting-heightSetting/2) {
-            if (Gdx.input.isTouched()){
+            if (Gdx.input.justTouched()){
                 ControllerScreen.setting=true;
                 ControllerScreen.restartMap=true;
             } else {
                 batch.draw(settingHover,xSetting,ySetting,widthSetting,heightSetting);
             }
         } else if (Gdx.input.getX()>=xInstruction&&Gdx.input.getX()<=xInstruction+widthInstruction&&Gdx.input.getY()<=height-yInstruction-heightInstruction/4&&Gdx.input.getY()>=height-yInstruction-heightInstruction-heightInstruction/2) {
-            if (Gdx.input.isTouched()){
+            if (Gdx.input.justTouched()){
                 ControllerScreen.mainMenu=false;
                 ControllerScreen.instruction=true;
             } else {

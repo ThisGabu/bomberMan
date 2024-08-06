@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 class InstructionScreen implements Screen {
@@ -16,6 +17,7 @@ class InstructionScreen implements Screen {
     ControllerPlayer player;
     SpawnTile[] spawnTile;
     SpriteBatch batch;
+    BitmapFont font;
     MapGame map;
 
     Texture backgorund;;
@@ -140,6 +142,7 @@ class InstructionScreen implements Screen {
 
         spawnTile= new SpawnTile[PlayScreen.jumlahPlayer];
         batch= new SpriteBatch();
+        font= new BitmapFont();
 
         for (int i=0; i< PlayScreen.jumlahPlayer; i++){
             spawnTile[i]= new SpawnTile();
