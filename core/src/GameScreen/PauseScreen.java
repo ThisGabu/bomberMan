@@ -82,7 +82,6 @@ public class PauseScreen implements Screen {
                 ControllerScreen.mainMenu=true;
                 PlayScreen.pause=false;
                 ControllerScreen.restartMap=true;
-                ControllerScreen.loading=true;
                 MainMenuScreen.music.dispose();
             } else {
                 batch.draw(exitHover, xExit, yExit, widthExit, heightExit);
