@@ -8,6 +8,7 @@ import Utility.Analog.Analog2;
 import Utility.HitBox;
 import Utility.MapGame;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,6 +33,8 @@ public class Player {
     boolean cooldownSkill=false;
     float skillCooldown=10;
     float timeSkill= 0;
+
+    boolean sprint=false;
 
     int capacityBomb = 2;
     int rangeBomb= 2;
@@ -399,8 +402,10 @@ public class Player {
         if (stun) {
             updateStun(delta);
         }
+
         pergerakanBefore=pergerakan;
         pergerakan= analog.update();
+        sprint= analog.sprint();
 
         if (death){
             animation=animationDead;
@@ -432,18 +437,34 @@ public class Player {
                         capacityBomb--;
                     } else if (pergerakan == "up") {
                         if (y + height + 1 < map.border[map.border.length - 1][map.border.length - 1].getyPosition()) {
-                            if (up) {
-                                animation = animationWalkUp;
-                                walkUp();
+                            if (sprint){
+                                if (up) {
+                                    animation = animationWalkUp;
+                                    sprintUp();
+                                    sprint=false;
+                                } else {
+                                    animation = animationIdle;
+                                }
                             } else {
-                                animation = animationIdle;
+                                if (up) {
+                                    animation = animationWalkUp;
+                                    walkUp();
+                                } else {
+                                    animation = animationIdle;
+                                }
                             }
                         }
                     } else if (pergerakan == "down") {
                         if (y - 1 > map.border[0][0].getyPosition() + map.heightTile) {
                             if (down) {
-                                animation = animationWalkDown;
-                                walkDown();
+                                if (sprint){
+                                    animation = animationWalkDown;
+                                    sprintDown();
+                                    sprint=false;
+                                } else {
+                                    animation = animationWalkDown;
+                                    walkDown();
+                                }
                             } else {
                                 animation = animationIdle;
                             }
@@ -451,20 +472,31 @@ public class Player {
                     } else if (pergerakan == "right") {
                         if (x + width + 1 < map.border[map.border.length - 1][map.border.length - 1].getxPosition()) {
                             if (right) {
-                                animation = animationWalkRight;
-                                walkRight();
+                                if (sprint){
+                                    animation = animationWalkRight;
+                                    sprintRight();
+                                    sprint=false;
+                                } else {
+                                    animation = animationWalkRight;
+                                    walkRight();
+                                }
                             } else {
                                 animation = animationIdle;
                             }
                         } else {
                             animation = animationIdle;
                         }
-
                     } else if (pergerakan == "left") {
                         if (x - 1 > map.border[0][0].getxPosition() + map.widthTile) {
                             if (left) {
-                                animation = animationWalkLeft;
-                                walkLeft();
+                                if (sprint){
+                                    animation = animationWalkLeft;
+                                    sprintLeft();
+                                    sprint=false;
+                                } else {
+                                    animation = animationWalkLeft;
+                                    walkLeft();
+                                }
                             } else {
                                 animation = animationIdle;
                             }
@@ -475,7 +507,6 @@ public class Player {
                 }
             }
         }
-
         hitBox.update(getX(),getY());
         setTile();
     }
@@ -523,6 +554,22 @@ public class Player {
 
     public void walkUp(){
         y+=speed;
+    }
+
+    public void sprintUp(){
+        y+=speed*2;
+    }
+
+    public void sprintDown(){
+        y-=speed*2;
+    }
+
+    public void sprintLeft(){
+        x-=speed*2;
+    }
+
+    public void sprintRight(){
+        x+=speed*2;
     }
 
     public void walkDown(){

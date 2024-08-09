@@ -6,6 +6,7 @@ import Entity.Item.Item;
 import Entity.Map.Box;
 import Entity.Map.Wall;
 import GameScreen.ControllerScreen;
+import GameScreen.PlayScreen;
 import bomberman.game.BomberMan;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -49,8 +50,6 @@ public class MapGame {
     public ArrayList<Ledakan> ledakan = new ArrayList<Ledakan>();
 
     float stateTime = 0f;
-
-
     public MapGame(int number) {
         panjangMap=11;
         tinggiMap=11;
@@ -898,7 +897,7 @@ public class MapGame {
             } else {
                 if (up||upEnd){
                     if (up){
-                        if (bomb.getI()+i<tinggiMap-1){
+                        if (bomb.getI()+i<tinggiMap){
                             if (isWall(bomb.getI()+i,bomb.getJ())){
                                 up=false;
                             } else {

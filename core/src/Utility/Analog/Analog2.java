@@ -8,20 +8,32 @@ public class Analog2 extends Analog{
     public String update() {
 
         String gerakan;
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
-            gerakan="up";
+        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT)){
+            gerakan="bomb";
         } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             gerakan="left";
         } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             gerakan="down";
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             gerakan="right";
-        } else if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT)) {
-            gerakan="bomb";
+        } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            gerakan="up";
         } else {
             gerakan=null;
         }
 
         return gerakan;
+    }
+
+    public boolean sprint(){
+        boolean sprint=false;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)){
+            sprint=true;
+        } else {
+            sprint=false;
+        }
+
+        return sprint;
     }
 }

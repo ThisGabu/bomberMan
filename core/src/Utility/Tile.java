@@ -16,14 +16,14 @@ public class    Tile {
     public float xPosition;
     public float yPosition;
 
-    boolean perubahan;
+    boolean perubahan=false;
 
-    boolean box;
-    boolean wall;
-    boolean item;
-    boolean explosion;
-    public boolean player;
-    boolean bom;
+    boolean box=false;
+    boolean wall=false;
+    boolean item=false;
+    boolean explosion=false;
+    public boolean player=false;
+    boolean bom=false;
 
     Item items;
     Box boxs;

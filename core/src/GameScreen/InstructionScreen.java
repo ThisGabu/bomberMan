@@ -110,7 +110,7 @@ class InstructionScreen implements Screen {
 
     InstructionScreen(){
 
-        map= new MapGame(1);
+        map= new MapGame(1,11,11,11,11);
 
         backgorund = new Texture("..\\bomberMan\\assets\\MainMenuScreen\\background.png");
         instructionBackground= new Texture("..\\bomberMan\\assets\\IntructionScreen\\background.png");
